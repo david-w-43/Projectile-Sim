@@ -41,11 +41,11 @@ namespace Projectile_Sim
             return interval;
         }
 
-        private void PopulateFrameQueue()
+        private void PopulateFrameQueue(ref PictureBox canvasContainer)
         {
             frameQueue.Clear();
 
-            Bitmap newCanvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
+            Bitmap newFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height);
             if (points.Count != 0) //If there are still point to plot
             {
                 for (int i = 0; i < projectiles.Count; i++) //For each projectile
@@ -60,9 +60,11 @@ namespace Projectile_Sim
                     if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
                     {
                         //Set the canvas
-                        canvas.SetPixel(horizontal, vertical, toPlot.colour);
+                        newFrame.SetPixel(horizontal, vertical, toPlot.colour);
                     }
                 }
+
+                frameQueue.Enqueue(newFrame);
             }
         }
         
@@ -148,6 +150,9 @@ namespace Projectile_Sim
             GetMaxValues();
 
             PopulateQueue();
+
+            PopulateFrameQueue(ref canvasContainer);
+
             simulationSpeed = speed;
             canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
             refreshTime = Math.Round(1000 / refreshRate);
