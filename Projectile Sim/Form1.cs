@@ -31,11 +31,6 @@ namespace Projectile_Sim
             InitializeComponent();
         }
 
-        public void UpdateFromFrameQueue(ref Queue<Bitmap> frameQueue)
-        {
-
-        }
-
         public void UpdatePictureBox(ref Bitmap bitmap)
         {
             try

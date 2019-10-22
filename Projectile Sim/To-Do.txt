@@ -1,7 +1,7 @@
 ﻿Immediate to-do:
 	Use width of canvas in queue population algorithm to minimise the number of points to be plotted
 	Implement real-time plotting using a timer
-	Implement frame queue inside Form1, reducing the amount of processor time to update the picturebox
+	Implement frame queue inside Form1 
 
 
 Possible:

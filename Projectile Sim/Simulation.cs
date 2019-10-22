@@ -21,7 +21,6 @@ namespace Projectile_Sim
 
         //public readonly Projectile[] arrayProjectile = new Projectile[];
         public readonly List<Projectile> projectiles = new List<Projectile>();
-        public Queue<Bitmap> frameQueue = new Queue<Bitmap>();
         public double time;
         public readonly double timescale;
         public Bitmap canvas;
@@ -39,31 +38,6 @@ namespace Projectile_Sim
             double interval = /* xscale * */ 0.01;
 
             return interval;
-        }
-
-        private void PopulateFrameQueue()
-        {
-            frameQueue.Clear();
-
-            Bitmap newCanvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            if (points.Count != 0) //If there are still point to plot
-            {
-                for (int i = 0; i < projectiles.Count; i++) //For each projectile
-                {
-                    PointInformation toPlot = points.Dequeue(); //Set and dequeue point
-
-                    //Get positions from point as integer
-                    int horizontal = (int)toPlot.position.horizontal;
-                    int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
-
-                    //If it is within bounds of canvas
-                    if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
-                    {
-                        //Set the canvas
-                        canvas.SetPixel(horizontal, vertical, toPlot.colour);
-                    }
-                }
-            }
         }
         
         private void PopulateQueue()
