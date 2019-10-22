@@ -1,0 +1,13 @@
+﻿Immediate to-do:
+	Use width of canvas in queue population algorithm to minimise the number of points to be plotted
+	Implement real-time plotting using a timer
+	Implement frame queue inside Form1 
+
+
+Possible:
+	Image resizing
+
+	Find y in terms of x (convert to parabola)
+		Solve with matrices
+
+	List saved presets and binary search using recursion
