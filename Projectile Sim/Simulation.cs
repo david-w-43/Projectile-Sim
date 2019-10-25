@@ -46,7 +46,7 @@ namespace Projectile_Sim
             frameQueue.Clear();
 
             Bitmap newFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            if (points.Count != 0) //If there are still point to plot
+            while (points.Count != 0) //If there are still point to plot
             {
                 for (int i = 0; i < projectiles.Count; i++) //For each projectile
                 {
@@ -54,18 +54,21 @@ namespace Projectile_Sim
 
                     //Get positions from point as integer
                     int horizontal = (int)toPlot.position.horizontal;
-                    int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
+                    int vertical = (int)(newFrame.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
 
                     //If it is within bounds of canvas
-                    if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
+                    if (horizontal >= 0 && horizontal < newFrame.Width && vertical >= 0 && vertical < newFrame.Height)
                     {
                         //Set the canvas
                         newFrame.SetPixel(horizontal, vertical, toPlot.colour);
                     }
                 }
 
-                frameQueue.Enqueue(newFrame);
+                frameQueue.Enqueue(new Bitmap(newFrame));
             }
+
+            MessageBox.Show("Frame queue populated with " + frameQueue.Count + "frames");
+
         }
         
         private void PopulateQueue()
@@ -138,6 +141,7 @@ namespace Projectile_Sim
                     break;
             }
             PopulateQueue();
+            PopulateFrameQueue(ref canvasContainer);
             canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
             refreshTimer = new System.Timers.Timer(refreshTime);
             refreshTimer.Elapsed += RefreshCanvas;
