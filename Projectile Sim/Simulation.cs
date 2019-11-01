@@ -41,30 +41,33 @@ namespace Projectile_Sim
             return interval;
         }
 
+        //To-do: frames overwriting the previous one
         private void PopulateFrameQueue(ref PictureBox canvasContainer)
         {
             frameQueue.Clear();
+            frameQueue.Enqueue(new Bitmap(canvasContainer.Width, canvasContainer.Height));
 
-            Bitmap newFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            if (points.Count != 0) //If there are still point to plot
+            while (points.Count > 0) //If there are still point to plot
             {
+                Bitmap newFrame = new Bitmap(frameQueue.Peek());
                 for (int i = 0; i < projectiles.Count; i++) //For each projectile
                 {
                     PointInformation toPlot = points.Dequeue(); //Set and dequeue point
 
                     //Get positions from point as integer
                     int horizontal = (int)toPlot.position.horizontal;
-                    int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
+                    int vertical = (int)(newFrame.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
 
                     //If it is within bounds of canvas
-                    if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
+                    if (horizontal >= 0 && horizontal < newFrame.Width && vertical >= 0 && vertical < newFrame.Height)
                     {
                         //Set the canvas
                         newFrame.SetPixel(horizontal, vertical, toPlot.colour);
                     }
                 }
 
-                frameQueue.Enqueue(newFrame);
+                frameQueue.Enqueue(new Bitmap(newFrame));
+                newFrame.Dispose();
             }
         }
         
@@ -75,7 +78,7 @@ namespace Projectile_Sim
             points.Clear();
             double timePerX = maxDuration / maxRange;
             //interval = timePerX;
-            
+
             while (time < maxDuration)
             {
                 foreach (var projectile in projectiles)
@@ -138,6 +141,16 @@ namespace Projectile_Sim
                     break;
             }
             PopulateQueue();
+            PopulateFrameQueue(ref canvasContainer);
+
+            //Saving frames to look at
+            frameQueue.First().Save("C:/Users/david/Desktop/Frame Exports/first.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+            frameQueue.ElementAt(120).Save("C:/Users/david/Desktop/Frame Exports/120.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+            frameQueue.ElementAt(540).Save("C:/Users/david/Desktop/Frame Exports/540.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+            frameQueue.Last().Save("C:/Users/david/Desktop/Frame Exports/last.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+
+
+
             canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
             refreshTimer = new System.Timers.Timer(refreshTime);
             refreshTimer.Elapsed += RefreshCanvas;
@@ -175,38 +188,48 @@ namespace Projectile_Sim
         
         private void RefreshCanvas(Object source, ElapsedEventArgs e)
         {
-            if (points.Count != 0) //If there are still point to plot
+            //if (points.Count != 0) //If there are still point to plot
+            //{
+            //    for (int i = 0; i < projectiles.Count; i++) //For each projectile
+            //    {
+            //        try
+            //        {
+            //            PointInformation toPlot = points.Dequeue(); //Set and dequeue point
+
+            //            //Get positions from point as integer
+            //            int horizontal = (int)toPlot.position.horizontal; 
+            //            int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
+
+            //            //If it is within bounds of canvas
+            //            if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
+            //            {
+            //                //Set the canvas
+            //                canvas.SetPixel(horizontal, vertical, toPlot.colour);
+            //            }
+
+            //        }
+            //        catch (Exception)
+            //        {
+            //            //do nothing hehe
+            //           // Console.WriteLine(exception.Message);
+
+            //        }
+
+
+            //    }
+
+
+            //    Program.form1.UpdatePictureBox(ref canvas); //Update picture box with new points
+            //}
+            //else
+            //{
+            //    refreshTimer.Enabled = false;
+            //}
+
+            if (frameQueue.Count > 0)
             {
-                for (int i = 0; i < projectiles.Count; i++) //For each projectile
-                {
-                    try
-                    {
-                        PointInformation toPlot = points.Dequeue(); //Set and dequeue point
-                        
-                        //Get positions from point as integer
-                        int horizontal = (int)toPlot.position.horizontal; 
-                        int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
-
-                        //If it is within bounds of canvas
-                        if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
-                        {
-                            //Set the canvas
-                            canvas.SetPixel(horizontal, vertical, toPlot.colour);
-                        }
-                        
-                    }
-                    catch (Exception)
-                    {
-                        //do nothing hehe
-                       // Console.WriteLine(exception.Message);
-                        
-                    }
-
-
-                }
-
-
-                Program.form1.UpdatePictureBox(ref canvas); //Update picture box with new points
+                PictureBox pBox = (PictureBox)Program.form1.Controls.Find("pictureBoxPlot", true).First();
+                pBox.Image = frameQueue.Dequeue();
             }
             else
             {

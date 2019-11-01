@@ -16,7 +16,6 @@ namespace Projectile_Sim
     public partial class Form1 : Form
     {
         const int maxProjectiles = 8;
-
         
 
         public Simulation simulation = new Simulation(); //Empty constructor
