@@ -48,6 +48,10 @@ namespace Projectile_Sim
             Bitmap newFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height);
             if (points.Count != 0) //If there are still point to plot
             {
+<<<<<<< Updated upstream
+=======
+               // Bitmap newFrame = new Bitmap(frameQueue.Peek());
+>>>>>>> Stashed changes
                 for (int i = 0; i < projectiles.Count; i++) //For each projectile
                 {
                     PointInformation toPlot = points.Dequeue(); //Set and dequeue point
@@ -130,7 +134,7 @@ namespace Projectile_Sim
             {
                 case SimulationSpeed.RealTime:
                     refreshTime = Math.Round((double)(1000 / 60)); //Refresh 60 times a second
-
+                    refreshTime = 1;
                     //Plot with timer
                     break;
                 case SimulationSpeed.NoAnimation:
@@ -138,6 +142,19 @@ namespace Projectile_Sim
                     break;
             }
             PopulateQueue();
+<<<<<<< Updated upstream
+=======
+            //PopulateFrameQueue(ref canvasContainer);
+
+            //Saving frames to look at
+            /*frameQueue.First().Save("C:/Users/david/Desktop/Frame Exports/first.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+            frameQueue.ElementAt(120).Save("C:/Users/david/Desktop/Frame Exports/120.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+            frameQueue.ElementAt(540).Save("C:/Users/david/Desktop/Frame Exports/540.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+            frameQueue.Last().Save("C:/Users/david/Desktop/Frame Exports/last.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
+            */
+
+
+>>>>>>> Stashed changes
             canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
             refreshTimer = new System.Timers.Timer(refreshTime);
             refreshTimer.Elapsed += RefreshCanvas;
@@ -151,11 +168,12 @@ namespace Projectile_Sim
 
             PopulateQueue();
 
-            PopulateFrameQueue(ref canvasContainer);
+            //PopulateFrameQueue(ref canvasContainer);
 
             simulationSpeed = speed;
             canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            refreshTime = Math.Round(1000 / refreshRate);
+            //refreshTime = Math.Round(1000 / refreshRate);
+            refreshTime = 1;
 
             refreshTimer = new System.Timers.Timer(refreshTime);
             refreshTimer.Elapsed += RefreshCanvas;
@@ -182,9 +200,15 @@ namespace Projectile_Sim
                     try
                     {
                         PointInformation toPlot = points.Dequeue(); //Set and dequeue point
+<<<<<<< Updated upstream
                         
                         //Get positions from point as integer
                         int horizontal = (int)toPlot.position.horizontal; 
+=======
+
+                        //Get positions from point as integer
+                        int horizontal = (int)toPlot.position.horizontal;
+>>>>>>> Stashed changes
                         int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
 
                         //If it is within bounds of canvas
@@ -193,25 +217,51 @@ namespace Projectile_Sim
                             //Set the canvas
                             canvas.SetPixel(horizontal, vertical, toPlot.colour);
                         }
+<<<<<<< Updated upstream
                         
+=======
+
+>>>>>>> Stashed changes
                     }
                     catch (Exception)
                     {
                         //do nothing hehe
+<<<<<<< Updated upstream
                        // Console.WriteLine(exception.Message);
                         
                     }
 
+=======
+                        // Console.WriteLine(exception.Message);
+
+                    }
+
+
+                }
+>>>>>>> Stashed changes
 
                 }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                 Program.form1.UpdatePictureBox(ref canvas); //Update picture box with new points
             }
             else
             {
                 refreshTimer.Enabled = false;
             }
+
+            //if (frameQueue.Count > 0)
+            //{
+            //    PictureBox pBox = (PictureBox)Program.form1.Controls.Find("pictureBoxPlot", true).First();
+            //    pBox.Image = frameQueue.Dequeue();
+            //}
+            //else
+            //{
+            //    refreshTimer.Enabled = false;
+            //}
         }
 
 
