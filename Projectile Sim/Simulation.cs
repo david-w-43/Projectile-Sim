@@ -47,7 +47,8 @@ namespace Projectile_Sim
             frameQueue.Clear();
             frameQueue.Enqueue(new Bitmap(canvasContainer.Width, canvasContainer.Height));
 
-            while (points.Count > 0) //If there are still point to plot
+            Bitmap newFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height);
+            while (points.Count != 0) //If there are still point to plot
             {
                 Bitmap newFrame = new Bitmap(frameQueue.Peek());
                 for (int i = 0; i < projectiles.Count; i++) //For each projectile
@@ -69,6 +70,9 @@ namespace Projectile_Sim
                 frameQueue.Enqueue(new Bitmap(newFrame));
                 newFrame.Dispose();
             }
+
+            MessageBox.Show("Frame queue populated with " + frameQueue.Count + "frames");
+
         }
         
         private void PopulateQueue()
