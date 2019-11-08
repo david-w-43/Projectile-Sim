@@ -9,90 +9,175 @@ using System.Windows.Forms;
 
 namespace Projectile_Sim
 {
+
     public enum SimulationSpeed { RealTime, Custom, NoAnimation}
     
-    struct PointInformation {
-        public Vector position;
-        public Color colour;
-    }
+    //struct PointInformation {
+    //    public Vector position;
+    //    public Color colour;
+    //}
 
     public class Simulation
     {
+        /* Variables----------*/
 
-        //public readonly Projectile[] arrayProjectile = new Projectile[];
+        //Stores the projectiles
         public readonly List<Projectile> projectiles = new List<Projectile>();
-        public Queue<Bitmap> frameQueue = new Queue<Bitmap>();
-        public double time;
-        public readonly double timescale;
-        public Bitmap canvas;
-        private System.Timers.Timer refreshTimer;
-        private double refreshTime = Math.Round((double)(1000 / 60));
-        private Queue<PointInformation> points = new Queue<PointInformation>();
-        //public double interval = 0.01;
-        private SimulationSpeed simulationSpeed;
 
+		//Stores the maximum values
         private double maxHeight, maxRange, maxDuration;
+        private int maxY, maxX;
 
-        private double CalculateInterval()
+        //Stores scales, in pixels per metre
+        private readonly double pxPerX = 1;
+        private readonly double pxPerY = 1;
+        private const int updatesPerPixel = 3;
+        private double updateTimeInterval;
+
+        //Defines PictureBox and timer/stopwatch
+        private PictureBox canvasContainer;
+		private System.Timers.Timer refreshTimer;
+        private System.Diagnostics.Stopwatch stopwatch;
+        private double prevTime;
+
+		/* End variables------------- */
+
+		public void StartAnimation(SimulationSpeed simulationSpeed)
         {
-            //Use x scale to calculate update interval
-            double interval = /* xscale * */ 0.01;
+            //Get the maximum values and update interval
+            GetMaxValues();
+            updateTimeInterval = maxDuration / (maxX * updatesPerPixel);
 
-            return interval;
-        }
+            //Instantiates timer and stopwatch for use, timer defaults to 16 ms (60 Hz)
+            refreshTimer = new System.Timers.Timer((int)(1000/60));
+            stopwatch = new System.Diagnostics.Stopwatch();
 
-        private void PopulateFrameQueue(ref PictureBox canvasContainer)
-        {
-            frameQueue.Clear();
+			//Timer triggers canvas refresh, and automatically resets
+            //Currently disabled so that it does not run the same code simultaneously
+            //refreshTimer.AutoReset = true;
 
-            Bitmap newFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            if (points.Count != 0) //If there are still point to plot
+			//Gets the PictureBox from Form1
+			this.canvasContainer = (PictureBox)Program.form1.Controls.Find("pictureBoxPlot", true).First();
+
+            //Resets the previous time to 0
+            prevTime = 0;
+
+            switch (simulationSpeed)
             {
-<<<<<<< Updated upstream
-=======
-               // Bitmap newFrame = new Bitmap(frameQueue.Peek());
->>>>>>> Stashed changes
-                for (int i = 0; i < projectiles.Count; i++) //For each projectile
-                {
-                    PointInformation toPlot = points.Dequeue(); //Set and dequeue point
-
-                    //Get positions from point as integer
-                    int horizontal = (int)toPlot.position.horizontal;
-                    int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
-
-                    //If it is within bounds of canvas
-                    if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
-                    {
-                        //Set the canvas
-                        newFrame.SetPixel(horizontal, vertical, toPlot.colour);
-                    }
-                }
-
-                frameQueue.Enqueue(newFrame);
+                case SimulationSpeed.RealTime:
+                    //Use stopwatch to get time while plotting
+                    //Use timer to trigger updates
+                    refreshTimer.Elapsed += RealTime;
+                    refreshTimer.Start();
+                    stopwatch.Reset();
+                    stopwatch.Start();
+                    break;
+                case SimulationSpeed.Custom:
+                    //Experimental, recursive plot
+                    canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, maxDuration, updateTimeInterval);
+                    break;
+                case SimulationSpeed.NoAnimation:
+                    //Create canvas with all points plotted
+                    canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, maxDuration, updateTimeInterval);
+                    break;
             }
         }
-        
-        private void PopulateQueue()
+
+        #region Old plotting algorithm without recursion
+        /*
+        private Bitmap NoAnimation(double fromTime, double toTime)
         {
-            time = 0; //Set time to 0 so it can start plotting from the beginning
-            double interval = CalculateInterval();
-            points.Clear();
-            double timePerX = maxDuration / maxRange;
-            //interval = timePerX;
-            
-            while (time < maxDuration)
+			//Defines canvas with required width and height
+            Bitmap canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
+            //Run on 3 updates per pixel
+            double timePerPixel = maxDuration / maxX;
+            double timeInterval = timePerPixel / 3;
+
+            double time = fromTime; //Initialise as 0 to plot from start
+            while (time < toTime)
             {
                 foreach (var projectile in projectiles)
                 {
-                    PointInformation toPlot;
-                    toPlot.colour = projectile.colour;
+					//Updates time of projectile
                     projectile.Update(time);
-                    toPlot.position = projectile.displacement;
-                    points.Enqueue(toPlot);
+
+					//Calculates x, inverted y for scale
+                    int x = (int)((projectile.displacement.horizontal) * pxPerX);
+					int y = canvasContainer.Height - (int)((projectile.displacement.vertical) * pxPerY);
+
+					//If valid to plot
+					if (x >= 0 && x < canvas.Width && y >= 0 && y < canvas.Height)
+                    {
+						//Set pixel to colour of projectile
+                        canvas.SetPixel(x, y, projectile.colour);
+                    }
                 }
-                //Increment time
-                time += interval;
+
+                time += timeInterval;
             }
+
+			//Sets PictureBox image
+            //canvasContainer.Image = canvas;
+            return canvas;
+        }
+        */
+        #endregion
+
+        private Bitmap RecursivePlot(Bitmap prevImage, double time, double toTime, double timeInterval)
+        {
+            if (time < toTime)
+            {
+                //Building on top of previous image
+                Bitmap currentImage = prevImage;
+                //Loop through projectiles
+                foreach (var projectile in projectiles)
+                {
+                    //Update time, calculate scaled positions to plot
+                    projectile.Update(time);
+                    int x = (int)((projectile.displacement.horizontal) * pxPerX);
+                    int y = canvasContainer.Height - (int)((projectile.displacement.vertical) * pxPerY);
+
+                    //If valid to plot
+                    if (x >= 0 && x < prevImage.Width && y >= 0 && y < prevImage.Height)
+                    {
+                        //Set pixel to colour of projectile
+                        currentImage.SetPixel(x, y, projectile.colour);
+                    }
+                }
+                //Calls itself
+                RecursivePlot(currentImage, time + timeInterval, toTime, timeInterval);
+                return currentImage;
+            }
+            else //Escape clause
+            {
+                return null;
+            }
+        }
+
+        private void RealTime(Object source, ElapsedEventArgs e)
+        {
+            //Use stopwatch to get time while plotting
+            //Convert time to seconds
+            double time = stopwatch.ElapsedMilliseconds / 1000;
+
+            if (time < maxDuration)
+            {
+                //Recursively defined plotting subroutine
+                Bitmap currentFrame = (Bitmap)canvasContainer.Image;
+                if (Object.Equals(currentFrame, null)) { currentFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height); }
+                canvasContainer.Image = RecursivePlot(currentFrame, prevTime, time, updateTimeInterval);
+                prevTime = time;
+
+                //Start timer again
+                refreshTimer.Start();
+            }
+            else
+            {
+                stopwatch.Stop();
+                refreshTimer.Stop();
+            }
+
+            
         }
 
         public void AddProjectile(Projectile projectile)
@@ -100,170 +185,17 @@ namespace Projectile_Sim
             projectiles.Add(projectile);
         }
 
-        public void StartAnimation()
-        {
-            switch (simulationSpeed)
-            {
-                case SimulationSpeed.RealTime:
-                    refreshTime = Math.Round((double)(1000 / 60)); //Refresh 60 times a second
-                    //Plot with timer
-                    break;
-                case SimulationSpeed.NoAnimation:
-                    //Plot points all at once
-                    break;
-                case SimulationSpeed.Custom:
-                    Console.WriteLine("Custom speed called without parameter");
-                    break;
-                default:
-                    break;
-            }
-
-            refreshTimer = new System.Timers.Timer(refreshTime);
-            refreshTimer.Elapsed += RefreshCanvas;
-            refreshTimer.AutoReset = true;
-            refreshTimer.Enabled = true;
-
-        }
-
-        public void StartAnimation(ref PictureBox canvasContainer, SimulationSpeed speed)
-        {
-
-            simulationSpeed = speed;
-            GetMaxValues();
-            switch (simulationSpeed)
-            {
-                case SimulationSpeed.RealTime:
-                    refreshTime = Math.Round((double)(1000 / 60)); //Refresh 60 times a second
-                    refreshTime = 1;
-                    //Plot with timer
-                    break;
-                case SimulationSpeed.NoAnimation:
-                    //Plot points all at once
-                    break;
-            }
-            PopulateQueue();
-<<<<<<< Updated upstream
-=======
-            //PopulateFrameQueue(ref canvasContainer);
-
-            //Saving frames to look at
-            /*frameQueue.First().Save("C:/Users/david/Desktop/Frame Exports/first.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
-            frameQueue.ElementAt(120).Save("C:/Users/david/Desktop/Frame Exports/120.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
-            frameQueue.ElementAt(540).Save("C:/Users/david/Desktop/Frame Exports/540.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
-            frameQueue.Last().Save("C:/Users/david/Desktop/Frame Exports/last.jpeg", System.Drawing.Imaging.ImageFormat.Bmp);
-            */
-
-
->>>>>>> Stashed changes
-            canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            refreshTimer = new System.Timers.Timer(refreshTime);
-            refreshTimer.Elapsed += RefreshCanvas;
-            refreshTimer.AutoReset = true;
-            refreshTimer.Enabled = true;
-        }
-
-        public void StartAnimation(ref PictureBox canvasContainer, SimulationSpeed speed, double refreshRate)
-        {
-            GetMaxValues();
-
-            PopulateQueue();
-
-            //PopulateFrameQueue(ref canvasContainer);
-
-            simulationSpeed = speed;
-            canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            //refreshTime = Math.Round(1000 / refreshRate);
-            refreshTime = 1;
-
-            refreshTimer = new System.Timers.Timer(refreshTime);
-            refreshTimer.Elapsed += RefreshCanvas;
-            refreshTimer.AutoReset = true;
-            refreshTimer.Enabled = true;
-        }
-
-        public void GetMaxValues()
+        private void GetMaxValues()
         {
             foreach (var projectile in this.projectiles)
             {
                 if (projectile.apex.vertical > maxHeight) { maxHeight = projectile.apex.vertical; }
                 if (projectile.range > maxRange) { maxRange = projectile.range; }
                 if (projectile.duration > maxDuration) { maxDuration = projectile.duration; }
+
+                maxX = (int)(maxRange * pxPerX);
+                maxY = (int)(maxHeight * pxPerY);
             }
         }
-        
-        private void RefreshCanvas(Object source, ElapsedEventArgs e)
-        {
-            if (points.Count != 0) //If there are still point to plot
-            {
-                for (int i = 0; i < projectiles.Count; i++) //For each projectile
-                {
-                    try
-                    {
-                        PointInformation toPlot = points.Dequeue(); //Set and dequeue point
-<<<<<<< Updated upstream
-                        
-                        //Get positions from point as integer
-                        int horizontal = (int)toPlot.position.horizontal; 
-=======
-
-                        //Get positions from point as integer
-                        int horizontal = (int)toPlot.position.horizontal;
->>>>>>> Stashed changes
-                        int vertical = (int)(canvas.Height - 1 - toPlot.position.vertical); //Invert y axis as coords start from top left
-
-                        //If it is within bounds of canvas
-                        if (horizontal >= 0 && horizontal <= canvas.Width && vertical >= 0 && vertical <= canvas.Height)
-                        {
-                            //Set the canvas
-                            canvas.SetPixel(horizontal, vertical, toPlot.colour);
-                        }
-<<<<<<< Updated upstream
-                        
-=======
-
->>>>>>> Stashed changes
-                    }
-                    catch (Exception)
-                    {
-                        //do nothing hehe
-<<<<<<< Updated upstream
-                       // Console.WriteLine(exception.Message);
-                        
-                    }
-
-=======
-                        // Console.WriteLine(exception.Message);
-
-                    }
-
-
-                }
->>>>>>> Stashed changes
-
-                }
-
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-                Program.form1.UpdatePictureBox(ref canvas); //Update picture box with new points
-            }
-            else
-            {
-                refreshTimer.Enabled = false;
-            }
-
-            //if (frameQueue.Count > 0)
-            //{
-            //    PictureBox pBox = (PictureBox)Program.form1.Controls.Find("pictureBoxPlot", true).First();
-            //    pBox.Image = frameQueue.Dequeue();
-            //}
-            //else
-            //{
-            //    refreshTimer.Enabled = false;
-            //}
-        }
-
-
     }
 }

@@ -116,9 +116,11 @@ namespace Projectile_Sim
 
         private void BtnPlot_Click(object sender, EventArgs e)
         {
-            if (radioRealTime.Checked) { simulation.StartAnimation(ref pictureBoxPlot, SimulationSpeed.RealTime); }
-            else if (radioNoAnimation.Checked) { simulation.StartAnimation(ref pictureBoxPlot, SimulationSpeed.NoAnimation); }
-            else if (radioRefreshRate.Checked) { simulation.StartAnimation(ref pictureBoxPlot, SimulationSpeed.Custom, (double)upDownRefreshRate.Value); }
+            //Clear picturebox
+            pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
+            if (radioRealTime.Checked) { simulation.StartAnimation(SimulationSpeed.RealTime); }
+            else if (radioNoAnimation.Checked) { simulation.StartAnimation(SimulationSpeed.NoAnimation); }
+            else if (radioRefreshRate.Checked) { simulation.StartAnimation(SimulationSpeed.Custom); }
         }
     }
 }
