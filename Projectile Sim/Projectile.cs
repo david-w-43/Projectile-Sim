@@ -18,16 +18,40 @@ namespace Projectile_Sim
         public  Vector apex = new Vector(VectorType.component);
         public  Color colour;
 
-        public Projectile(ProjectileType type, Color colour, double parm1, double parm2, double parm3, double parm4)
+        public Projectile(ProjectileType type, Color colour, Vector initVelocity, double initialHeight, double g)
         {
-
-            //3 = initial height
-            //4 = g
-
-            initDisplacement = new Vector(VectorType.component, 0, parm3);
+            this.initVelocity = initVelocity;
+            initDisplacement = new Vector(VectorType.component, 0, initialHeight);
 
             //Only implementing vertical acceleration for now
-            acceleration = new Vector(VectorType.component, 0, -parm4);
+            acceleration = new Vector(VectorType.component, 0, -g);
+
+            this.colour = colour;
+
+            //Set current values (may not be required)
+            displacement = initDisplacement;
+            velocity = initVelocity;
+
+            //Apex is when vertical velocity = 0
+            // u + at = 0, t = -u/a
+            double tempTime = (-initVelocity.vertical / acceleration.vertical);
+            this.apex = GetDisplacement(tempTime);
+
+            //Projectile stops when vertical displacement from origin = 0
+            // 0 = s0 + ut + 0.5at^2, 0.5at^2 + ut + s0
+            tempTime = (-initVelocity.vertical - (Math.Sqrt((initVelocity.vertical * initVelocity.vertical) - (2 * acceleration.vertical * initDisplacement.vertical)))) / acceleration.vertical;
+
+            duration = tempTime;
+            range = GetDisplacement(tempTime).horizontal;
+
+        }
+
+        /*public Projectile(ProjectileType type, Color colour, double parm1, double parm2, double initialHeight, double g)
+        {
+            initDisplacement = new Vector(VectorType.component, 0, initialHeight);
+
+            //Only implementing vertical acceleration for now
+            acceleration = new Vector(VectorType.component, 0, -g);
 
             this.colour = colour;
 
@@ -61,6 +85,7 @@ namespace Projectile_Sim
             range = GetDisplacement(tempTime).horizontal;
 
         }
+        */
 
         private Vector GetDisplacement(double time)
         {

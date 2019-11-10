@@ -9,13 +9,7 @@ using System.Windows.Forms;
 
 namespace Projectile_Sim
 {
-
-    public enum SimulationSpeed { RealTime, Custom, NoAnimation}
-    
-    //struct PointInformation {
-    //    public Vector position;
-    //    public Color colour;
-    //}
+    //public enum SimulationSpeed { Animated, NoAnimation }
 
     public class Simulation
     {
@@ -29,27 +23,79 @@ namespace Projectile_Sim
         private int maxY, maxX;
 
         //Stores scales, in pixels per metre
-        private readonly double pxPerX = 1;
-        private readonly double pxPerY = 1;
+        private double pxPerX = 1;
+        private double pxPerY = 1;
         private const int updatesPerPixel = 3;
         private double updateTimeInterval;
+        private int hAxisPos, vAxisPos;
 
         //Defines PictureBox and timer/stopwatch
         private PictureBox canvasContainer;
 		private System.Timers.Timer refreshTimer;
         private System.Diagnostics.Stopwatch stopwatch;
         private double prevTime;
+        private double timescale;
+
+        public bool paused;
+
 
 		/* End variables------------- */
 
-		public void StartAnimation(SimulationSpeed simulationSpeed)
+        public void UpdateTabs()
         {
+            //Update tabs with current information
+        }
+
+        public void DrawAxes()
+        {
+            Bitmap canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height); 
+            hAxisPos = canvas.Height - Properties.Settings.Default.margin;
+            int marginWidth = Properties.Settings.Default.margin;
+            vAxisPos = marginWidth;
+
+            for (int row = 0; row <= hAxisPos + 10; row++) //For each row up to the margin
+            {
+                canvas.SetPixel(marginWidth, row, Color.Black); //Draw pixel of y axis
+            }
+            for (int col = vAxisPos - 10; col < canvas.Width; col++)
+            {
+                canvas.SetPixel(col, hAxisPos, Color.Black);
+            }
+            canvasContainer.Image = canvas;
+            string xLabel = ((canvas.Width - marginWidth) / pxPerX).ToString("G3");
+            string yLabel = ((canvas.Height - marginWidth) / pxPerY).ToString("G3");
+
+            using (Graphics graphics = Graphics.FromImage(canvas))
+            {
+                using (Font font = new Font("Arial", 7f))
+                {
+                    //Prints labels
+                    graphics.DrawString("0", font, Brushes.Black, 5, canvas.Height - 10);
+                    graphics.DrawString(xLabel, font, Brushes.Black, 15, 25);
+                    graphics.DrawString(yLabel, font, Brushes.Black, 5, 5);
+                }
+            }
+            canvasContainer.Image = canvas;
+        }
+        
+        public void SetScales(double xScale, double yscale) { pxPerX = xScale; pxPerY = yscale;}
+
+        public void Pause() { refreshTimer.Stop(); stopwatch.Stop(); paused = true; }
+        public void Resume() { refreshTimer.Start(); stopwatch.Start(); paused = false; }
+
+		public void Plot(double timescale = 0)
+        {
+            
+
+            paused = false;
+            this.timescale = timescale;
             //Get the maximum values and update interval
             GetMaxValues();
             updateTimeInterval = maxDuration / (maxX * updatesPerPixel);
+            
 
-            //Instantiates timer and stopwatch for use, timer defaults to 16 ms (60 Hz)
-            refreshTimer = new System.Timers.Timer((int)(1000/60));
+            //Instantiates timer and stopwatch for use, timer defaults to 33 ms (30 Hz)
+            refreshTimer = new System.Timers.Timer((int)(1000/30));
             stopwatch = new System.Diagnostics.Stopwatch();
 
 			//Timer triggers canvas refresh, and automatically resets
@@ -59,27 +105,24 @@ namespace Projectile_Sim
 			//Gets the PictureBox from Form1
 			this.canvasContainer = (PictureBox)Program.form1.Controls.Find("pictureBoxPlot", true).First();
 
+            DrawAxes();
+
             //Resets the previous time to 0
             prevTime = 0;
 
-            switch (simulationSpeed)
+            if (timescale != 0)
             {
-                case SimulationSpeed.RealTime:
-                    //Use stopwatch to get time while plotting
-                    //Use timer to trigger updates
-                    refreshTimer.Elapsed += RealTime;
-                    refreshTimer.Start();
-                    stopwatch.Reset();
-                    stopwatch.Start();
-                    break;
-                case SimulationSpeed.Custom:
-                    //Experimental, recursive plot
-                    canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, maxDuration, updateTimeInterval);
-                    break;
-                case SimulationSpeed.NoAnimation:
-                    //Create canvas with all points plotted
-                    canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, maxDuration, updateTimeInterval);
-                    break;
+                //Use stopwatch to get time while plotting
+                //Use timer to trigger updates
+                refreshTimer.Elapsed += RealTime;
+                refreshTimer.Start();
+                stopwatch.Reset();
+                stopwatch.Start();
+            }
+            else
+            { 
+                //Create canvas with all points plotted
+                canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, maxDuration, updateTimeInterval);
             }
         }
 
@@ -134,8 +177,8 @@ namespace Projectile_Sim
                 {
                     //Update time, calculate scaled positions to plot
                     projectile.Update(time);
-                    int x = (int)((projectile.displacement.horizontal) * pxPerX);
-                    int y = canvasContainer.Height - (int)((projectile.displacement.vertical) * pxPerY);
+                    int x = (int)((projectile.displacement.horizontal) * pxPerX) + vAxisPos;
+                    int y = hAxisPos - (int)((projectile.displacement.vertical) * pxPerY);
 
                     //If valid to plot
                     if (x >= 0 && x < prevImage.Width && y >= 0 && y < prevImage.Height)
@@ -158,7 +201,8 @@ namespace Projectile_Sim
         {
             //Use stopwatch to get time while plotting
             //Convert time to seconds
-            double time = stopwatch.ElapsedMilliseconds / 1000;
+            double time = ((double)stopwatch.ElapsedMilliseconds / 1000) * timescale;
+            Console.WriteLine("Time: " + time.ToString("N3"));
 
             if (time < maxDuration)
             {
@@ -168,16 +212,12 @@ namespace Projectile_Sim
                 canvasContainer.Image = RecursivePlot(currentFrame, prevTime, time, updateTimeInterval);
                 prevTime = time;
 
-                //Start timer again
-                refreshTimer.Start();
             }
             else
             {
                 stopwatch.Stop();
                 refreshTimer.Stop();
             }
-
-            
         }
 
         public void AddProjectile(Projectile projectile)

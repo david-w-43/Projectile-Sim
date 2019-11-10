@@ -13,40 +13,25 @@ using System.Timers;
 
 namespace Projectile_Sim
 {
+
     public partial class Form1 : Form
     {
         const int maxProjectiles = 8;
 
-        
 
-        public Simulation simulation = new Simulation(); //Empty constructor
+        //public Simulation simulation = new Simulation(); //Empty constructor
 
         //Simulation.canvasUpdated += new Simulation.UpdatePictureBox(this.UpdatePictureBox);
+        public Simulation simulation = new Simulation();
 
         public ComponentTab[] componentTabs;
         public MagnitudeTab[] magnitudeTabs;
 
+        //private List<Projectile> projectiles = new List<Projectile>();
+
         public Form1()
         {
             InitializeComponent();
-        }
-
-        public void UpdateFromFrameQueue(ref Queue<Bitmap> frameQueue)
-        {
-
-        }
-
-        public void UpdatePictureBox(ref Bitmap bitmap)
-        {
-            try
-            {
-                Program.form1.pictureBoxPlot.Image = bitmap;
-            }
-            catch (Exception)
-            {
-                //do nothing
-                //Fails because object is currently in use - updates are too frequent
-            }
         }
 
         private void BtnAddProjectile_Click(object sender, EventArgs e)
@@ -56,29 +41,51 @@ namespace Projectile_Sim
             Color colour = Color.FromName(colourName);
             comboColour.Items.Remove(colourName);
             comboColour.Text = null;
+
+            //Defines common variables
+            double height = 0, g = 0, speed, angle;
+            Vector initVelocity = new Vector();
             
             //Depending on the current tab
             switch (tabProjectileType.SelectedTab.Text)
             {
                 case "Speed / Angle":
-                    double speed = (double)upDownSpeed.Value;
-                    double angle = (double)upDownAngle.Value * (Math.PI/180);
-                    double height = (double)upDownInitHeight.Value;
-                    double g = (double)upDownG.Value;
+                    //Get variables
+                    speed = (double)upDownSpeed1.Value;
+                    angle = (double)upDownAngle1.Value * (Math.PI/180);
 
-                    Projectile toAdd = new Projectile(ProjectileType.speed, colour, speed, angle, height, g);
+                    //Create vector for initial velocity
+                    initVelocity = new Vector(VectorType.magnitude, speed, angle);
 
-
-                    simulation.AddProjectile(new Projectile(ProjectileType.speed, colour, speed, angle, height, g));
-
+                    //Sets height and g
+                    height = (double)upDownInitHeight1.Value;
+                    g = (double)upDownG1.Value;
                     break;
                 case "Components":
+                    double hVelocity = (double)upDownHVelocity.Value;
+                    double vVelocity = (double)upDownVVelocity.Value;
+
+                    initVelocity = new Vector(VectorType.component, hVelocity, vVelocity);
+
+                    height = (double)upDownInitHeight2.Value;
+                    g = (double)upDownG2.Value;
                     break;
                 case "Energy":
+                    //Find speed from energy and mass
+                    speed = Math.Sqrt((double)(2 * upDownEnergy.Value) / (double)upDownMass.Value);
+                    angle = (double)upDownAngle1.Value * (Math.PI / 180);
+
+                    initVelocity = new Vector(VectorType.magnitude, speed, angle);
+
+                    height = (double)upDownInitHeight3.Value;
+                    g = (double)upDownG3.Value;
                     break;
             }
-            
-            
+
+            //Adds projectile
+            simulation.projectiles.Add(new Projectile(ProjectileType.component, colour, initVelocity, height, g));
+
+
             TabPage newTab = new TabPage();
             int index = tabSelectProjectile.TabCount;
             //if vector display style is component
@@ -112,15 +119,61 @@ namespace Projectile_Sim
         private void Form1_Load(object sender, EventArgs e)
         {
             tabSelectProjectile.TabPages.Clear();
+            CalculateScales(null, null);
         }
 
         private void BtnPlot_Click(object sender, EventArgs e)
         {
+
             //Clear picturebox
             pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
-            if (radioRealTime.Checked) { simulation.StartAnimation(SimulationSpeed.RealTime); }
-            else if (radioNoAnimation.Checked) { simulation.StartAnimation(SimulationSpeed.NoAnimation); }
-            else if (radioRefreshRate.Checked) { simulation.StartAnimation(SimulationSpeed.Custom); }
+
+            double hScale = (double)upDownHorizontalScale.Value;
+            double vScale = (double)upDownVerticalScale.Value;
+            double timescale = 0;
+
+            //Calls to start animation with specified timescale
+            if (radioAnimated.Checked)
+            {
+                //simulation.StartAnimation(SimulationSpeed.Animated, (double)upDownTimescale.Value);
+                
+                timescale = (double)upDownTimescale.Value;
+            }
+            else if (radioNoAnimation.Checked)
+            {
+                //simulation.StartAnimation(SimulationSpeed.NoAnimation);
+                timescale = 0;
+            }
+            
+            simulation.Plot(timescale);
+        }
+        
+        private void BtnPause_Click(object sender, EventArgs e)
+        {
+            if (simulation.paused)
+            {
+                btnPause.Text = "II";
+                simulation.Resume();
+            }
+            else
+            {
+                btnPause.Text = "▶";
+                simulation.Pause();
+            }
+        }
+
+        private void CalculateScales(object sender, EventArgs e)
+        {
+            //Called by picture box resizing or up/down values changing
+            //Calculate scales in metres
+            // (px) / (px/m) = m 
+            txtWidth.Text = ((pictureBoxPlot.Width - Properties.Settings.Default.margin) / upDownHorizontalScale.Value).ToString("G5");
+            txtHeight.Text = ((pictureBoxPlot.Height - Properties.Settings.Default.margin) / upDownVerticalScale.Value).ToString("G5");
+            
+            
+
+            //Set the scale of the simulation
+            simulation.SetScales((double)upDownHorizontalScale.Value, (double)upDownVerticalScale.Value);
         }
     }
 }
