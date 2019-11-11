@@ -1,13 +1,5 @@
-﻿Immediate to-do:
-	Use width of canvas in queue population algorithm to minimise the number of points to be plotted
-	Implement real-time plotting using a timer
-	Implement frame queue inside Form1, reducing the amount of processor time to update the picturebox
-
-
-Possible:
-	Image resizing
-
-	Find y in terms of x (convert to parabola)
-		Solve with matrices
-
-	List saved presets and binary search using recursion
+﻿Add labels to axes of canvas
+Implement events to restrict use of pause/plot buttons
+Update tabs with relevant information
+Save canvas as image
+Remove projectiles from simulation

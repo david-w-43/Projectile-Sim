@@ -91,6 +91,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtHeight = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -106,9 +109,6 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
-            this.txtHeight = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -199,6 +199,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -215,10 +216,10 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnPlot);
             this.splitContainer1.Panel2.Controls.Add(this.groupAnimation);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Panel2MinSize = 75;
+            this.splitContainer1.Panel2MinSize = 83;
             this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(958, 824);
-            this.splitContainer1.SplitterDistance = 690;
+            this.splitContainer1.Size = new System.Drawing.Size(958, 725);
+            this.splitContainer1.SplitterDistance = 632;
             this.splitContainer1.SplitterIncrement = 5;
             this.splitContainer1.TabIndex = 5;
             // 
@@ -235,10 +236,11 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.AutoScroll = true;
             this.splitContainer2.Panel2.Controls.Add(this.groupCurrentValues);
             this.splitContainer2.Panel2.Controls.Add(this.groupAddProjectile);
             this.splitContainer2.Panel2MinSize = 50;
-            this.splitContainer2.Size = new System.Drawing.Size(958, 690);
+            this.splitContainer2.Size = new System.Drawing.Size(958, 632);
             this.splitContainer2.SplitterDistance = 658;
             this.splitContainer2.SplitterIncrement = 5;
             this.splitContainer2.TabIndex = 0;
@@ -250,7 +252,7 @@
             this.pictureBoxPlot.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxPlot.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxPlot.Name = "pictureBoxPlot";
-            this.pictureBoxPlot.Size = new System.Drawing.Size(658, 690);
+            this.pictureBoxPlot.Size = new System.Drawing.Size(658, 632);
             this.pictureBoxPlot.TabIndex = 2;
             this.pictureBoxPlot.TabStop = false;
             this.pictureBoxPlot.Resize += new System.EventHandler(this.CalculateScales);
@@ -266,7 +268,7 @@
             this.groupCurrentValues.Controls.Add(this.lblTimeUnits);
             this.groupCurrentValues.Location = new System.Drawing.Point(3, 257);
             this.groupCurrentValues.Name = "groupCurrentValues";
-            this.groupCurrentValues.Size = new System.Drawing.Size(290, 430);
+            this.groupCurrentValues.Size = new System.Drawing.Size(290, 372);
             this.groupCurrentValues.TabIndex = 5;
             this.groupCurrentValues.TabStop = false;
             this.groupCurrentValues.Text = "Current Values";
@@ -279,7 +281,7 @@
             this.tabSelectProjectile.Location = new System.Drawing.Point(6, 51);
             this.tabSelectProjectile.Name = "tabSelectProjectile";
             this.tabSelectProjectile.SelectedIndex = 0;
-            this.tabSelectProjectile.Size = new System.Drawing.Size(278, 373);
+            this.tabSelectProjectile.Size = new System.Drawing.Size(278, 315);
             this.tabSelectProjectile.TabIndex = 2;
             // 
             // textBox1
@@ -956,17 +958,44 @@
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Location = new System.Drawing.Point(3, 5);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(199, 122);
+            this.groupBox1.Size = new System.Drawing.Size(359, 83);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Scales";
             // 
+            // txtHeight
+            // 
+            this.txtHeight.Location = new System.Drawing.Point(252, 44);
+            this.txtHeight.Name = "txtHeight";
+            this.txtHeight.ReadOnly = true;
+            this.txtHeight.Size = new System.Drawing.Size(76, 20);
+            this.txtHeight.TabIndex = 9;
+            this.txtHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(334, 47);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(15, 13);
+            this.label20.TabIndex = 10;
+            this.label20.Text = "m";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(205, 47);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(41, 13);
+            this.label22.TabIndex = 11;
+            this.label22.Text = "Height:";
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(155, 74);
+            this.label19.Location = new System.Drawing.Point(334, 21);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(15, 13);
             this.label19.TabIndex = 5;
@@ -974,7 +1003,7 @@
             // 
             // txtWidth
             // 
-            this.txtWidth.Location = new System.Drawing.Point(73, 71);
+            this.txtWidth.Location = new System.Drawing.Point(252, 18);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.ReadOnly = true;
             this.txtWidth.Size = new System.Drawing.Size(76, 20);
@@ -984,7 +1013,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(29, 74);
+            this.label21.Location = new System.Drawing.Point(208, 21);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(38, 13);
             this.label21.TabIndex = 7;
@@ -1081,7 +1110,7 @@
             this.btnPlot.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnPlot.Location = new System.Drawing.Point(855, 0);
             this.btnPlot.Name = "btnPlot";
-            this.btnPlot.Size = new System.Drawing.Size(103, 130);
+            this.btnPlot.Size = new System.Drawing.Size(103, 89);
             this.btnPlot.TabIndex = 3;
             this.btnPlot.Text = "Plot";
             this.btnPlot.UseVisualStyleBackColor = true;
@@ -1096,9 +1125,9 @@
             this.groupAnimation.Controls.Add(this.upDownTimescale);
             this.groupAnimation.Controls.Add(this.radioNoAnimation);
             this.groupAnimation.Controls.Add(this.radioAnimated);
-            this.groupAnimation.Location = new System.Drawing.Point(559, 5);
+            this.groupAnimation.Location = new System.Drawing.Point(559, 3);
             this.groupAnimation.Name = "groupAnimation";
-            this.groupAnimation.Size = new System.Drawing.Size(290, 122);
+            this.groupAnimation.Size = new System.Drawing.Size(290, 83);
             this.groupAnimation.TabIndex = 2;
             this.groupAnimation.TabStop = false;
             this.groupAnimation.Text = "Animation";
@@ -1111,7 +1140,7 @@
             this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPause.Location = new System.Drawing.Point(239, 16);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(48, 103);
+            this.btnPause.Size = new System.Drawing.Size(48, 64);
             this.btnPause.TabIndex = 3;
             this.btnPause.Text = "II";
             this.btnPause.UseVisualStyleBackColor = true;
@@ -1172,40 +1201,13 @@
             this.radioAnimated.Text = "Timescale";
             this.radioAnimated.UseVisualStyleBackColor = true;
             // 
-            // txtHeight
-            // 
-            this.txtHeight.Location = new System.Drawing.Point(73, 97);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.ReadOnly = true;
-            this.txtHeight.Size = new System.Drawing.Size(76, 20);
-            this.txtHeight.TabIndex = 9;
-            this.txtHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(155, 100);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(15, 13);
-            this.label20.TabIndex = 10;
-            this.label20.Text = "m";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(26, 100);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(41, 13);
-            this.label22.TabIndex = 11;
-            this.label22.Text = "Height:";
-            // 
             // Form1
             // 
             this.AcceptButton = this.btnPlot;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnPause;
-            this.ClientSize = new System.Drawing.Size(958, 848);
+            this.ClientSize = new System.Drawing.Size(958, 749);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";

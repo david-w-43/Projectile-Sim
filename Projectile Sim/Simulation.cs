@@ -65,16 +65,17 @@ namespace Projectile_Sim
             string xLabel = ((canvas.Width - marginWidth) / pxPerX).ToString("G3");
             string yLabel = ((canvas.Height - marginWidth) / pxPerY).ToString("G3");
 
-            using (Graphics graphics = Graphics.FromImage(canvas))
-            {
-                using (Font font = new Font("Arial", 7f))
-                {
-                    //Prints labels
-                    graphics.DrawString("0", font, Brushes.Black, 5, canvas.Height - 10);
-                    graphics.DrawString(xLabel, font, Brushes.Black, 15, 25);
-                    graphics.DrawString(yLabel, font, Brushes.Black, 5, 5);
-                }
-            }
+            //Place axis labels on canvas
+            //using (Graphics graphics = Graphics.FromImage(canvas))
+            //{
+            //    using (Font font = new Font("Arial", 7f))
+            //    {
+            //        //Prints labels
+            //        graphics.DrawString("0", font, Brushes.Black, 5, canvas.Height - 10);
+            //        graphics.DrawString(xLabel, font, Brushes.Black, 15, 25);
+            //        graphics.DrawString(yLabel, font, Brushes.Black, 5, 5);
+            //    }
+            //}
             canvasContainer.Image = canvas;
         }
         
@@ -180,8 +181,8 @@ namespace Projectile_Sim
                     int x = (int)((projectile.displacement.horizontal) * pxPerX) + vAxisPos;
                     int y = hAxisPos - (int)((projectile.displacement.vertical) * pxPerY);
 
-                    //If valid to plot
-                    if (x >= 0 && x < prevImage.Width && y >= 0 && y < prevImage.Height)
+                    //If valid to plot and projectile still in motion
+                    if (x >= 0 && x < prevImage.Width && y >= 0 && y < prevImage.Height && time <= projectile.duration)
                     {
                         //Set pixel to colour of projectile
                         currentImage.SetPixel(x, y, projectile.colour);

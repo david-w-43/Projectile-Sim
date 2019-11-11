@@ -124,6 +124,8 @@ namespace Projectile_Sim
 
         private void BtnPlot_Click(object sender, EventArgs e)
         {
+            //Allow pause button to be pressed
+            btnPause.Enabled = true;
 
             //Clear picturebox
             pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
