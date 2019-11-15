@@ -64,18 +64,6 @@ namespace Projectile_Sim
             canvasContainer.Image = canvas;
             string xLabel = ((canvas.Width - marginWidth) / pxPerX).ToString("G3");
             string yLabel = ((canvas.Height - marginWidth) / pxPerY).ToString("G3");
-
-            //Place axis labels on canvas
-            //using (Graphics graphics = Graphics.FromImage(canvas))
-            //{
-            //    using (Font font = new Font("Arial", 7f))
-            //    {
-            //        //Prints labels
-            //        graphics.DrawString("0", font, Brushes.Black, 5, canvas.Height - 10);
-            //        graphics.DrawString(xLabel, font, Brushes.Black, 15, 25);
-            //        graphics.DrawString(yLabel, font, Brushes.Black, 5, 5);
-            //    }
-            //}
             canvasContainer.Image = canvas;
         }
         
@@ -86,8 +74,6 @@ namespace Projectile_Sim
 
 		public void Plot(double timescale = 0)
         {
-            
-
             paused = false;
             this.timescale = timescale;
             //Get the maximum values and update interval
@@ -224,6 +210,15 @@ namespace Projectile_Sim
         public void AddProjectile(Projectile projectile)
         {
             projectiles.Add(projectile);
+        }
+
+        public void RemoveProjectile(string name)
+        {
+            for (int i = 0; i < projectiles.Count - 1; i++)
+            {
+                if (projectiles[i].colour.Name == name) { projectiles.RemoveAt(i); }
+            }
+               
         }
 
         private void GetMaxValues()
