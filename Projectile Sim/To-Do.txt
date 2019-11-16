@@ -1,5 +1,5 @@
 ﻿Add labels to axes of canvas
-Implement events to restrict use of pause/plot buttons
+//Implement events to restrict use of pause/plot buttons
 Update tabs with relevant information
 Save canvas as image
-Remove projectiles from simulation
+//Remove projectiles from simulation

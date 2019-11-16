@@ -14,7 +14,6 @@ namespace Projectile_Sim
     public class Simulation
     {
         /* Variables----------*/
-
         
 
         //Stores the projectiles
@@ -23,6 +22,7 @@ namespace Projectile_Sim
 		//Stores the maximum values
         private double maxHeight, maxRange, maxDuration;
         private int maxY, maxX;
+        private double toTime;
 
         //Stores scales, in pixels per metre
         private double pxPerX = 1;
@@ -74,13 +74,16 @@ namespace Projectile_Sim
         public void Pause() { refreshTimer.Stop(); stopwatch.Stop(); paused = true; }
         public void Resume() { refreshTimer.Start(); stopwatch.Start(); paused = false; }
 
-		public void Plot(double timescale = 0)
+		public void Plot(double timescale = 0, double toTime = 0)
         {
+
             paused = false;
             this.timescale = timescale;
             //Get the maximum values and update interval
             GetMaxValues();
             updateTimeInterval = maxDuration / (maxX * updatesPerPixel);
+            //If no totime specified, plot whole trajectory
+            if (toTime == 0) { this.toTime = maxDuration; } else { this.toTime = toTime; }
             
 
             //Instantiates timer and stopwatch for use, timer defaults to 33 ms (30 Hz)
@@ -111,9 +114,7 @@ namespace Projectile_Sim
             else
             { 
                 //Create canvas with all points plotted
-                canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, maxDuration, updateTimeInterval);
-
-
+                canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, toTime, updateTimeInterval);
             }
         }
 
@@ -159,7 +160,7 @@ namespace Projectile_Sim
 
         private Bitmap RecursivePlot(Bitmap prevImage, double time, double toTime, double timeInterval)
         {
-            if (time < toTime)
+            if (time < toTime + timeInterval)
             {
                 //Building on top of previous image
                 Bitmap currentImage = prevImage;
@@ -194,21 +195,32 @@ namespace Projectile_Sim
             //Convert time to seconds
             double time = ((double)stopwatch.ElapsedMilliseconds / 1000) * timescale;
             Console.WriteLine("Time: " + time.ToString("N3"));
+            Program.form1.Invoke(Program.form1.updateTimeDelegate, time);
 
-            if (time < maxDuration)
+            if (time < toTime + 2 * updateTimeInterval)
             {
                 //Recursively defined plotting subroutine
                 Bitmap currentFrame = (Bitmap)canvasContainer.Image;
                 if (Object.Equals(currentFrame, null)) { currentFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height); }
+
                 canvasContainer.Image = RecursivePlot(currentFrame, prevTime, time, updateTimeInterval);
                 prevTime = time;
-
+                //Invoke the procedure to update the tabs
+                List<Projectile> parameters = projectiles;
+                Program.form1.Invoke(Program.form1.updateTabsDelegate, parameters);
             }
             else
             {
                 stopwatch.Stop();
                 refreshTimer.Stop();
-                Program.form1.handler(this, null);
+
+                time = toTime;
+
+
+                //Raise plot complete event
+                Program.form1.Invoke(Program.form1.plotCompleteDelegate);
+                //Update time with max duration
+                Program.form1.Invoke(Program.form1.updateTimeDelegate, toTime);
             }
         }
 
@@ -228,6 +240,9 @@ namespace Projectile_Sim
 
         private void GetMaxValues()
         {
+            //initialise variables as 0
+            maxDuration = maxHeight = maxRange = maxX = maxY = 0;
+
             foreach (var projectile in this.projectiles)
             {
                 if (projectile.apex.vertical > maxHeight) { maxHeight = projectile.apex.vertical; }

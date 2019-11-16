@@ -280,6 +280,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.lblDurationUnits);
             this.Controls.Add(this.lblVelocityUnits);
             this.Controls.Add(this.lblRangeUnits);

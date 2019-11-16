@@ -18,8 +18,14 @@ namespace Projectile_Sim
     {
         const int maxProjectiles = 8;
 
-        public event EventHandler PlotComplete;
-        public EventHandler handler;
+        public delegate void HandlePlotComplete();
+        public HandlePlotComplete plotCompleteDelegate;
+
+        public delegate void HandleUpdateTime(double time);
+        public HandleUpdateTime updateTimeDelegate;
+
+        public delegate void HandleUpdateTabs(ref List<Projectile> projectiles);
+        public HandleUpdateTabs updateTabsDelegate;
 
         //public Simulation simulation = new Simulation(); //Empty constructor
 
@@ -34,11 +40,49 @@ namespace Projectile_Sim
         public Form1()
         {
             InitializeComponent();
+            plotCompleteDelegate = new HandlePlotComplete(MethodPlotComplete);
+            updateTabsDelegate = new HandleUpdateTabs(MethodUpdateTabs);
+            updateTimeDelegate = new HandleUpdateTime(MethodUpdateTime);
         }
 
-        private void HandlePlotComplete(object sender, EventArgs e)
+        private void MethodUpdateTime(double time)
         {
-            //Reset the pause and plot buttons
+            txtTime.Text = time.ToString("F3");
+        }
+
+        private void MethodUpdateTabs(ref List<Projectile> projectiles)
+        {
+            foreach (var projectile in projectiles)
+            {
+                //If it is a component-style tab
+                TabPage tab = tabSelectProjectile.TabPages[tabSelectProjectile.TabPages.IndexOfKey(projectile.colour.Name)];
+
+                TextBox txtHPos = (TextBox)tab.Controls.Find("txtHPos", true).First(); //Horizontal position
+                txtHPos.Text = projectile.displacement.horizontal.ToString("F3");
+
+                TextBox txtVPos = (TextBox)tab.Controls.Find("txtVPos", true).First(); //Vertical position
+                txtVPos.Text = projectile.displacement.vertical.ToString("F3");
+
+                TextBox txtHVel = (TextBox)tab.Controls.Find("txtHVel", true).First(); //Vertical position
+                txtHVel.Text = projectile.velocity.horizontal.ToString("F3");
+
+                TextBox txtVVel = (TextBox)tab.Controls.Find("txtVVel", true).First(); //Vertical position
+                txtVVel.Text = projectile.velocity.vertical.ToString("F3");
+            }
+        }
+
+        private void MethodPlotComplete()
+        {
+            //Allow the window to be resized
+            Program.form1.FormBorderStyle = FormBorderStyle.Sizable;
+            
+            //Re-enable controls
+            groupAddProjectile.Enabled = true;
+            groupPlotOptions.Enabled = true;
+            groupScales.Enabled = true;
+            groupAnimation.Enabled = true;
+
+            //Set buttons as appropriate
             btnPause.Enabled = false;
             btnPause.Text = "II";
             btnPlot.Enabled = true;
@@ -46,15 +90,23 @@ namespace Projectile_Sim
 
         private void BtnAddProjectile_Click(object sender, EventArgs e)
         {
-            //Enable plot button
+            //Enable plot and delete buttons
             btnPlot.Enabled = true;
-            PlotComplete += HandlePlotComplete;
+            btnDelete.Enabled = true;
 
             //Get colour from combobox
             String colourName = comboColour.Text;
             Color colour = Color.FromName(colourName);
+            //Remove colour
             comboColour.Items.Remove(colourName);
-            comboColour.Text = null;
+            if (comboColour.Items.Count != 0) //If there are still colours left
+            {
+                comboColour.SelectedItem = comboColour.Items[0]; //Go to next colour in list
+            } else
+            {
+                btnAddProjectile.Enabled = false; //Disable add projectile button
+            }
+
 
             //Defines common variables
             double height = 0, g = 0, speed, angle;
@@ -118,37 +170,49 @@ namespace Projectile_Sim
 
             //Get control by "name"
             Control txtDuration = componentTabs[index].Controls.Find("txtDuration", true).First();
-            txtDuration.Text = simulation.projectiles[index].duration.ToString("G5");
+            txtDuration.Text = simulation.projectiles[index].duration.ToString("F3");
 
             Control txtRange = componentTabs[index].Controls.Find("txtRange", true).First();
-            txtRange.Text = simulation.projectiles[index].range.ToString("G5");
+            txtRange.Text = simulation.projectiles[index].range.ToString("F3");
 
             Control txtHApex = componentTabs[index].Controls.Find("txtHApex", true).First();
-            txtHApex.Text = simulation.projectiles[index].apex.horizontal.ToString("G5");
+            txtHApex.Text = simulation.projectiles[index].apex.horizontal.ToString("F3");
 
             Control txtVApex = componentTabs[index].Controls.Find("txtVApex", true).First();
-            txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString("G5");
+            txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString("F3");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             tabSelectProjectile.TabPages.Clear();
-            CalculateScales(null, null);
-            handler = PlotComplete;
+            upDownHorizontal.Value = pictureBoxPlot.Width;
+            upDownVertical.Value = pictureBoxPlot.Height;
+            comboColour.SelectedItem = comboColour.Items[0];
         }
 
         private void BtnPlot_Click(object sender, EventArgs e)
         {
-            //Allow pause button to be pressed
+            //Enable buttons as appropriate
             btnPause.Enabled = true;
-            //Stop the button from being pressed again
             btnPlot.Enabled = false;
+
+            //Disable groups
+            groupAddProjectile.Enabled = false;
+            groupPlotOptions.Enabled = false;
+            groupScales.Enabled = false;
+            groupAnimation.Enabled = false;
+
+            //Stop the window from being resized
+            Program.form1.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             //Clear picturebox
             pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
 
-            double hScale = (double)upDownHorizontalScale.Value;
-            double vScale = (double)upDownVerticalScale.Value;
+            //Calculates and sets scales in pixels per metre
+            double hScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin)/ upDownHorizontal.Value);
+            double vScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin) / upDownVertical.Value);
+            simulation.SetScales(hScale, vScale);
+
             double timescale = 0;
 
             //Calls to start animation with specified timescale
@@ -163,8 +227,16 @@ namespace Projectile_Sim
                 //simulation.StartAnimation(SimulationSpeed.NoAnimation);
                 timescale = 0;
             }
-            
-            simulation.Plot(timescale);
+
+            if (double.TryParse(txtPlotTo.Text, out double toTime))
+            {
+                simulation.Plot(timescale, toTime);
+            }
+            else
+            {
+                simulation.Plot(timescale);
+            }
+
         }
         
         private void BtnPause_Click(object sender, EventArgs e)
@@ -180,20 +252,7 @@ namespace Projectile_Sim
                 simulation.Pause();
             }
         }
-
-        private void CalculateScales(object sender, EventArgs e)
-        {
-            //Called by picture box resizing or up/down values changing
-            //Calculate scales in metres
-            // (px) / (px/m) = m 
-            txtWidth.Text = ((pictureBoxPlot.Width - Properties.Settings.Default.margin) / upDownHorizontalScale.Value).ToString("G5");
-            txtHeight.Text = ((pictureBoxPlot.Height - Properties.Settings.Default.margin) / upDownVerticalScale.Value).ToString("G5");
-            
-            
-
-            //Set the scale of the simulation
-            simulation.SetScales((double)upDownHorizontalScale.Value, (double)upDownVerticalScale.Value);
-        }
+        
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -202,20 +261,18 @@ namespace Projectile_Sim
             simulation.RemoveProjectile(tab.Text);
             comboColour.Items.Add(tab.Text);
 
+            //Re-enables add projectile button if not already
+            btnAddProjectile.Enabled = true;
+
             //Removes tab from control
             tabSelectProjectile.TabPages.Remove(tab);
-            if (tabSelectProjectile.TabPages.Count == 0) { btnPlot.Enabled = false; }
+            if (tabSelectProjectile.TabPages.Count == 0) { btnPlot.Enabled = false; btnDelete.Enabled = false; }
         }
 
-        private void comboColour_SelectedValueChanged(object sender, EventArgs e)
+        private void txtPlotToValidate (object sender, EventArgs e)
         {
-            if (comboColour.SelectedItem == null) {
-                btnAddProjectile.Enabled = false;
-            }
-            else
-            {
-                btnAddProjectile.Enabled = true;
-            }
+            //If it is empty, set text to complete
+            if (txtPlotTo.Text == "") { txtPlotTo.Text = "End"; }
         }
     }
 }

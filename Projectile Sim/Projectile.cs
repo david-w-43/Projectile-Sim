@@ -12,11 +12,11 @@ namespace Projectile_Sim
 
     public class Projectile
     {
-        public  Vector displacement, velocity, acceleration = new Vector(VectorType.component);
+        public Vector displacement, velocity, acceleration = new Vector(VectorType.component);
         private Vector initDisplacement, initVelocity = new Vector(VectorType.component);
-        public  double range, duration;
-        public  Vector apex = new Vector(VectorType.component);
-        public  Color colour;
+        public readonly double range, duration;
+        public readonly Vector apex = new Vector(VectorType.component);
+        public readonly Color colour;
 
         public Projectile(ProjectileType type, Color colour, Vector initVelocity, double initialHeight, double g)
         {
@@ -31,61 +31,17 @@ namespace Projectile_Sim
             //Set current values (may not be required)
             displacement = initDisplacement;
             velocity = initVelocity;
-
-            //Apex is when vertical velocity = 0
-            // u + at = 0, t = -u/a
-            double tempTime = (-initVelocity.vertical / acceleration.vertical);
-            this.apex = GetDisplacement(tempTime);
-
+            
             //Projectile stops when vertical displacement from origin = 0
             // 0 = s0 + ut + 0.5at^2, 0.5at^2 + ut + s0
-            tempTime = (-initVelocity.vertical - (Math.Sqrt((initVelocity.vertical * initVelocity.vertical) - (2 * acceleration.vertical * initDisplacement.vertical)))) / acceleration.vertical;
-
-            duration = tempTime;
-            range = GetDisplacement(tempTime).horizontal;
-
-        }
-
-        /*public Projectile(ProjectileType type, Color colour, double parm1, double parm2, double initialHeight, double g)
-        {
-            initDisplacement = new Vector(VectorType.component, 0, initialHeight);
-
-            //Only implementing vertical acceleration for now
-            acceleration = new Vector(VectorType.component, 0, -g);
-
-            this.colour = colour;
-
-            switch (type)
-            {
-                case ProjectileType.speed:
-                    initVelocity = new Vector(VectorType.magnitude, parm1, parm2);
-                    break;
-                case ProjectileType.component:
-                    initVelocity = new Vector(VectorType.component, parm1, parm2);
-                    break;
-                case ProjectileType.energy:
-                    //placeholder
-                    break;
-            }
-
-            //Set current values (may not be required)
-            displacement = initDisplacement;
-            velocity = initVelocity;
-
+            duration = (-initVelocity.vertical - (Math.Sqrt((initVelocity.vertical * initVelocity.vertical) - (2 * acceleration.vertical * initDisplacement.vertical)))) / acceleration.vertical;
+            range = GetDisplacement(duration).horizontal;
+            
             //Apex is when vertical velocity = 0
             // u + at = 0, t = -u/a
-            double tempTime = (-initVelocity.vertical / acceleration.vertical);
-            this.apex = GetDisplacement(tempTime);
-
-            //Projectile stops when vertical displacement from origin = 0
-            // 0 = s0 + ut + 0.5at^2, 0.5at^2 + ut + s0
-            tempTime = (-initVelocity.vertical - (Math.Sqrt((initVelocity.vertical * initVelocity.vertical) - (2 * acceleration.vertical * initDisplacement.vertical)))) / acceleration.vertical;
-
-            duration = tempTime;
-            range = GetDisplacement(tempTime).horizontal;
-
+            double apexTime = (-initVelocity.vertical / acceleration.vertical);
+            this.apex = GetDisplacement(apexTime);    
         }
-        */
 
         private Vector GetDisplacement(double time)
         {
@@ -101,12 +57,14 @@ namespace Projectile_Sim
                 ((acceleration.vertical * time * time) / 2))
             };
 
+            //If reached end of motion, set displacement as appropriate
+            if (time > duration) { return GetDisplacement(duration); }
 
             this.displacement = toReturn;
             return toReturn;
         }
 
-        private Vector UpdateVelocity(double time)
+        private Vector GetVelocity(double time)
         {
             //v = u + at
             Vector toReturn = new Vector(VectorType.component)
@@ -119,6 +77,9 @@ namespace Projectile_Sim
                 vertical = initVelocity.vertical + acceleration.vertical * time
             };
 
+            //If reached end of motion, set velocity as appropriate
+            if (time > duration) { return GetVelocity(duration); }
+
             this.velocity = toReturn;
             return toReturn;
         }
@@ -126,7 +87,7 @@ namespace Projectile_Sim
         public void Update(double time)
         {
             GetDisplacement(time);
-            UpdateVelocity(time);
+            GetVelocity(time);
         }
 
     }
