@@ -108,6 +108,9 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
+            this.upDownLineWidth = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -143,6 +146,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.upDownHorizontal)).BeginInit();
             this.groupAnimation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownLineWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -977,8 +981,11 @@
             // 
             this.groupPlotOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupPlotOptions.Controls.Add(this.upDownLineWidth);
+            this.groupPlotOptions.Controls.Add(this.label21);
             this.groupPlotOptions.Controls.Add(this.lblDurationUnits2);
             this.groupPlotOptions.Controls.Add(this.txtPlotTo);
+            this.groupPlotOptions.Controls.Add(this.label18);
             this.groupPlotOptions.Controls.Add(this.label15);
             this.groupPlotOptions.Location = new System.Drawing.Point(190, 3);
             this.groupPlotOptions.Name = "groupPlotOptions";
@@ -998,9 +1005,9 @@
             // 
             // txtPlotTo
             // 
-            this.txtPlotTo.Location = new System.Drawing.Point(53, 18);
+            this.txtPlotTo.Location = new System.Drawing.Point(71, 18);
             this.txtPlotTo.Name = "txtPlotTo";
-            this.txtPlotTo.Size = new System.Drawing.Size(100, 20);
+            this.txtPlotTo.Size = new System.Drawing.Size(82, 20);
             this.txtPlotTo.TabIndex = 1;
             this.txtPlotTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPlotTo.TextChanged += new System.EventHandler(this.txtPlotToValidate);
@@ -1008,7 +1015,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 21);
+            this.label15.Location = new System.Drawing.Point(25, 21);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(40, 13);
             this.label15.TabIndex = 0;
@@ -1137,9 +1144,8 @@
             // 
             // groupAnimation
             // 
-            this.groupAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupAnimation.Controls.Add(this.upDownTimescale);
             this.groupAnimation.Controls.Add(this.radioNoAnimation);
             this.groupAnimation.Controls.Add(this.radioAnimated);
@@ -1220,6 +1226,46 @@
             this.radioAnimated.Text = "Timescale";
             this.radioAnimated.UseVisualStyleBackColor = true;
             // 
+            // upDownLineWidth
+            // 
+            this.upDownLineWidth.Location = new System.Drawing.Point(71, 44);
+            this.upDownLineWidth.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.upDownLineWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.upDownLineWidth.Name = "upDownLineWidth";
+            this.upDownLineWidth.Size = new System.Drawing.Size(82, 20);
+            this.upDownLineWidth.TabIndex = 42;
+            this.upDownLineWidth.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(7, 46);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(58, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Line width:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(159, 46);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(18, 13);
+            this.label21.TabIndex = 41;
+            this.label21.Text = "px";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnPlot;
@@ -1276,6 +1322,7 @@
             this.groupAnimation.ResumeLayout(false);
             this.groupAnimation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownLineWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1363,6 +1410,9 @@
         private System.Windows.Forms.TextBox txtPlotTo;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblDurationUnits2;
+        private System.Windows.Forms.NumericUpDown upDownLineWidth;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label18;
     }
 }
 

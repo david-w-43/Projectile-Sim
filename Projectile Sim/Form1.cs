@@ -212,6 +212,7 @@ namespace Projectile_Sim
             double hScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin)/ upDownHorizontal.Value);
             double vScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin) / upDownVertical.Value);
             simulation.SetScales(hScale, vScale);
+            simulation.SetLineWidth((int)upDownLineWidth.Value);
 
             double timescale = 0;
 

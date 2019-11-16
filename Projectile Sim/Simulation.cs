@@ -37,6 +37,7 @@ namespace Projectile_Sim
         private System.Diagnostics.Stopwatch stopwatch;
         private double prevTime;
         private double timescale;
+        private int lineWidth;
 
         public bool paused;
 
@@ -70,6 +71,7 @@ namespace Projectile_Sim
         }
         
         public void SetScales(double xScale, double yscale) { pxPerX = xScale; pxPerY = yscale;}
+        public void SetLineWidth(int width) { lineWidth = width; }
 
         public void Pause() { refreshTimer.Stop(); stopwatch.Stop(); paused = true; }
         public void Resume() { refreshTimer.Start(); stopwatch.Start(); paused = false; }
@@ -114,7 +116,7 @@ namespace Projectile_Sim
             else
             { 
                 //Create canvas with all points plotted
-                canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, toTime, updateTimeInterval);
+                canvasContainer.Image = RecursivePlot((Bitmap)canvasContainer.Image, 0, this.toTime, updateTimeInterval);
             }
         }
 
@@ -172,11 +174,18 @@ namespace Projectile_Sim
                     int x = (int)((projectile.displacement.horizontal) * pxPerX) + vAxisPos;
                     int y = hAxisPos - (int)((projectile.displacement.vertical) * pxPerY);
 
-                    //If valid to plot and projectile still in motion
-                    if (x >= 0 && x < prevImage.Width && y >= 0 && y < prevImage.Height && time <= projectile.duration)
+                    //For each pixel surrounding the value to plot, radius = lineWidth
+                    for (int i = x - (lineWidth - 1); i <= x + (lineWidth - 1); i++)
                     {
-                        //Set pixel to colour of projectile
-                        currentImage.SetPixel(x, y, projectile.colour);
+                        for (int j = y - (lineWidth - 1); j <= y + (lineWidth - 1); j++)
+                        {
+                            //If valid to plot and projectile still in motion
+                            if (i >= 0 && i < prevImage.Width && j >= 0 && j < prevImage.Height && time <= projectile.duration)
+                            {
+                                //Set pixel to colour of projectile
+                                currentImage.SetPixel(i, j, projectile.colour);
+                            }
+                        }
                     }
                 }
                 //Calls itself
@@ -189,7 +198,7 @@ namespace Projectile_Sim
             }
         }
 
-        private void RealTime(Object source, ElapsedEventArgs e)
+        private void RealTime(Object source, ElapsedEventArgs e) //Runs every frame
         {
             //Use stopwatch to get time while plotting
             //Convert time to seconds
@@ -197,8 +206,11 @@ namespace Projectile_Sim
             Console.WriteLine("Time: " + time.ToString("N3"));
             Program.form1.Invoke(Program.form1.updateTimeDelegate, time);
 
-            if (time < toTime + 2 * updateTimeInterval)
+            //Experimenting with upper bound, due to system variations it is not always consistent with update intervals and whatnot
+            if (time < toTime + 2 * updateTimeInterval) 
             {
+                if (time > toTime) { time = toTime; } //If overshot the time to plot to, restrict
+
                 //Recursively defined plotting subroutine
                 Bitmap currentFrame = (Bitmap)canvasContainer.Image;
                 if (Object.Equals(currentFrame, null)) { currentFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height); }
@@ -216,6 +228,7 @@ namespace Projectile_Sim
 
                 time = toTime;
 
+                //Depending on system, the 
 
                 //Raise plot complete event
                 Program.form1.Invoke(Program.form1.plotCompleteDelegate);
