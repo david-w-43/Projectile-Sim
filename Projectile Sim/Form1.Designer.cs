@@ -109,6 +109,7 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -262,6 +263,7 @@
             this.groupCurrentValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupCurrentValues.Controls.Add(this.btnDelete);
             this.groupCurrentValues.Controls.Add(this.tabSelectProjectile);
             this.groupCurrentValues.Controls.Add(this.textBox1);
             this.groupCurrentValues.Controls.Add(this.lblTime);
@@ -281,7 +283,7 @@
             this.tabSelectProjectile.Location = new System.Drawing.Point(6, 51);
             this.tabSelectProjectile.Name = "tabSelectProjectile";
             this.tabSelectProjectile.SelectedIndex = 0;
-            this.tabSelectProjectile.Size = new System.Drawing.Size(278, 315);
+            this.tabSelectProjectile.Size = new System.Drawing.Size(278, 283);
             this.tabSelectProjectile.TabIndex = 2;
             // 
             // textBox1
@@ -330,6 +332,7 @@
             // 
             this.btnAddProjectile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddProjectile.Enabled = false;
             this.btnAddProjectile.Location = new System.Drawing.Point(6, 219);
             this.btnAddProjectile.Name = "btnAddProjectile";
             this.btnAddProjectile.Size = new System.Drawing.Size(278, 23);
@@ -354,6 +357,7 @@
             this.comboColour.Name = "comboColour";
             this.comboColour.Size = new System.Drawing.Size(190, 21);
             this.comboColour.TabIndex = 2;
+            this.comboColour.SelectedValueChanged += new System.EventHandler(this.comboColour_SelectedValueChanged);
             // 
             // lblColour
             // 
@@ -1108,6 +1112,7 @@
             // btnPlot
             // 
             this.btnPlot.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnPlot.Enabled = false;
             this.btnPlot.Location = new System.Drawing.Point(855, 0);
             this.btnPlot.Name = "btnPlot";
             this.btnPlot.Size = new System.Drawing.Size(103, 89);
@@ -1200,6 +1205,18 @@
             this.radioAnimated.TabStop = true;
             this.radioAnimated.Text = "Timescale";
             this.radioAnimated.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Location = new System.Drawing.Point(6, 341);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(278, 23);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // Form1
             // 
@@ -1343,6 +1360,7 @@
         private System.Windows.Forms.TextBox txtHeight;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 

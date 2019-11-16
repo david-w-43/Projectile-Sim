@@ -18,6 +18,8 @@ namespace Projectile_Sim
     {
         const int maxProjectiles = 8;
 
+        public event EventHandler PlotComplete;
+        public EventHandler handler;
 
         //public Simulation simulation = new Simulation(); //Empty constructor
 
@@ -34,8 +36,20 @@ namespace Projectile_Sim
             InitializeComponent();
         }
 
+        private void HandlePlotComplete(object sender, EventArgs e)
+        {
+            //Reset the pause and plot buttons
+            btnPause.Enabled = false;
+            btnPause.Text = "II";
+            btnPlot.Enabled = true;
+        }
+
         private void BtnAddProjectile_Click(object sender, EventArgs e)
         {
+            //Enable plot button
+            btnPlot.Enabled = true;
+            PlotComplete += HandlePlotComplete;
+
             //Get colour from combobox
             String colourName = comboColour.Text;
             Color colour = Color.FromName(colourName);
@@ -73,7 +87,7 @@ namespace Projectile_Sim
                 case "Energy":
                     //Find speed from energy and mass
                     speed = Math.Sqrt((double)(2 * upDownEnergy.Value) / (double)upDownMass.Value);
-                    angle = (double)upDownAngle1.Value * (Math.PI / 180);
+                    angle = (double)upDownAngle3.Value * (Math.PI / 180);
 
                     initVelocity = new Vector(VectorType.magnitude, speed, angle);
 
@@ -120,12 +134,15 @@ namespace Projectile_Sim
         {
             tabSelectProjectile.TabPages.Clear();
             CalculateScales(null, null);
+            handler = PlotComplete;
         }
 
         private void BtnPlot_Click(object sender, EventArgs e)
         {
             //Allow pause button to be pressed
             btnPause.Enabled = true;
+            //Stop the button from being pressed again
+            btnPlot.Enabled = false;
 
             //Clear picturebox
             pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
@@ -176,6 +193,29 @@ namespace Projectile_Sim
 
             //Set the scale of the simulation
             simulation.SetScales((double)upDownHorizontalScale.Value, (double)upDownVerticalScale.Value);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            TabPage tab = tabSelectProjectile.SelectedTab;
+            //Removes projectile from simulation
+            simulation.RemoveProjectile(tab.Text);
+            comboColour.Items.Add(tab.Text);
+
+            //Removes tab from control
+            tabSelectProjectile.TabPages.Remove(tab);
+            if (tabSelectProjectile.TabPages.Count == 0) { btnPlot.Enabled = false; }
+        }
+
+        private void comboColour_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboColour.SelectedItem == null) {
+                btnAddProjectile.Enabled = false;
+            }
+            else
+            {
+                btnAddProjectile.Enabled = true;
+            }
         }
     }
 }

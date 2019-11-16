@@ -15,6 +15,8 @@ namespace Projectile_Sim
     {
         /* Variables----------*/
 
+        
+
         //Stores the projectiles
         public readonly List<Projectile> projectiles = new List<Projectile>();
 
@@ -110,6 +112,8 @@ namespace Projectile_Sim
             { 
                 //Create canvas with all points plotted
                 canvasContainer.Image = RecursivePlot(new Bitmap(canvasContainer.Width, canvasContainer.Height), 0, maxDuration, updateTimeInterval);
+
+
             }
         }
 
@@ -204,6 +208,7 @@ namespace Projectile_Sim
             {
                 stopwatch.Stop();
                 refreshTimer.Stop();
+                Program.form1.handler(this, null);
             }
         }
 
@@ -214,7 +219,7 @@ namespace Projectile_Sim
 
         public void RemoveProjectile(string name)
         {
-            for (int i = 0; i < projectiles.Count - 1; i++)
+            for (int i = 0; i < projectiles.Count; i++)
             {
                 if (projectiles[i].colour.Name == name) { projectiles.RemoveAt(i); }
             }
