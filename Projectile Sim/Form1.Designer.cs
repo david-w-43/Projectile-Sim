@@ -91,9 +91,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnPause = new System.Windows.Forms.Button();
             this.groupPlotOptions = new System.Windows.Forms.GroupBox();
+            this.upDownLineWidth = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
             this.lblDurationUnits2 = new System.Windows.Forms.Label();
             this.txtPlotTo = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupScales = new System.Windows.Forms.GroupBox();
             this.upDownVertical = new System.Windows.Forms.NumericUpDown();
@@ -104,13 +108,9 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnPlot = new System.Windows.Forms.Button();
             this.groupAnimation = new System.Windows.Forms.GroupBox();
-            this.btnPause = new System.Windows.Forms.Button();
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
-            this.upDownLineWidth = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -141,12 +141,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownAngle3)).BeginInit();
             this.groupPlotOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownLineWidth)).BeginInit();
             this.groupScales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownVertical)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownHorizontal)).BeginInit();
             this.groupAnimation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownLineWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -199,6 +199,7 @@
             this.btnExportGraph.Name = "btnExportGraph";
             this.btnExportGraph.Size = new System.Drawing.Size(186, 22);
             this.btnExportGraph.Text = "Export Graph...";
+            this.btnExportGraph.Click += new System.EventHandler(this.btnExportGraph_Click);
             // 
             // splitContainer1
             // 
@@ -977,6 +978,21 @@
             this.label10.TabIndex = 7;
             this.label10.Text = "Angle:";
             // 
+            // btnPause
+            // 
+            this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPause.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnPause.Enabled = false;
+            this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPause.Location = new System.Drawing.Point(801, 0);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(48, 89);
+            this.btnPause.TabIndex = 3;
+            this.btnPause.Text = "II";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.BtnPause_Click);
+            // 
             // groupPlotOptions
             // 
             this.groupPlotOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -993,6 +1009,37 @@
             this.groupPlotOptions.TabIndex = 4;
             this.groupPlotOptions.TabStop = false;
             this.groupPlotOptions.Text = "Plot Options";
+            // 
+            // upDownLineWidth
+            // 
+            this.upDownLineWidth.Location = new System.Drawing.Point(71, 44);
+            this.upDownLineWidth.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.upDownLineWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.upDownLineWidth.Name = "upDownLineWidth";
+            this.upDownLineWidth.Size = new System.Drawing.Size(82, 20);
+            this.upDownLineWidth.TabIndex = 42;
+            this.upDownLineWidth.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(159, 46);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(18, 13);
+            this.label21.TabIndex = 41;
+            this.label21.Text = "px";
             // 
             // lblDurationUnits2
             // 
@@ -1011,6 +1058,15 @@
             this.txtPlotTo.TabIndex = 1;
             this.txtPlotTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPlotTo.TextChanged += new System.EventHandler(this.txtPlotToValidate);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(7, 46);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(58, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Line width:";
             // 
             // label15
             // 
@@ -1156,21 +1212,6 @@
             this.groupAnimation.TabStop = false;
             this.groupAnimation.Text = "Animation";
             // 
-            // btnPause
-            // 
-            this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPause.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPause.Enabled = false;
-            this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPause.Location = new System.Drawing.Point(801, 0);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(48, 89);
-            this.btnPause.TabIndex = 3;
-            this.btnPause.Text = "II";
-            this.btnPause.UseVisualStyleBackColor = true;
-            this.btnPause.Click += new System.EventHandler(this.BtnPause_Click);
-            // 
             // upDownTimescale
             // 
             this.upDownTimescale.DecimalPlaces = 2;
@@ -1226,46 +1267,6 @@
             this.radioAnimated.Text = "Timescale";
             this.radioAnimated.UseVisualStyleBackColor = true;
             // 
-            // upDownLineWidth
-            // 
-            this.upDownLineWidth.Location = new System.Drawing.Point(71, 44);
-            this.upDownLineWidth.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.upDownLineWidth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.upDownLineWidth.Name = "upDownLineWidth";
-            this.upDownLineWidth.Size = new System.Drawing.Size(82, 20);
-            this.upDownLineWidth.TabIndex = 42;
-            this.upDownLineWidth.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(7, 46);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(58, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Line width:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(159, 46);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(18, 13);
-            this.label21.TabIndex = 41;
-            this.label21.Text = "px";
-            // 
             // Form1
             // 
             this.AcceptButton = this.btnPlot;
@@ -1315,6 +1316,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.upDownAngle3)).EndInit();
             this.groupPlotOptions.ResumeLayout(false);
             this.groupPlotOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownLineWidth)).EndInit();
             this.groupScales.ResumeLayout(false);
             this.groupScales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownVertical)).EndInit();
@@ -1322,7 +1324,6 @@
             this.groupAnimation.ResumeLayout(false);
             this.groupAnimation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownLineWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

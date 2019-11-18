@@ -210,7 +210,7 @@ namespace Projectile_Sim
 
             //Calculates and sets scales in pixels per metre
             double hScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin)/ upDownHorizontal.Value);
-            double vScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin) / upDownVertical.Value);
+            double vScale = (double)((pictureBoxPlot.Height - Properties.Settings.Default.margin) / upDownVertical.Value);
             simulation.SetScales(hScale, vScale);
             simulation.SetLineWidth((int)upDownLineWidth.Value);
 
@@ -274,6 +274,53 @@ namespace Projectile_Sim
         {
             //If it is empty, set text to complete
             if (txtPlotTo.Text == "") { txtPlotTo.Text = "End"; }
+        }
+
+        private void btnExportGraph_Click(object sender, EventArgs e)
+        {
+            //Code to save the image displayed
+            DialogResult result = MessageBox.Show("Use a transparent background?", "Background", MessageBoxButtons.YesNo);
+            bool transparency = false;
+            if (result == DialogResult.Yes) { transparency = true; } else { transparency = false; }
+
+            Bitmap image = (Bitmap)pictureBoxPlot.Image;
+            image.MakeTransparent(Color.FromArgb(0, 0, 0, 0)); //Make blank pixels transparent
+            if (!transparency) //If user does not want transparency
+            {
+                //Cycle through colours
+                for (int row = 0; row < image.Height; row++)
+                {
+                    for (int col = 0; col < image.Width; col++)
+                    {
+                        if (image.GetPixel(col, row) == Color.Transparent) //If the pixel is blank
+                        {
+                            image.SetPixel(col, row, Color.White); //Set it to white
+                        }
+                    }
+                }
+            }
+
+
+            SaveFileDialog dialog = new SaveFileDialog(); //Define dialog
+            dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp"; //Set filter
+            dialog.ShowDialog(); //Show the dialog
+            string filepath = dialog.FileName; //Get the filepath to save to
+            string extension = filepath.Split("."[0]).Last().ToUpper(); //Parse the file extension
+            switch (extension) //Save with the appropriate format
+            {
+                case "BMP":
+                    image.Save(filepath, System.Drawing.Imaging.ImageFormat.Bmp);
+                    break;
+                case "JPG":
+                    image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    break;
+                case "PNG":
+                    image.Save(filepath, System.Drawing.Imaging.ImageFormat.Png);
+                    break;
+                default:
+                    MessageBox.Show("Invalid file type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    break;
+            }
         }
     }
 }
