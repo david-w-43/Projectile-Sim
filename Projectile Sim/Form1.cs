@@ -332,7 +332,7 @@ namespace Projectile_Sim
             System.Xml.XmlElement[] projectiles = new System.Xml.XmlElement[simulation.projectiles.Count];
             for (int i = 0; i < projectiles.Count(); i++)
             {
-                //Create element with projectile name
+                //Create element with projectile name   
                 projectiles[i] = document.CreateElement(simulation.projectiles[i].colour.Name);
 
                 //Set XML child elements depending on projectile type
