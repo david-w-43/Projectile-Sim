@@ -111,6 +111,11 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewComponent = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewMagnitudeDirection = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewEnergies = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -152,7 +157,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemFile});
+            this.itemFile,
+            this.viewToolStripMenuItem,
+            this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(958, 24);
@@ -182,6 +189,7 @@
             this.btnExportPreset.Name = "btnExportPreset";
             this.btnExportPreset.Size = new System.Drawing.Size(186, 22);
             this.btnExportPreset.Text = "Export Preset...";
+            this.btnExportPreset.Click += new System.EventHandler(this.btnExportPreset_Click);
             // 
             // toolStripSeparator1
             // 
@@ -229,6 +237,7 @@
             this.splitContainer1.SplitterDistance = 632;
             this.splitContainer1.SplitterIncrement = 5;
             this.splitContainer1.TabIndex = 5;
+            this.splitContainer1.TabStop = false;
             // 
             // splitContainer2
             // 
@@ -251,6 +260,7 @@
             this.splitContainer2.SplitterDistance = 658;
             this.splitContainer2.SplitterIncrement = 5;
             this.splitContainer2.TabIndex = 0;
+            this.splitContainer2.TabStop = false;
             // 
             // pictureBoxPlot
             // 
@@ -276,7 +286,7 @@
             this.groupCurrentValues.Location = new System.Drawing.Point(3, 257);
             this.groupCurrentValues.Name = "groupCurrentValues";
             this.groupCurrentValues.Size = new System.Drawing.Size(290, 372);
-            this.groupCurrentValues.TabIndex = 5;
+            this.groupCurrentValues.TabIndex = 1;
             this.groupCurrentValues.TabStop = false;
             this.groupCurrentValues.Text = "Current Values";
             // 
@@ -310,6 +320,7 @@
             this.txtTime.ReadOnly = true;
             this.txtTime.Size = new System.Drawing.Size(100, 20);
             this.txtTime.TabIndex = 1;
+            this.txtTime.TabStop = false;
             this.txtTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblTime
@@ -341,7 +352,7 @@
             this.groupAddProjectile.Location = new System.Drawing.Point(3, 3);
             this.groupAddProjectile.Name = "groupAddProjectile";
             this.groupAddProjectile.Size = new System.Drawing.Size(290, 248);
-            this.groupAddProjectile.TabIndex = 4;
+            this.groupAddProjectile.TabIndex = 0;
             this.groupAddProjectile.TabStop = false;
             this.groupAddProjectile.Text = "Add Projectile";
             // 
@@ -352,7 +363,7 @@
             this.btnAddProjectile.Location = new System.Drawing.Point(6, 219);
             this.btnAddProjectile.Name = "btnAddProjectile";
             this.btnAddProjectile.Size = new System.Drawing.Size(278, 23);
-            this.btnAddProjectile.TabIndex = 3;
+            this.btnAddProjectile.TabIndex = 7;
             this.btnAddProjectile.Text = "Add Projectile";
             this.btnAddProjectile.UseVisualStyleBackColor = true;
             this.btnAddProjectile.Click += new System.EventHandler(this.BtnAddProjectile_Click);
@@ -374,7 +385,7 @@
             this.comboColour.Location = new System.Drawing.Point(87, 192);
             this.comboColour.Name = "comboColour";
             this.comboColour.Size = new System.Drawing.Size(190, 21);
-            this.comboColour.TabIndex = 2;
+            this.comboColour.TabIndex = 6;
             // 
             // lblColour
             // 
@@ -435,7 +446,7 @@
             this.upDownG1.Location = new System.Drawing.Point(92, 84);
             this.upDownG1.Name = "upDownG1";
             this.upDownG1.Size = new System.Drawing.Size(76, 20);
-            this.upDownG1.TabIndex = 1;
+            this.upDownG1.TabIndex = 4;
             this.upDownG1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.upDownG1.Value = new decimal(new int[] {
             98,
@@ -459,7 +470,7 @@
             0});
             this.upDownInitHeight1.Name = "upDownInitHeight1";
             this.upDownInitHeight1.Size = new System.Drawing.Size(76, 20);
-            this.upDownInitHeight1.TabIndex = 1;
+            this.upDownInitHeight1.TabIndex = 3;
             this.upDownInitHeight1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // upDownAngle1
@@ -483,7 +494,7 @@
             -2147483648});
             this.upDownAngle1.Name = "upDownAngle1";
             this.upDownAngle1.Size = new System.Drawing.Size(76, 20);
-            this.upDownAngle1.TabIndex = 1;
+            this.upDownAngle1.TabIndex = 2;
             this.upDownAngle1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.upDownAngle1.Value = new decimal(new int[] {
             45,
@@ -615,7 +626,7 @@
             this.upDownG2.Location = new System.Drawing.Point(92, 84);
             this.upDownG2.Name = "upDownG2";
             this.upDownG2.Size = new System.Drawing.Size(76, 20);
-            this.upDownG2.TabIndex = 58;
+            this.upDownG2.TabIndex = 4;
             this.upDownG2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.upDownG2.Value = new decimal(new int[] {
             98,
@@ -639,7 +650,7 @@
             0});
             this.upDownInitHeight2.Name = "upDownInitHeight2";
             this.upDownInitHeight2.Size = new System.Drawing.Size(76, 20);
-            this.upDownInitHeight2.TabIndex = 59;
+            this.upDownInitHeight2.TabIndex = 3;
             this.upDownInitHeight2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
@@ -699,7 +710,7 @@
             -2147483648});
             this.upDownVVelocity.Name = "upDownVVelocity";
             this.upDownVVelocity.Size = new System.Drawing.Size(76, 20);
-            this.upDownVVelocity.TabIndex = 53;
+            this.upDownVVelocity.TabIndex = 2;
             this.upDownVVelocity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // upDownHVelocity
@@ -718,7 +729,7 @@
             0});
             this.upDownHVelocity.Name = "upDownHVelocity";
             this.upDownHVelocity.Size = new System.Drawing.Size(76, 20);
-            this.upDownHVelocity.TabIndex = 53;
+            this.upDownHVelocity.TabIndex = 1;
             this.upDownHVelocity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblVelocityUnits
@@ -794,7 +805,7 @@
             this.upDownG3.Location = new System.Drawing.Point(92, 110);
             this.upDownG3.Name = "upDownG3";
             this.upDownG3.Size = new System.Drawing.Size(76, 20);
-            this.upDownG3.TabIndex = 8;
+            this.upDownG3.TabIndex = 5;
             this.upDownG3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.upDownG3.Value = new decimal(new int[] {
             98,
@@ -818,7 +829,7 @@
             0});
             this.upDownMass.Name = "upDownMass";
             this.upDownMass.Size = new System.Drawing.Size(76, 20);
-            this.upDownMass.TabIndex = 9;
+            this.upDownMass.TabIndex = 2;
             this.upDownMass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // upDownEnergy
@@ -837,7 +848,7 @@
             0});
             this.upDownEnergy.Name = "upDownEnergy";
             this.upDownEnergy.Size = new System.Drawing.Size(76, 20);
-            this.upDownEnergy.TabIndex = 9;
+            this.upDownEnergy.TabIndex = 1;
             this.upDownEnergy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // upDownInitHeight3
@@ -856,7 +867,7 @@
             0});
             this.upDownInitHeight3.Name = "upDownInitHeight3";
             this.upDownInitHeight3.Size = new System.Drawing.Size(76, 20);
-            this.upDownInitHeight3.TabIndex = 9;
+            this.upDownInitHeight3.TabIndex = 4;
             this.upDownInitHeight3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // upDownAngle3
@@ -880,7 +891,7 @@
             -2147483648});
             this.upDownAngle3.Name = "upDownAngle3";
             this.upDownAngle3.Size = new System.Drawing.Size(76, 20);
-            this.upDownAngle3.TabIndex = 10;
+            this.upDownAngle3.TabIndex = 3;
             this.upDownAngle3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.upDownAngle3.Value = new decimal(new int[] {
             45,
@@ -988,7 +999,7 @@
             this.btnPause.Location = new System.Drawing.Point(801, 0);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(48, 89);
-            this.btnPause.TabIndex = 3;
+            this.btnPause.TabIndex = 6;
             this.btnPause.Text = "II";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.BtnPause_Click);
@@ -1006,7 +1017,7 @@
             this.groupPlotOptions.Location = new System.Drawing.Point(190, 3);
             this.groupPlotOptions.Name = "groupPlotOptions";
             this.groupPlotOptions.Size = new System.Drawing.Size(200, 83);
-            this.groupPlotOptions.TabIndex = 4;
+            this.groupPlotOptions.TabIndex = 3;
             this.groupPlotOptions.TabStop = false;
             this.groupPlotOptions.Text = "Plot Options";
             // 
@@ -1090,7 +1101,7 @@
             this.groupScales.Location = new System.Drawing.Point(3, 3);
             this.groupScales.Name = "groupScales";
             this.groupScales.Size = new System.Drawing.Size(181, 83);
-            this.groupScales.TabIndex = 3;
+            this.groupScales.TabIndex = 2;
             this.groupScales.TabStop = false;
             this.groupScales.Text = "Scales";
             // 
@@ -1193,7 +1204,7 @@
             this.btnPlot.Location = new System.Drawing.Point(855, 0);
             this.btnPlot.Name = "btnPlot";
             this.btnPlot.Size = new System.Drawing.Size(103, 89);
-            this.btnPlot.TabIndex = 3;
+            this.btnPlot.TabIndex = 5;
             this.btnPlot.Text = "Plot";
             this.btnPlot.UseVisualStyleBackColor = true;
             this.btnPlot.Click += new System.EventHandler(this.BtnPlot_Click);
@@ -1208,7 +1219,7 @@
             this.groupAnimation.Location = new System.Drawing.Point(396, 3);
             this.groupAnimation.Name = "groupAnimation";
             this.groupAnimation.Size = new System.Drawing.Size(153, 83);
-            this.groupAnimation.TabIndex = 2;
+            this.groupAnimation.TabIndex = 4;
             this.groupAnimation.TabStop = false;
             this.groupAnimation.Text = "Animation";
             // 
@@ -1266,6 +1277,44 @@
             this.radioAnimated.TabStop = true;
             this.radioAnimated.Text = "Timescale";
             this.radioAnimated.UseVisualStyleBackColor = true;
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnViewComponent,
+            this.btnViewMagnitudeDirection,
+            this.btnViewEnergies});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // btnViewComponent
+            // 
+            this.btnViewComponent.Checked = true;
+            this.btnViewComponent.CheckOnClick = true;
+            this.btnViewComponent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.btnViewComponent.Name = "btnViewComponent";
+            this.btnViewComponent.Size = new System.Drawing.Size(191, 22);
+            this.btnViewComponent.Text = "Component";
+            // 
+            // btnViewMagnitudeDirection
+            // 
+            this.btnViewMagnitudeDirection.Name = "btnViewMagnitudeDirection";
+            this.btnViewMagnitudeDirection.Size = new System.Drawing.Size(191, 22);
+            this.btnViewMagnitudeDirection.Text = "Magnitude / Direction";
+            // 
+            // btnViewEnergies
+            // 
+            this.btnViewEnergies.CheckOnClick = true;
+            this.btnViewEnergies.Name = "btnViewEnergies";
+            this.btnViewEnergies.Size = new System.Drawing.Size(191, 22);
+            this.btnViewEnergies.Text = "Energies";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.settingsToolStripMenuItem.Text = "Settings...";
             // 
             // Form1
             // 
@@ -1414,6 +1463,11 @@
         private System.Windows.Forms.NumericUpDown upDownLineWidth;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnViewComponent;
+        private System.Windows.Forms.ToolStripMenuItem btnViewMagnitudeDirection;
+        private System.Windows.Forms.ToolStripMenuItem btnViewEnergies;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 

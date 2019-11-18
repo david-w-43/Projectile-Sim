@@ -13,13 +13,15 @@ namespace Projectile_Sim
     public class Projectile
     {
         public Vector displacement, velocity, acceleration = new Vector(VectorType.component);
-        private Vector initDisplacement, initVelocity = new Vector(VectorType.component);
+        public readonly Vector initDisplacement, initVelocity, initAcceleration = new Vector(VectorType.component);
         public readonly double range, duration;
         public readonly Vector apex = new Vector(VectorType.component);
         public readonly Color colour;
+        public readonly ProjectileType projectileType;
 
         public Projectile(ProjectileType type, Color colour, Vector initVelocity, double initialHeight, double g)
         {
+            this.projectileType = type;
             this.initVelocity = initVelocity;
             initDisplacement = new Vector(VectorType.component, 0, initialHeight);
 

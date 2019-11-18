@@ -254,7 +254,6 @@ namespace Projectile_Sim
             }
         }
         
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             TabPage tab = tabSelectProjectile.SelectedTab;
@@ -320,6 +319,35 @@ namespace Projectile_Sim
                 default:
                     MessageBox.Show("Invalid file type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     break;
+            }
+        }
+
+        private void btnExportPreset_Click(object sender, EventArgs e)
+        {
+            //Export a preset to an XML file, https://stackoverflow.com/a/11492937
+
+            //Definition for document variable
+            System.Xml.XmlDocument document = new System.Xml.XmlDocument();
+
+            System.Xml.XmlElement[] projectiles = new System.Xml.XmlElement[simulation.projectiles.Count];
+            for (int i = 0; i < projectiles.Count(); i++)
+            {
+                //Create element with projectile name
+                projectiles[i] = document.CreateElement(simulation.projectiles[i].colour.Name);
+
+                //Set XML child elements depending on projectile type
+                switch (simulation.projectiles[0].projectileType)
+                {
+                    case ProjectileType.speed:
+                        //Set XML elements for speed/angle
+                        break;
+                    case ProjectileType.component:
+                        //For component
+                        break;
+                    case ProjectileType.energy:
+                        //For energy
+                        break;
+                }
             }
         }
     }
