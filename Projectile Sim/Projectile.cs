@@ -23,10 +23,11 @@ namespace Projectile_Sim
         {
             this.projectileType = type;
             this.initVelocity = initVelocity;
-            initDisplacement = new Vector(VectorType.component, 0, initialHeight);
+            this.initDisplacement = new Vector(VectorType.component, 0, initialHeight);
 
             //Only implementing vertical acceleration for now
             acceleration = new Vector(VectorType.component, 0, -g);
+            this.initAcceleration = acceleration;
 
             this.colour = colour;
 

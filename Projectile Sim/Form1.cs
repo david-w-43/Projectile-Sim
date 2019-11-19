@@ -346,6 +346,25 @@ namespace Projectile_Sim
             writer.WriteStartDocument();
             writer.WriteStartElement("projectiles");
 
+            foreach (var projectile in simulation.projectiles)
+            {
+                writer.WriteStartElement("projectile");
+                writer.WriteAttributeString("colour", projectile.colour.Name);
+                string velocity, acceleration, displacement;
+                velocity = projectile.initVelocity.horizontal.ToString() + "," + projectile.initVelocity.vertical.ToString();
+                acceleration = projectile.initAcceleration.horizontal.ToString() + "," + projectile.initAcceleration.vertical.ToString();
+                displacement = projectile.initDisplacement.horizontal.ToString() + "," + projectile.initDisplacement.vertical.ToString();
+
+                writer.WriteAttributeString("velocity", velocity);
+                writer.WriteAttributeString("acceleration", acceleration);
+                writer.WriteAttributeString("displacement", displacement);
+                writer.WriteEndElement();
+            }
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
+
         }
 
         private void btnImportBackground_Click(object sender, EventArgs e)
@@ -390,6 +409,15 @@ namespace Projectile_Sim
             //Remove the custom background
             customBackground = null;
             pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
+        }
+
+        private void btnImportPreset_Click(object sender, EventArgs e)
+        {
+            //Import preset from XML file
+            OpenFileDialog dialog = new OpenFileDialog(); //Define dialog
+            dialog.Filter = "XML File (*.xml)|*.xml"; //Set filter
+            dialog.ShowDialog(); //Show the dialog
+            string filepath = dialog.FileName; //Get the filepath to save to
         }
     }
 }

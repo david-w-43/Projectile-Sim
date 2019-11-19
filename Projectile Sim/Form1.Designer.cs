@@ -189,6 +189,7 @@
             this.btnImportPreset.Name = "btnImportPreset";
             this.btnImportPreset.Size = new System.Drawing.Size(186, 22);
             this.btnImportPreset.Text = "Import Preset...";
+            this.btnImportPreset.Click += new System.EventHandler(this.btnImportPreset_Click);
             // 
             // btnExportPreset
             // 
