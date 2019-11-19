@@ -18,6 +18,8 @@ namespace Projectile_Sim
     {
         const int maxProjectiles = 8;
 
+        private Bitmap customBackground = null;
+
         public delegate void HandlePlotComplete();
         public HandlePlotComplete plotCompleteDelegate;
 
@@ -206,7 +208,14 @@ namespace Projectile_Sim
             Program.form1.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             //Clear picturebox
-            pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
+            if (Object.Equals(customBackground, null))
+            {
+                pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
+            }
+            else
+            {
+                pictureBoxPlot.Image = new Bitmap(customBackground);
+            }
 
             //Calculates and sets scales in pixels per metre
             double hScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin)/ upDownHorizontal.Value);
@@ -324,31 +333,63 @@ namespace Projectile_Sim
 
         private void btnExportPreset_Click(object sender, EventArgs e)
         {
-            //Export a preset to an XML file, https://stackoverflow.com/a/11492937
+            //Export a preset to an XML file, https://csharp.net-tutorials.com/xml/writing-xml-with-the-xmlwriter-class/
 
-            //Definition for document variable
-            System.Xml.XmlDocument document = new System.Xml.XmlDocument();
+            //Get path to save to
+            SaveFileDialog dialog = new SaveFileDialog(); //Define dialog
+            dialog.Filter = "XML File (*.xml)|*.xml"; //Set filter
+            dialog.ShowDialog(); //Show the dialog
+            string filepath = dialog.FileName; //Get the filepath to save to
 
-            System.Xml.XmlElement[] projectiles = new System.Xml.XmlElement[simulation.projectiles.Count];
-            for (int i = 0; i < projectiles.Count(); i++)
+            System.Xml.XmlWriter writer = System.Xml.XmlWriter.Create(filepath);
+
+            writer.WriteStartDocument();
+            writer.WriteStartElement("projectiles");
+
+        }
+
+        private void btnImportBackground_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog(); //Define dialog
+            dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp"; //Set filter
+            dialog.ShowDialog(); //Show the dialog
+            string filepath = dialog.FileName; //Get the filepath to save to
+
+            customBackground = new Bitmap(filepath); //Create a new bitmap from the file
+
+            if (btnBrightenImage.Checked) //Only if the user wants to brighten their image
             {
-                //Create element with projectile name   
-                projectiles[i] = document.CreateElement(simulation.projectiles[i].colour.Name);
-
-                //Set XML child elements depending on projectile type
-                switch (simulation.projectiles[0].projectileType)
+                for (int i = 0; i < customBackground.Width; i++)
                 {
-                    case ProjectileType.speed:
-                        //Set XML elements for speed/angle
-                        break;
-                    case ProjectileType.component:
-                        //For component
-                        break;
-                    case ProjectileType.energy:
-                        //For energy
-                        break;
+                    for (int j = 0; j < customBackground.Height; j++)
+                    {
+                        //Get the colour of the pixel
+                        Color fromImage = customBackground.GetPixel(i, j);
+
+                        int R, G, B;
+                        decimal factor = 1.5M;
+                        
+                        //Increase the RGB values for the pixel, limited to 255 max
+                        R = (int)(fromImage.R * factor); if (R > 255) { R = 255; }
+                        G = (int)(fromImage.G * factor); if (G > 255) { G = 255; }
+                        B = (int)(fromImage.B * factor); if (B > 255) { B = 255; }
+
+                        //Set the new colour
+                        Color result = Color.FromArgb(fromImage.A, R, G, B);
+                        customBackground.SetPixel(i, j, result);
+                    }
                 }
             }
+            
+            //Set the current image in the picturebox
+            pictureBoxPlot.Image = customBackground;
+        }
+
+        private void removeBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Remove the custom background
+            customBackground = null;
+            pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
         }
     }
 }

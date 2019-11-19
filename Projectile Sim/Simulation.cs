@@ -51,7 +51,17 @@ namespace Projectile_Sim
 
         public void DrawAxes()
         {
-            Bitmap canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height); 
+            //Bitmap canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
+            Bitmap canvas;
+            if (Object.Equals(canvasContainer.Image, null))
+            {
+                canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
+            }
+            else
+            {
+                canvas = (Bitmap)canvasContainer.Image;
+            }
+
             hAxisPos = canvas.Height - Properties.Settings.Default.margin;
             int marginWidth = Properties.Settings.Default.margin;
             vAxisPos = marginWidth;

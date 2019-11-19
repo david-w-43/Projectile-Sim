@@ -35,6 +35,11 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnImportBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExportGraph = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewComponent = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewMagnitudeDirection = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewEnergies = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxPlot = new System.Windows.Forms.PictureBox();
@@ -111,11 +116,9 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnViewComponent = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnViewMagnitudeDirection = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnViewEnergies = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnBrightenImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -173,6 +176,9 @@
             this.btnExportPreset,
             this.toolStripSeparator1,
             this.btnImportBackground,
+            this.btnBrightenImage,
+            this.removeBackgroundToolStripMenuItem,
+            this.toolStripSeparator2,
             this.btnExportGraph});
             this.itemFile.Name = "itemFile";
             this.itemFile.Size = new System.Drawing.Size(37, 20);
@@ -201,6 +207,7 @@
             this.btnImportBackground.Name = "btnImportBackground";
             this.btnImportBackground.Size = new System.Drawing.Size(186, 22);
             this.btnImportBackground.Text = "Import Background...";
+            this.btnImportBackground.Click += new System.EventHandler(this.btnImportBackground_Click);
             // 
             // btnExportGraph
             // 
@@ -208,6 +215,44 @@
             this.btnExportGraph.Size = new System.Drawing.Size(186, 22);
             this.btnExportGraph.Text = "Export Graph...";
             this.btnExportGraph.Click += new System.EventHandler(this.btnExportGraph_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnViewComponent,
+            this.btnViewMagnitudeDirection,
+            this.btnViewEnergies});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // btnViewComponent
+            // 
+            this.btnViewComponent.Checked = true;
+            this.btnViewComponent.CheckOnClick = true;
+            this.btnViewComponent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.btnViewComponent.Name = "btnViewComponent";
+            this.btnViewComponent.Size = new System.Drawing.Size(191, 22);
+            this.btnViewComponent.Text = "Component";
+            // 
+            // btnViewMagnitudeDirection
+            // 
+            this.btnViewMagnitudeDirection.Name = "btnViewMagnitudeDirection";
+            this.btnViewMagnitudeDirection.Size = new System.Drawing.Size(191, 22);
+            this.btnViewMagnitudeDirection.Text = "Magnitude / Direction";
+            // 
+            // btnViewEnergies
+            // 
+            this.btnViewEnergies.CheckOnClick = true;
+            this.btnViewEnergies.Name = "btnViewEnergies";
+            this.btnViewEnergies.Size = new System.Drawing.Size(191, 22);
+            this.btnViewEnergies.Text = "Energies";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.settingsToolStripMenuItem.Text = "Settings...";
             // 
             // splitContainer1
             // 
@@ -1278,43 +1323,24 @@
             this.radioAnimated.Text = "Timescale";
             this.radioAnimated.UseVisualStyleBackColor = true;
             // 
-            // viewToolStripMenuItem
+            // removeBackgroundToolStripMenuItem
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnViewComponent,
-            this.btnViewMagnitudeDirection,
-            this.btnViewEnergies});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.removeBackgroundToolStripMenuItem.Name = "removeBackgroundToolStripMenuItem";
+            this.removeBackgroundToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.removeBackgroundToolStripMenuItem.Text = "Remove Background";
+            this.removeBackgroundToolStripMenuItem.Click += new System.EventHandler(this.removeBackgroundToolStripMenuItem_Click);
             // 
-            // btnViewComponent
+            // btnBrightenImage
             // 
-            this.btnViewComponent.Checked = true;
-            this.btnViewComponent.CheckOnClick = true;
-            this.btnViewComponent.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.btnViewComponent.Name = "btnViewComponent";
-            this.btnViewComponent.Size = new System.Drawing.Size(191, 22);
-            this.btnViewComponent.Text = "Component";
+            this.btnBrightenImage.CheckOnClick = true;
+            this.btnBrightenImage.Name = "btnBrightenImage";
+            this.btnBrightenImage.Size = new System.Drawing.Size(186, 22);
+            this.btnBrightenImage.Text = "Brighten Image";
             // 
-            // btnViewMagnitudeDirection
+            // toolStripSeparator2
             // 
-            this.btnViewMagnitudeDirection.Name = "btnViewMagnitudeDirection";
-            this.btnViewMagnitudeDirection.Size = new System.Drawing.Size(191, 22);
-            this.btnViewMagnitudeDirection.Text = "Magnitude / Direction";
-            // 
-            // btnViewEnergies
-            // 
-            this.btnViewEnergies.CheckOnClick = true;
-            this.btnViewEnergies.Name = "btnViewEnergies";
-            this.btnViewEnergies.Size = new System.Drawing.Size(191, 22);
-            this.btnViewEnergies.Text = "Energies";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
-            this.settingsToolStripMenuItem.Text = "Settings...";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(183, 6);
             // 
             // Form1
             // 
@@ -1468,6 +1494,9 @@
         private System.Windows.Forms.ToolStripMenuItem btnViewMagnitudeDirection;
         private System.Windows.Forms.ToolStripMenuItem btnViewEnergies;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeBackgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnBrightenImage;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
