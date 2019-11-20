@@ -26,7 +26,7 @@ namespace Projectile_Sim
             this.initDisplacement = new Vector(VectorType.component, 0, initialHeight);
 
             //Only implementing vertical acceleration for now
-            acceleration = new Vector(VectorType.component, 0, -g);
+            acceleration = new Vector(VectorType.component, 0, g);
             this.initAcceleration = acceleration;
 
             this.colour = colour;

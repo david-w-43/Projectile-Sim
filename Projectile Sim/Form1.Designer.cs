@@ -34,6 +34,9 @@
             this.btnExportPreset = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnImportBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnBrightenImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnExportGraph = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnViewComponent = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,9 +119,6 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
-            this.removeBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnBrightenImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -209,6 +209,25 @@
             this.btnImportBackground.Size = new System.Drawing.Size(186, 22);
             this.btnImportBackground.Text = "Import Background...";
             this.btnImportBackground.Click += new System.EventHandler(this.btnImportBackground_Click);
+            // 
+            // btnBrightenImage
+            // 
+            this.btnBrightenImage.CheckOnClick = true;
+            this.btnBrightenImage.Name = "btnBrightenImage";
+            this.btnBrightenImage.Size = new System.Drawing.Size(186, 22);
+            this.btnBrightenImage.Text = "Brighten Image";
+            // 
+            // removeBackgroundToolStripMenuItem
+            // 
+            this.removeBackgroundToolStripMenuItem.Name = "removeBackgroundToolStripMenuItem";
+            this.removeBackgroundToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.removeBackgroundToolStripMenuItem.Text = "Remove Background";
+            this.removeBackgroundToolStripMenuItem.Click += new System.EventHandler(this.removeBackgroundToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(183, 6);
             // 
             // btnExportGraph
             // 
@@ -358,6 +377,8 @@
             this.tabSelectProjectile.SelectedIndex = 0;
             this.tabSelectProjectile.Size = new System.Drawing.Size(278, 283);
             this.tabSelectProjectile.TabIndex = 2;
+            this.tabSelectProjectile.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.handleTabsChanged);
+            this.tabSelectProjectile.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.handleTabsChanged);
             // 
             // txtTime
             // 
@@ -1323,25 +1344,6 @@
             this.radioAnimated.TabStop = true;
             this.radioAnimated.Text = "Timescale";
             this.radioAnimated.UseVisualStyleBackColor = true;
-            // 
-            // removeBackgroundToolStripMenuItem
-            // 
-            this.removeBackgroundToolStripMenuItem.Name = "removeBackgroundToolStripMenuItem";
-            this.removeBackgroundToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.removeBackgroundToolStripMenuItem.Text = "Remove Background";
-            this.removeBackgroundToolStripMenuItem.Click += new System.EventHandler(this.removeBackgroundToolStripMenuItem_Click);
-            // 
-            // btnBrightenImage
-            // 
-            this.btnBrightenImage.CheckOnClick = true;
-            this.btnBrightenImage.Name = "btnBrightenImage";
-            this.btnBrightenImage.Size = new System.Drawing.Size(186, 22);
-            this.btnBrightenImage.Text = "Brighten Image";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(183, 6);
             // 
             // Form1
             // 

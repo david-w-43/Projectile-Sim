@@ -92,9 +92,9 @@ namespace Projectile_Sim
 
         private void BtnAddProjectile_Click(object sender, EventArgs e)
         {
-            //Enable plot and delete buttons
-            btnPlot.Enabled = true;
-            btnDelete.Enabled = true;
+            ////Enable plot and delete buttons
+            //btnPlot.Enabled = true;
+            //btnDelete.Enabled = true;
 
             //Get colour from combobox
             String colourName = comboColour.Text;
@@ -151,9 +151,43 @@ namespace Projectile_Sim
             }
 
             //Adds projectile
-            simulation.projectiles.Add(new Projectile(ProjectileType.component, colour, initVelocity, height, g));
+            simulation.projectiles.Add(new Projectile(ProjectileType.component, colour, initVelocity, height, -g));
+
+            //Add a tab
+            AddTab();
+
+            //TabPage newTab = new TabPage();
+            //int index = tabSelectProjectile.TabCount;
+            ////if vector display style is component
+            //componentTabs = new ComponentTab[maxProjectiles]; //Initialise array
+            ////New control in array, docked to fill
+            //componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
+            ////Add control to the tab
+            //newTab.Controls.Add(componentTabs[index]);
+            
+            ////Set tab text and name to the colour
+            //newTab.Text = colourName;
+            //newTab.Name = colourName;
+            //tabSelectProjectile.TabPages.Add(newTab);
+            //tabSelectProjectile.SelectedIndex = index;
 
 
+            ////Get control by "name"
+            //Control txtDuration = componentTabs[index].Controls.Find("txtDuration", true).First();
+            //txtDuration.Text = simulation.projectiles[index].duration.ToString("F3");
+
+            //Control txtRange = componentTabs[index].Controls.Find("txtRange", true).First();
+            //txtRange.Text = simulation.projectiles[index].range.ToString("F3");
+
+            //Control txtHApex = componentTabs[index].Controls.Find("txtHApex", true).First();
+            //txtHApex.Text = simulation.projectiles[index].apex.horizontal.ToString("F3");
+
+            //Control txtVApex = componentTabs[index].Controls.Find("txtVApex", true).First();
+            //txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString("F3");
+        }
+
+        private void AddTab()
+        {
             TabPage newTab = new TabPage();
             int index = tabSelectProjectile.TabCount;
             //if vector display style is component
@@ -162,10 +196,10 @@ namespace Projectile_Sim
             componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
             //Add control to the tab
             newTab.Controls.Add(componentTabs[index]);
-            
+
             //Set tab text and name to the colour
-            newTab.Text = colourName;
-            newTab.Name = colourName;
+            newTab.Text = simulation.projectiles[index].colour.Name;
+            newTab.Name = newTab.Text;
             tabSelectProjectile.TabPages.Add(newTab);
             tabSelectProjectile.SelectedIndex = index;
 
@@ -275,7 +309,6 @@ namespace Projectile_Sim
 
             //Removes tab from control
             tabSelectProjectile.TabPages.Remove(tab);
-            if (tabSelectProjectile.TabPages.Count == 0) { btnPlot.Enabled = false; btnDelete.Enabled = false; }
         }
 
         private void txtPlotToValidate (object sender, EventArgs e)
@@ -417,7 +450,52 @@ namespace Projectile_Sim
             OpenFileDialog dialog = new OpenFileDialog(); //Define dialog
             dialog.Filter = "XML File (*.xml)|*.xml"; //Set filter
             dialog.ShowDialog(); //Show the dialog
-            string filepath = dialog.FileName; //Get the filepath to save to
+            string filepath = dialog.FileName; //Get the filepath to open to
+
+            System.Xml.XmlReader reader = System.Xml.XmlReader.Create(filepath); //Open XML document for reading
+
+            while (reader.Read())
+            {
+                //If the current element is a projectile
+                if (reader.NodeType == System.Xml.XmlNodeType.Element && reader.Name == "projectile")
+                {
+                    //If there are attributes to read
+                    if (reader.HasAttributes)
+                    {
+                        //Parse attributes from XML document
+                        Color colour = Color.FromName(reader.GetAttribute("colour"));
+                        string[] velocityComponents = reader.GetAttribute("velocity").Split(","[0]);
+                        string[] accelerationComponents = reader.GetAttribute("acceleration").Split(","[0]);
+                        string[] displacementComponents = reader.GetAttribute("displacement").Split(","[0]);
+
+                        //Create vectors from components
+                        Vector initVelocity = new Vector(VectorType.component, Double.Parse(velocityComponents[0]), Double.Parse(velocityComponents[1]));
+                        Vector initDisplacement = new Vector(VectorType.component, Double.Parse(displacementComponents[0]), Double.Parse(displacementComponents[1]));
+                        Vector initAcceleration = new Vector(VectorType.component, Double.Parse(accelerationComponents[0]), Double.Parse(accelerationComponents[1]));
+
+                        //Define projectile to add
+                        Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement.vertical, initAcceleration.vertical);
+
+                        //Add the projectile to the simulation and add a tab for it
+                        simulation.AddProjectile(toAdd);
+                        AddTab();
+                    }
+                }
+            }
+            reader.Dispose();
+        }
+
+        private void handleTabsChanged(object sender, ControlEventArgs e)
+        //Runs when a tab is added or removed, sets buttons accordingly
+        {
+            if (tabSelectProjectile.TabPages.Count == 0)
+            {
+                btnPlot.Enabled = false; btnDelete.Enabled = false;
+            }
+            else
+            {
+                btnPlot.Enabled = true; btnDelete.Enabled = true;
+            }
         }
     }
 }
