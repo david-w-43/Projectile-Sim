@@ -45,7 +45,7 @@ namespace Projectile_Sim
             //Check if values are valid or not
             bool valid = true;
             if (upDownMarginOffset.Value < 0) { valid = false; }
-            if (upDownFramerate.Value < 0) { valid = false; }
+            if (upDownFramerate.Value <= 0) { valid = false; }
             if (upDownXScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
             if (upDownYScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
             //If all is still valid, set properties as appropriate
