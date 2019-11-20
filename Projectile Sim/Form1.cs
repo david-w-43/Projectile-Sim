@@ -221,9 +221,18 @@ namespace Projectile_Sim
         private void Form1_Load(object sender, EventArgs e)
         {
             tabSelectProjectile.TabPages.Clear();
-            upDownHorizontal.Value = pictureBoxPlot.Width;
-            upDownVertical.Value = pictureBoxPlot.Height;
             comboColour.SelectedItem = comboColour.Items[0];
+
+            if (Properties.Settings.Default.useScales)
+            {
+                upDownHorizontal.Value = (decimal)Properties.Settings.Default.defaultXScale;
+                upDownVertical.Value = (decimal)Properties.Settings.Default.defaultYScale;
+            }
+            else
+            {
+                upDownHorizontal.Value = pictureBoxPlot.Width;
+                upDownVertical.Value = pictureBoxPlot.Height;
+            }
         }
 
         private void BtnPlot_Click(object sender, EventArgs e)
@@ -496,6 +505,13 @@ namespace Projectile_Sim
             {
                 btnPlot.Enabled = true; btnDelete.Enabled = true;
             }
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings(); //Defines settings form
+            settings.ShowDialog(); //Show as a dialog box
+            settings.Dispose(); //Dispose of resources used
         }
     }
 }

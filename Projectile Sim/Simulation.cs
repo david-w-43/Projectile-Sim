@@ -62,17 +62,27 @@ namespace Projectile_Sim
                 canvas = (Bitmap)canvasContainer.Image;
             }
 
-            hAxisPos = canvas.Height - Properties.Settings.Default.margin;
+            
             int marginWidth = Properties.Settings.Default.margin;
+            hAxisPos = canvas.Height - marginWidth;
             vAxisPos = marginWidth;
 
-            for (int row = 0; row <= hAxisPos + 10; row++) //For each row up to the margin
+            if (marginWidth != 0) //If the margin width is not 0
             {
-                canvas.SetPixel(marginWidth, row, Color.Black); //Draw pixel of y axis
-            }
-            for (int col = vAxisPos - 10; col < canvas.Width; col++)
-            {
-                canvas.SetPixel(col, hAxisPos, Color.Black);
+                for (int row = 0; row <= hAxisPos + 10; row++) //For each row up to the margin
+                {
+                    if (row < canvas.Height && row >= 0)
+                    {
+                        canvas.SetPixel(marginWidth, row, Color.Black); //Draw pixel of y axis
+                    }
+                }
+                for (int col = vAxisPos - 10; col < canvas.Width; col++)
+                {
+                    if (col < canvas.Width && col >= 0)
+                    {
+                        canvas.SetPixel(col, hAxisPos, Color.Black);
+                    }
+                }
             }
             canvasContainer.Image = canvas;
             string xLabel = ((canvas.Width - marginWidth) / pxPerX).ToString("G3");

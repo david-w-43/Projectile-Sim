@@ -98,7 +98,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Simulation.cs" />
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Simulation.old" />
     <Compile Include="Vector.cs" />
     <EmbeddedResource Include="ComponentTab.resx">
