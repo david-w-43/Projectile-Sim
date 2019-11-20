@@ -26,9 +26,9 @@ namespace Projectile_Sim.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public uint margin {
+        public int margin {
             get {
-                return ((uint)(this["margin"]));
+                return ((int)(this["margin"]));
             }
             set {
                 this["margin"] = value;
@@ -74,9 +74,9 @@ namespace Projectile_Sim.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public uint framerate {
+        public int framerate {
             get {
-                return ((uint)(this["framerate"]));
+                return ((int)(this["framerate"]));
             }
             set {
                 this["framerate"] = value;

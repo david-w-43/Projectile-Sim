@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Projectile_Sim.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="margin" Type="System.UInt32" Scope="User">
+    <Setting Name="margin" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="defaultXScale" Type="System.Double" Scope="User">
@@ -14,7 +14,7 @@
     <Setting Name="useScales" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="framerate" Type="System.UInt32" Scope="User">
+    <Setting Name="framerate" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
   </Settings>

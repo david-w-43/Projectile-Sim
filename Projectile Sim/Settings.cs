@@ -53,8 +53,8 @@ namespace Projectile_Sim
             {
                 var properties = Properties.Settings.Default;
 
-                properties.margin = (uint)upDownMarginOffset.Value;
-                properties.framerate = (uint)upDownFramerate.Value;
+                properties.margin = (int)upDownMarginOffset.Value;
+                properties.framerate = (int)upDownFramerate.Value;
                 properties.useScales = checkBoxUseScales.Checked;
                 properties.defaultXScale = (double)upDownXScale.Value;
                 properties.defaultYScale = (double)upDownYScale.Value;
