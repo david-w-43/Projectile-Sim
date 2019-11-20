@@ -20,7 +20,8 @@ namespace Projectile_Sim
         public readonly List<Projectile> projectiles = new List<Projectile>();
 
 		//Stores the maximum values
-        private double maxHeight, maxRange, maxDuration;
+        private double maxHeight, maxRange;
+        public double maxDuration;
         private int maxY, maxX;
         private double toTime;
 
@@ -108,8 +109,8 @@ namespace Projectile_Sim
             if (toTime == 0) { this.toTime = maxDuration; } else { this.toTime = toTime; }
             
 
-            //Instantiates timer and stopwatch for use, timer defaults to 33 ms (30 Hz)
-            refreshTimer = new System.Timers.Timer((int)(1000/30));
+            //Instantiates timer and stopwatch for use
+            refreshTimer = new System.Timers.Timer((int)(1000/Properties.Settings.Default.framerate));
             stopwatch = new System.Diagnostics.Stopwatch();
 
 			//Timer triggers canvas refresh, and automatically resets

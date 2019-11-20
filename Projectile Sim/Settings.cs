@@ -20,14 +20,16 @@ namespace Projectile_Sim
         private void Settings_Load(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
+            var properties = Properties.Settings.Default;
 
             //Load current settings into controls
-            upDownMarginOffset.Value = Properties.Settings.Default.margin;
-            upDownXScale.Value = (decimal)Properties.Settings.Default.defaultXScale;
-            upDownYScale.Value = (decimal)Properties.Settings.Default.defaultYScale;
+            upDownMarginOffset.Value = properties.margin;
+            upDownFramerate.Value = properties.framerate;
+            upDownXScale.Value = (decimal)properties.defaultXScale;
+            upDownYScale.Value = (decimal)properties.defaultYScale;
 
             //If not using scales, disable inputs
-            checkBoxUseScales.Checked = Properties.Settings.Default.useScales;
+            checkBoxUseScales.Checked = properties.useScales;
             if (checkBoxUseScales.Checked)
             {
                 upDownXScale.Enabled = upDownYScale.Enabled = true;
@@ -43,6 +45,7 @@ namespace Projectile_Sim
             //Check if values are valid or not
             bool valid = true;
             if (upDownMarginOffset.Value < 0) { valid = false; }
+            if (upDownFramerate.Value < 0) { valid = false; }
             if (upDownXScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
             if (upDownYScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
             //If all is still valid, set properties as appropriate
@@ -50,7 +53,8 @@ namespace Projectile_Sim
             {
                 var properties = Properties.Settings.Default;
 
-                properties.margin = (int)upDownMarginOffset.Value;
+                properties.margin = (uint)upDownMarginOffset.Value;
+                properties.framerate = (uint)upDownFramerate.Value;
                 properties.useScales = checkBoxUseScales.Checked;
                 properties.defaultXScale = (double)upDownXScale.Value;
                 properties.defaultYScale = (double)upDownYScale.Value;

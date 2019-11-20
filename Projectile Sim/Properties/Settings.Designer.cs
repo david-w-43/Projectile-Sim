@@ -26,9 +26,9 @@ namespace Projectile_Sim.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public int margin {
+        public uint margin {
             get {
-                return ((int)(this["margin"]));
+                return ((uint)(this["margin"]));
             }
             set {
                 this["margin"] = value;
@@ -37,7 +37,7 @@ namespace Projectile_Sim.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public double defaultXScale {
             get {
                 return ((double)(this["defaultXScale"]));
@@ -49,7 +49,7 @@ namespace Projectile_Sim.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("64")]
         public double defaultYScale {
             get {
                 return ((double)(this["defaultYScale"]));
@@ -68,6 +68,18 @@ namespace Projectile_Sim.Properties {
             }
             set {
                 this["useScales"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public uint framerate {
+            get {
+                return ((uint)(this["framerate"]));
+            }
+            set {
+                this["framerate"] = value;
             }
         }
     }

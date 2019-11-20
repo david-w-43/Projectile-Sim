@@ -49,7 +49,14 @@ namespace Projectile_Sim
 
         private void MethodUpdateTime(double time)
         {
+            //Update time textbox
             txtTime.Text = time.ToString("F3");
+
+            //Update progress bar
+            double permilleage = (time / simulation.maxDuration) * 1000;
+            //Constrain to 1000 max
+            if (permilleage > 1000) { permilleage = 1000; }
+            animationProgressBar.Value = (int)permilleage;
         }
 
         private void MethodUpdateTabs(ref List<Projectile> projectiles)
@@ -77,6 +84,7 @@ namespace Projectile_Sim
         {
             //Allow the window to be resized
             Program.form1.FormBorderStyle = FormBorderStyle.Sizable;
+            
             
             //Re-enable controls
             groupAddProjectile.Enabled = true;

@@ -119,6 +119,7 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
+            this.animationProgressBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -165,7 +166,7 @@
             this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(958, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -299,8 +300,8 @@
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.Panel2MinSize = 83;
             this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(958, 725);
-            this.splitContainer1.SplitterDistance = 632;
+            this.splitContainer1.Size = new System.Drawing.Size(884, 637);
+            this.splitContainer1.SplitterDistance = 550;
             this.splitContainer1.SplitterIncrement = 5;
             this.splitContainer1.TabIndex = 5;
             this.splitContainer1.TabStop = false;
@@ -322,8 +323,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.groupCurrentValues);
             this.splitContainer2.Panel2.Controls.Add(this.groupAddProjectile);
             this.splitContainer2.Panel2MinSize = 50;
-            this.splitContainer2.Size = new System.Drawing.Size(958, 632);
-            this.splitContainer2.SplitterDistance = 658;
+            this.splitContainer2.Size = new System.Drawing.Size(884, 550);
+            this.splitContainer2.SplitterDistance = 648;
             this.splitContainer2.SplitterIncrement = 5;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.TabStop = false;
@@ -335,7 +336,7 @@
             this.pictureBoxPlot.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxPlot.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxPlot.Name = "pictureBoxPlot";
-            this.pictureBoxPlot.Size = new System.Drawing.Size(658, 632);
+            this.pictureBoxPlot.Size = new System.Drawing.Size(648, 550);
             this.pictureBoxPlot.TabIndex = 2;
             this.pictureBoxPlot.TabStop = false;
             // 
@@ -351,7 +352,7 @@
             this.groupCurrentValues.Controls.Add(this.lblTimeUnits);
             this.groupCurrentValues.Location = new System.Drawing.Point(3, 257);
             this.groupCurrentValues.Name = "groupCurrentValues";
-            this.groupCurrentValues.Size = new System.Drawing.Size(290, 372);
+            this.groupCurrentValues.Size = new System.Drawing.Size(226, 290);
             this.groupCurrentValues.TabIndex = 1;
             this.groupCurrentValues.TabStop = false;
             this.groupCurrentValues.Text = "Current Values";
@@ -360,9 +361,9 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(6, 341);
+            this.btnDelete.Location = new System.Drawing.Point(6, 261);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(278, 23);
+            this.btnDelete.Size = new System.Drawing.Size(214, 23);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -373,17 +374,17 @@
             this.tabSelectProjectile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabSelectProjectile.Location = new System.Drawing.Point(6, 51);
+            this.tabSelectProjectile.Location = new System.Drawing.Point(6, 45);
             this.tabSelectProjectile.Name = "tabSelectProjectile";
             this.tabSelectProjectile.SelectedIndex = 0;
-            this.tabSelectProjectile.Size = new System.Drawing.Size(278, 283);
+            this.tabSelectProjectile.Size = new System.Drawing.Size(214, 209);
             this.tabSelectProjectile.TabIndex = 2;
             this.tabSelectProjectile.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.handleTabsChanged);
             this.tabSelectProjectile.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.handleTabsChanged);
             // 
             // txtTime
             // 
-            this.txtTime.Location = new System.Drawing.Point(46, 25);
+            this.txtTime.Location = new System.Drawing.Point(44, 19);
             this.txtTime.Name = "txtTime";
             this.txtTime.ReadOnly = true;
             this.txtTime.Size = new System.Drawing.Size(100, 20);
@@ -394,7 +395,7 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(7, 28);
+            this.lblTime.Location = new System.Drawing.Point(5, 22);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(33, 13);
             this.lblTime.TabIndex = 0;
@@ -403,7 +404,7 @@
             // lblTimeUnits
             // 
             this.lblTimeUnits.AutoSize = true;
-            this.lblTimeUnits.Location = new System.Drawing.Point(152, 28);
+            this.lblTimeUnits.Location = new System.Drawing.Point(150, 22);
             this.lblTimeUnits.Name = "lblTimeUnits";
             this.lblTimeUnits.Size = new System.Drawing.Size(12, 13);
             this.lblTimeUnits.TabIndex = 0;
@@ -419,7 +420,7 @@
             this.groupAddProjectile.Controls.Add(this.tabProjectileType);
             this.groupAddProjectile.Location = new System.Drawing.Point(3, 3);
             this.groupAddProjectile.Name = "groupAddProjectile";
-            this.groupAddProjectile.Size = new System.Drawing.Size(290, 248);
+            this.groupAddProjectile.Size = new System.Drawing.Size(226, 248);
             this.groupAddProjectile.TabIndex = 0;
             this.groupAddProjectile.TabStop = false;
             this.groupAddProjectile.Text = "Add Projectile";
@@ -430,7 +431,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddProjectile.Location = new System.Drawing.Point(6, 219);
             this.btnAddProjectile.Name = "btnAddProjectile";
-            this.btnAddProjectile.Size = new System.Drawing.Size(278, 23);
+            this.btnAddProjectile.Size = new System.Drawing.Size(214, 23);
             this.btnAddProjectile.TabIndex = 7;
             this.btnAddProjectile.Text = "Add Projectile";
             this.btnAddProjectile.UseVisualStyleBackColor = true;
@@ -452,7 +453,7 @@
             "Red"});
             this.comboColour.Location = new System.Drawing.Point(87, 192);
             this.comboColour.Name = "comboColour";
-            this.comboColour.Size = new System.Drawing.Size(190, 21);
+            this.comboColour.Size = new System.Drawing.Size(126, 21);
             this.comboColour.TabIndex = 6;
             // 
             // lblColour
@@ -478,7 +479,7 @@
             this.tabProjectileType.Multiline = true;
             this.tabProjectileType.Name = "tabProjectileType";
             this.tabProjectileType.SelectedIndex = 0;
-            this.tabProjectileType.Size = new System.Drawing.Size(278, 167);
+            this.tabProjectileType.Size = new System.Drawing.Size(214, 167);
             this.tabProjectileType.TabIndex = 0;
             // 
             // tabSpeedAngle
@@ -498,7 +499,7 @@
             this.tabSpeedAngle.Location = new System.Drawing.Point(4, 22);
             this.tabSpeedAngle.Name = "tabSpeedAngle";
             this.tabSpeedAngle.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSpeedAngle.Size = new System.Drawing.Size(270, 141);
+            this.tabSpeedAngle.Size = new System.Drawing.Size(206, 141);
             this.tabSpeedAngle.TabIndex = 0;
             this.tabSpeedAngle.Text = "Speed / Angle";
             this.tabSpeedAngle.UseVisualStyleBackColor = true;
@@ -678,7 +679,7 @@
             this.tabComponents.Location = new System.Drawing.Point(4, 22);
             this.tabComponents.Name = "tabComponents";
             this.tabComponents.Padding = new System.Windows.Forms.Padding(3);
-            this.tabComponents.Size = new System.Drawing.Size(270, 141);
+            this.tabComponents.Size = new System.Drawing.Size(225, 141);
             this.tabComponents.TabIndex = 1;
             this.tabComponents.Text = "Components";
             this.tabComponents.UseVisualStyleBackColor = true;
@@ -857,7 +858,7 @@
             this.tabEnergy.Controls.Add(this.label10);
             this.tabEnergy.Location = new System.Drawing.Point(4, 22);
             this.tabEnergy.Name = "tabEnergy";
-            this.tabEnergy.Size = new System.Drawing.Size(270, 141);
+            this.tabEnergy.Size = new System.Drawing.Size(225, 141);
             this.tabEnergy.TabIndex = 2;
             this.tabEnergy.Text = "Energy";
             this.tabEnergy.UseVisualStyleBackColor = true;
@@ -1064,9 +1065,9 @@
             this.btnPause.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPause.Enabled = false;
             this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPause.Location = new System.Drawing.Point(801, 0);
+            this.btnPause.Location = new System.Drawing.Point(727, 0);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(48, 89);
+            this.btnPause.Size = new System.Drawing.Size(48, 83);
             this.btnPause.TabIndex = 6;
             this.btnPause.Text = "II";
             this.btnPause.UseVisualStyleBackColor = true;
@@ -1084,7 +1085,7 @@
             this.groupPlotOptions.Controls.Add(this.label15);
             this.groupPlotOptions.Location = new System.Drawing.Point(190, 3);
             this.groupPlotOptions.Name = "groupPlotOptions";
-            this.groupPlotOptions.Size = new System.Drawing.Size(200, 83);
+            this.groupPlotOptions.Size = new System.Drawing.Size(200, 77);
             this.groupPlotOptions.TabIndex = 3;
             this.groupPlotOptions.TabStop = false;
             this.groupPlotOptions.Text = "Plot Options";
@@ -1168,7 +1169,7 @@
             this.groupScales.Controls.Add(this.label16);
             this.groupScales.Location = new System.Drawing.Point(3, 3);
             this.groupScales.Name = "groupScales";
-            this.groupScales.Size = new System.Drawing.Size(181, 83);
+            this.groupScales.Size = new System.Drawing.Size(181, 77);
             this.groupScales.TabIndex = 2;
             this.groupScales.TabStop = false;
             this.groupScales.Text = "Scales";
@@ -1269,9 +1270,9 @@
             // 
             this.btnPlot.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnPlot.Enabled = false;
-            this.btnPlot.Location = new System.Drawing.Point(855, 0);
+            this.btnPlot.Location = new System.Drawing.Point(781, 0);
             this.btnPlot.Name = "btnPlot";
-            this.btnPlot.Size = new System.Drawing.Size(103, 89);
+            this.btnPlot.Size = new System.Drawing.Size(103, 83);
             this.btnPlot.TabIndex = 5;
             this.btnPlot.Text = "Plot";
             this.btnPlot.UseVisualStyleBackColor = true;
@@ -1279,14 +1280,16 @@
             // 
             // groupAnimation
             // 
-            this.groupAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupAnimation.Controls.Add(this.animationProgressBar);
             this.groupAnimation.Controls.Add(this.upDownTimescale);
             this.groupAnimation.Controls.Add(this.radioNoAnimation);
             this.groupAnimation.Controls.Add(this.radioAnimated);
             this.groupAnimation.Location = new System.Drawing.Point(396, 3);
             this.groupAnimation.Name = "groupAnimation";
-            this.groupAnimation.Size = new System.Drawing.Size(153, 83);
+            this.groupAnimation.Size = new System.Drawing.Size(325, 77);
             this.groupAnimation.TabIndex = 4;
             this.groupAnimation.TabStop = false;
             this.groupAnimation.Text = "Animation";
@@ -1324,7 +1327,7 @@
             this.radioNoAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radioNoAnimation.AutoSize = true;
-            this.radioNoAnimation.Location = new System.Drawing.Point(6, 42);
+            this.radioNoAnimation.Location = new System.Drawing.Point(153, 19);
             this.radioNoAnimation.Name = "radioNoAnimation";
             this.radioNoAnimation.Size = new System.Drawing.Size(87, 17);
             this.radioNoAnimation.TabIndex = 0;
@@ -1340,11 +1343,23 @@
             this.radioAnimated.Checked = true;
             this.radioAnimated.Location = new System.Drawing.Point(6, 19);
             this.radioAnimated.Name = "radioAnimated";
-            this.radioAnimated.Size = new System.Drawing.Size(73, 17);
+            this.radioAnimated.Size = new System.Drawing.Size(76, 17);
             this.radioAnimated.TabIndex = 0;
             this.radioAnimated.TabStop = true;
-            this.radioAnimated.Text = "Timescale";
+            this.radioAnimated.Text = "Timescale:";
             this.radioAnimated.UseVisualStyleBackColor = true;
+            // 
+            // animationProgressBar
+            // 
+            this.animationProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.animationProgressBar.Location = new System.Drawing.Point(6, 47);
+            this.animationProgressBar.MarqueeAnimationSpeed = 10;
+            this.animationProgressBar.Maximum = 1000;
+            this.animationProgressBar.Name = "animationProgressBar";
+            this.animationProgressBar.Size = new System.Drawing.Size(313, 30);
+            this.animationProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.animationProgressBar.TabIndex = 7;
             // 
             // Form1
             // 
@@ -1352,11 +1367,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnPause;
-            this.ClientSize = new System.Drawing.Size(958, 749);
+            this.ClientSize = new System.Drawing.Size(884, 661);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
+            this.MinimumSize = new System.Drawing.Size(800, 540);
             this.Name = "Form1";
             this.Text = "Projectile Simulator";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -1501,6 +1518,7 @@
         private System.Windows.Forms.ToolStripMenuItem removeBackgroundToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnBrightenImage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ProgressBar animationProgressBar;
     }
 }
 
