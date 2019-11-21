@@ -22,8 +22,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -77,29 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComponentTab.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ComponentTab.Designer.cs">
-      <DependentUpon>ComponentTab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EnergyTab.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="EnergyTab.Designer.cs">
-      <DependentUpon>EnergyTab.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MagnitudeTab.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MagnitudeTab.Designer.cs">
-      <DependentUpon>MagnitudeTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
@@ -111,22 +93,22 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Simulation.cs" />
-    <EmbeddedResource Include="EnergyTab.resx">
-      <DependentUpon>EnergyTab.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Simulation.old" />
-    <Compile Include="Vector.cs" />
-    <EmbeddedResource Include="ComponentTab.resx">
-      <DependentUpon>ComponentTab.cs</DependentUpon>
+    <EmbeddedResource Include="TabContents.resx">
+      <DependentUpon>TabContents.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Simulation.old" />
+    <Compile Include="TabContents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabContents.Designer.cs">
+      <DependentUpon>TabContents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vector.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MagnitudeTab.resx">
-      <DependentUpon>MagnitudeTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -165,6 +147,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="To-Do.txt">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

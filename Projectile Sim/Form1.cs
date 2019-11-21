@@ -36,11 +36,10 @@ namespace Projectile_Sim
         private TabDisplayType displayType = 0; //Default to component
 
         //Simulation.canvasUpdated += new Simulation.UpdatePictureBox(this.UpdatePictureBox);
+
         public Simulation simulation = new Simulation();
 
-        public ComponentTab[] componentTabs;
-        public MagnitudeTab[] magnitudeTabs;
-        public EnergyTab[] energyTabs;
+        public TabContents[] ProjectileTabs;
 
         //private List<Projectile> projectiles = new List<Projectile>();
 
@@ -50,6 +49,7 @@ namespace Projectile_Sim
             plotCompleteDelegate = new HandlePlotComplete(MethodPlotComplete);
             updateTabsDelegate = new HandleUpdateTabs(MethodUpdateTabs);
             updateTimeDelegate = new HandleUpdateTime(MethodUpdateTime);
+            ProjectileTabs = new TabContents[maxProjectiles];
         }
 
         private void MethodUpdateTime(double time)
@@ -82,18 +82,22 @@ namespace Projectile_Sim
             animationProgressBar.Value = value;
         }
 
-        
-
         private void MethodUpdateTabs(ref List<Projectile> projectiles)
         {
             foreach (var projectile in projectiles)
             {
+                //Gets the tab with the same name as the projectile
                 TabPage tab = tabSelectProjectile.TabPages[tabSelectProjectile.TabPages.IndexOfKey(projectile.colour.Name)];
-                //View type specific controls
-                switch (displayType)
+
+                //Gets the control collection of the current tab
+                Control.ControlCollection controlCollection = ((TabContents)tab.Controls[0]).Controls;
+
+                switch (((TabContents)tab.Controls[0]).displayType)
                 {
                     case TabDisplayType.Component:
+                        //Get the textbox
                         TextBox txtHPos = (TextBox)tab.Controls.Find("txtHPos", true).First(); //Horizontal position
+                        //Set the text
                         txtHPos.Text = projectile.displacement.horizontal.ToString("F3");
 
                         TextBox txtVPos = (TextBox)tab.Controls.Find("txtVPos", true).First(); //Vertical position
@@ -104,25 +108,22 @@ namespace Projectile_Sim
 
                         TextBox txtVVel = (TextBox)tab.Controls.Find("txtVVel", true).First(); //Vertical position
                         txtVVel.Text = projectile.velocity.vertical.ToString("F3");
-
                         break;
                     case TabDisplayType.Magnitude:
                         TextBox txtMagPos = (TextBox)tab.Controls.Find("txtMagPos", true).First(); //Mag of position
                         txtMagPos.Text = projectile.displacement.magnitude.ToString("F3");
 
                         TextBox txtAnglePos = (TextBox)tab.Controls.Find("txtAnglePos", true).First(); //Direction of position
-                        txtAnglePos.Text = (projectile.displacement.direction * (180/Math.PI)).ToString("F3");
+                        txtAnglePos.Text = (projectile.displacement.direction * (180 / Math.PI)).ToString("F3");
 
                         TextBox txtMagVel = (TextBox)tab.Controls.Find("txtMagVel", true).First(); //Mag of velocity
                         txtMagVel.Text = projectile.velocity.magnitude.ToString("F3");
 
                         TextBox txtAngleVel = (TextBox)tab.Controls.Find("txtAngleVel", true).First(); //Direction of velocity
                         txtAngleVel.Text = (projectile.velocity.direction * (180 / Math.PI)).ToString("F3");
-
                         break;
                     case TabDisplayType.Energy:
-                        //To-do
-
+                        //Set the values for energy
                         break;
                 }
             }
@@ -144,6 +145,7 @@ namespace Projectile_Sim
             btnPause.Enabled = false;
             btnPause.Text = "II";
             btnPlot.Enabled = true;
+            viewToolStripMenuItem.Enabled = true;
         }
 
         private void BtnAddProjectile_Click(object sender, EventArgs e)
@@ -217,44 +219,13 @@ namespace Projectile_Sim
         {
             TabPage newTab = new TabPage();
             int index = tabSelectProjectile.TabCount;
-            System.Windows.Forms.Control.ControlCollection controlCollection = null;
-            //if vector display style is component
-            //componentTabs = new ComponentTab[maxProjectiles]; //Initialise array
-            ////New control in array, docked to fill
-            //componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
-            ////Add control to the tab
-            //newTab.Controls.Add(componentTabs[index]);
+            Control.ControlCollection controlCollection;
 
-            switch (displayType)
-            {
-                case TabDisplayType.Component:
-                    componentTabs = new ComponentTab[maxProjectiles]; //Initialise array
-                    //New control in array, docked to fill
-                    componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
-                    //Add control to the tab
-                    newTab.Controls.Add(componentTabs[index]);
-
-                    controlCollection = componentTabs[index].Controls;
-
-                    break;
-                case TabDisplayType.Magnitude:
-                    magnitudeTabs = new MagnitudeTab[maxProjectiles];
-                    magnitudeTabs[index] = new MagnitudeTab() { Dock = DockStyle.Fill };
-                    newTab.Controls.Add(magnitudeTabs[index]);
-
-                    controlCollection = magnitudeTabs[index].Controls;
-
-                    break;
-                case TabDisplayType.Energy:
-                    energyTabs = new EnergyTab[maxProjectiles];
-                    energyTabs[index] = new EnergyTab() { Dock = DockStyle.Fill };
-                    newTab.Controls.Add(energyTabs[index]);
-
-                    controlCollection = energyTabs[index].Controls;
-
-
-                    break;
-            }
+            //Define new tab contents control with selected type
+            ProjectileTabs[index] = new TabContents(displayType) { Dock = DockStyle.Fill };
+            //Add the control to the tab
+            newTab.Controls.Add(ProjectileTabs[index]);
+            controlCollection = ProjectileTabs[index].Controls;
 
             //Set tab text and name to the colour
             newTab.Text = simulation.projectiles[index].colour.Name;
@@ -302,6 +273,8 @@ namespace Projectile_Sim
             //Enable buttons as appropriate
             btnPause.Enabled = true;
             btnPlot.Enabled = false;
+            btnDelete.Enabled = false;
+            viewToolStripMenuItem.Enabled = false;
 
             //Disable groups
             groupAddProjectile.Enabled = false;
@@ -360,11 +333,13 @@ namespace Projectile_Sim
             {
                 btnPause.Text = "II";
                 simulation.Resume();
+                viewToolStripMenuItem.Enabled = false;
             }
             else
             {
                 btnPause.Text = "▶";
                 simulation.Pause();
+                viewToolStripMenuItem.Enabled = true;
             }
         }
         
@@ -397,43 +372,48 @@ namespace Projectile_Sim
             bool transparency = false;
             if (result == DialogResult.Yes) { transparency = true; } else { transparency = false; }
 
-            Bitmap image = (Bitmap)pictureBoxPlot.Image;
-            image.MakeTransparent(Color.FromArgb(0, 0, 0, 0)); //Make blank pixels transparent
-            if (!transparency) //If user does not want transparency
-            {
-                //Cycle through colours
-                for (int row = 0; row < image.Height; row++)
-                {
-                    for (int col = 0; col < image.Width; col++)
-                    {
-                        if (image.GetPixel(col, row) == Color.Transparent) //If the pixel is blank
-                        {
-                            image.SetPixel(col, row, Color.White); //Set it to white
-                        }
-                    }
-                }
-            }
-
-
             SaveFileDialog dialog = new SaveFileDialog(); //Define dialog
             dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp"; //Set filter
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to save to
-            string extension = filepath.Split("."[0]).Last().ToUpper(); //Parse the file extension
-            switch (extension) //Save with the appropriate format
+            if (filepath != "") //If filepath not blank
             {
-                case "BMP":
-                    image.Save(filepath, System.Drawing.Imaging.ImageFormat.Bmp);
-                    break;
-                case "JPG":
-                    image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    break;
-                case "PNG":
-                    image.Save(filepath, System.Drawing.Imaging.ImageFormat.Png);
-                    break;
-                default:
-                    MessageBox.Show("Invalid file type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    break;
+                string extension = filepath.Split("."[0]).Last().ToUpper(); //Parse the file extension
+
+                Bitmap image = (Bitmap)pictureBoxPlot.Image;
+                image.MakeTransparent(Color.FromArgb(0, 0, 0, 0)); //Make blank pixels transparent
+                if (!transparency) //If user does not want transparency
+                {
+                    //Cycle through colours
+                    for (int row = 0; row < image.Height; row++)
+                    {
+                        for (int col = 0; col < image.Width; col++)
+                        {
+                            if (image.GetPixel(col, row) == Color.Transparent) //If the pixel is blank
+                            {
+                                image.SetPixel(col, row, Color.White); //Set it to white
+                            }
+                        }
+                    }
+                }
+
+
+
+                switch (extension) //Save with the appropriate format
+                {
+                    case "BMP":
+                        image.Save(filepath, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                    case "JPG":
+                        image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case "PNG":
+                        image.Save(filepath, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                    default:
+                        MessageBox.Show("Invalid file type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        break;
+                }
             }
         }
 
@@ -447,30 +427,33 @@ namespace Projectile_Sim
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to save to
 
-            System.Xml.XmlWriter writer = System.Xml.XmlWriter.Create(filepath);
-
-            writer.WriteStartDocument();
-            writer.WriteStartElement("projectiles");
-
-            foreach (var projectile in simulation.projectiles)
+            if (filepath != "") //If the filepath is not blank
             {
-                writer.WriteStartElement("projectile");
-                writer.WriteAttributeString("colour", projectile.colour.Name);
-                string velocity, acceleration, displacement;
-                velocity = projectile.initVelocity.horizontal.ToString() + "," + projectile.initVelocity.vertical.ToString();
-                acceleration = projectile.initAcceleration.horizontal.ToString() + "," + projectile.initAcceleration.vertical.ToString();
-                displacement = projectile.initDisplacement.horizontal.ToString() + "," + projectile.initDisplacement.vertical.ToString();
 
-                writer.WriteAttributeString("velocity", velocity);
-                writer.WriteAttributeString("acceleration", acceleration);
-                writer.WriteAttributeString("displacement", displacement);
+                System.Xml.XmlWriter writer = System.Xml.XmlWriter.Create(filepath);
+
+                writer.WriteStartDocument();
+                writer.WriteStartElement("projectiles");
+
+                foreach (var projectile in simulation.projectiles)
+                {
+                    writer.WriteStartElement("projectile");
+                    writer.WriteAttributeString("colour", projectile.colour.Name);
+                    string velocity, acceleration, displacement;
+                    velocity = projectile.initVelocity.horizontal.ToString() + "," + projectile.initVelocity.vertical.ToString();
+                    acceleration = projectile.initAcceleration.horizontal.ToString() + "," + projectile.initAcceleration.vertical.ToString();
+                    displacement = projectile.initDisplacement.horizontal.ToString() + "," + projectile.initDisplacement.vertical.ToString();
+
+                    writer.WriteAttributeString("velocity", velocity);
+                    writer.WriteAttributeString("acceleration", acceleration);
+                    writer.WriteAttributeString("displacement", displacement);
+                    writer.WriteEndElement();
+                }
+
                 writer.WriteEndElement();
+                writer.WriteEndDocument();
+                writer.Close();
             }
-
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
-            writer.Close();
-
         }
 
         private void btnImportBackground_Click(object sender, EventArgs e)
@@ -481,33 +464,35 @@ namespace Projectile_Sim
             string filepath = dialog.FileName; //Get the filepath to save to
 
             customBackground = new Bitmap(filepath); //Create a new bitmap from the file
-
-            if (btnBrightenImage.Checked) //Only if the user wants to brighten their image
+            if (filepath != "") //If the filepath is not blank
             {
-                for (int i = 0; i < customBackground.Width; i++)
+                if (btnBrightenImage.Checked) //Only if the user wants to brighten their image
                 {
-                    for (int j = 0; j < customBackground.Height; j++)
+                    for (int i = 0; i < customBackground.Width; i++)
                     {
-                        //Get the colour of the pixel
-                        Color fromImage = customBackground.GetPixel(i, j);
+                        for (int j = 0; j < customBackground.Height; j++)
+                        {
+                            //Get the colour of the pixel
+                            Color fromImage = customBackground.GetPixel(i, j);
 
-                        int R, G, B;
-                        decimal factor = 1.5M;
-                        
-                        //Increase the RGB values for the pixel, limited to 255 max
-                        R = (int)(fromImage.R * factor); if (R > 255) { R = 255; }
-                        G = (int)(fromImage.G * factor); if (G > 255) { G = 255; }
-                        B = (int)(fromImage.B * factor); if (B > 255) { B = 255; }
+                            int R, G, B;
+                            decimal factor = 1.5M;
 
-                        //Set the new colour
-                        Color result = Color.FromArgb(fromImage.A, R, G, B);
-                        customBackground.SetPixel(i, j, result);
+                            //Increase the RGB values for the pixel, limited to 255 max
+                            R = (int)(fromImage.R * factor); if (R > 255) { R = 255; }
+                            G = (int)(fromImage.G * factor); if (G > 255) { G = 255; }
+                            B = (int)(fromImage.B * factor); if (B > 255) { B = 255; }
+
+                            //Set the new colour
+                            Color result = Color.FromArgb(fromImage.A, R, G, B);
+                            customBackground.SetPixel(i, j, result);
+                        }
                     }
                 }
+
+                //Set the current image in the picturebox
+                pictureBoxPlot.Image = customBackground;
             }
-            
-            //Set the current image in the picturebox
-            pictureBoxPlot.Image = customBackground;
         }
 
         private void removeBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
@@ -525,38 +510,41 @@ namespace Projectile_Sim
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to open to
 
-            System.Xml.XmlReader reader = System.Xml.XmlReader.Create(filepath); //Open XML document for reading
-
-            while (reader.Read())
+            if (filepath != "") //If the filepath is not blank
             {
-                //If the current element is a projectile
-                if (reader.NodeType == System.Xml.XmlNodeType.Element && reader.Name == "projectile")
+                System.Xml.XmlReader reader = System.Xml.XmlReader.Create(filepath); //Open XML document for reading
+
+                while (reader.Read())
                 {
-                    //If there are attributes to read
-                    if (reader.HasAttributes)
+                    //If the current element is a projectile
+                    if (reader.NodeType == System.Xml.XmlNodeType.Element && reader.Name == "projectile")
                     {
-                        //Parse attributes from XML document
-                        Color colour = Color.FromName(reader.GetAttribute("colour"));
-                        string[] velocityComponents = reader.GetAttribute("velocity").Split(","[0]);
-                        string[] accelerationComponents = reader.GetAttribute("acceleration").Split(","[0]);
-                        string[] displacementComponents = reader.GetAttribute("displacement").Split(","[0]);
+                        //If there are attributes to read
+                        if (reader.HasAttributes)
+                        {
+                            //Parse attributes from XML document
+                            Color colour = Color.FromName(reader.GetAttribute("colour"));
+                            string[] velocityComponents = reader.GetAttribute("velocity").Split(","[0]);
+                            string[] accelerationComponents = reader.GetAttribute("acceleration").Split(","[0]);
+                            string[] displacementComponents = reader.GetAttribute("displacement").Split(","[0]);
 
-                        //Create vectors from components
-                        Vector initVelocity = new Vector(VectorType.component, Double.Parse(velocityComponents[0]), Double.Parse(velocityComponents[1]));
-                        Vector initDisplacement = new Vector(VectorType.component, Double.Parse(displacementComponents[0]), Double.Parse(displacementComponents[1]));
-                        Vector initAcceleration = new Vector(VectorType.component, Double.Parse(accelerationComponents[0]), Double.Parse(accelerationComponents[1]));
+                            //Create vectors from components
+                            Vector initVelocity = new Vector(VectorType.component, Double.Parse(velocityComponents[0]), Double.Parse(velocityComponents[1]));
+                            Vector initDisplacement = new Vector(VectorType.component, Double.Parse(displacementComponents[0]), Double.Parse(displacementComponents[1]));
+                            Vector initAcceleration = new Vector(VectorType.component, Double.Parse(accelerationComponents[0]), Double.Parse(accelerationComponents[1]));
 
-                        //Define projectile to add
-                        Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement.vertical, initAcceleration.vertical);
+                            //Define projectile to add
+                            Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement.vertical, initAcceleration.vertical);
 
-                        //Add the projectile to the simulation and add a tab for it
-                        simulation.AddProjectile(toAdd);
-                        AddTab();
+                            //Add the projectile to the simulation and add a tab for it
+                            simulation.AddProjectile(toAdd);
+                            AddTab();
+                        }
                     }
                 }
+                HandleTabsChanged();
+                reader.Dispose();
             }
-            HandleTabsChanged();
-            reader.Dispose();
         }
 
         private void HandleTabsChanged()
@@ -586,10 +574,31 @@ namespace Projectile_Sim
             //Always check the item clicked
             btn.Checked = true;
 
-            //Set the other items to unchecked
-            if (btn.Equals(btnViewComponent)) { btnViewMagnitudeDirection.Checked = btnViewEnergies.Checked = false; displayType = TabDisplayType.Component; }
-            if (btn.Equals(btnViewMagnitudeDirection)) { btnViewComponent.Checked = btnViewEnergies.Checked = false; displayType = TabDisplayType.Magnitude; }
-            if (btn.Equals(btnViewEnergies)) { btnViewComponent.Checked = btnViewMagnitudeDirection.Checked = false; displayType = TabDisplayType.Energy; }
+            if (btn.Equals(btnViewComponent))
+            {
+                //Set the other items to unchecked
+                btnViewMagnitudeDirection.Checked = btnViewEnergies.Checked = false;
+                //Set the displayType var
+                displayType = TabDisplayType.Component;
+            }
+            if (btn.Equals(btnViewMagnitudeDirection))
+            {
+                btnViewComponent.Checked = btnViewEnergies.Checked = false;
+                displayType = TabDisplayType.Magnitude;
+            }
+            if (btn.Equals(btnViewEnergies))
+            {
+                btnViewComponent.Checked = btnViewMagnitudeDirection.Checked = false;
+                displayType = TabDisplayType.Energy;
+            }
+
+            //For each tab
+            foreach (TabPage tab in tabSelectProjectile.TabPages)
+            {
+                //Change the type of the control
+                ((TabContents)tab.Controls[0]).ChangeType(displayType);
+            }
+
         }
     }
 }

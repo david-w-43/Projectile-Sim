@@ -12,13 +12,12 @@ namespace Projectile_Sim
 {
     public partial class TabContents : UserControl
     {
-        private TabDisplayType displayType;
+        public TabDisplayType displayType;
 
         public TabContents(TabDisplayType type)
         {
             InitializeComponent();
-
-            displayType = type;
+            ChangeType(type);
         }
 
         public void ChangeType(TabDisplayType type)
@@ -47,7 +46,7 @@ namespace Projectile_Sim
                 {
                     Controls[i].Visible = true;
                 }
-                else if ((string)Controls[i].Tag != "")
+                else if ((string)Controls[i].Tag != "Common")
                 {
                     Controls[i].Visible = false;
                 }
