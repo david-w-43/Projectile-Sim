@@ -145,7 +145,7 @@ namespace Projectile_Sim
             btnPause.Enabled = false;
             btnPause.Text = "II";
             btnPlot.Enabled = true;
-            viewToolStripMenuItem.Enabled = true;
+            btnView.Enabled = true;
         }
 
         private void BtnAddProjectile_Click(object sender, EventArgs e)
@@ -274,7 +274,7 @@ namespace Projectile_Sim
             btnPause.Enabled = true;
             btnPlot.Enabled = false;
             btnDelete.Enabled = false;
-            viewToolStripMenuItem.Enabled = false;
+            btnView.Enabled = false;
 
             //Disable groups
             groupAddProjectile.Enabled = false;
@@ -333,13 +333,13 @@ namespace Projectile_Sim
             {
                 btnPause.Text = "II";
                 simulation.Resume();
-                viewToolStripMenuItem.Enabled = false;
+                btnView.Enabled = false;
             }
             else
             {
                 btnPause.Text = "▶";
                 simulation.Pause();
-                viewToolStripMenuItem.Enabled = true;
+                btnView.Enabled = true;
             }
         }
         
@@ -536,6 +536,10 @@ namespace Projectile_Sim
                             //Define projectile to add
                             Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement.vertical, initAcceleration.vertical);
 
+                            //Remove projectile with same name
+                            tabSelectProjectile.TabPages.RemoveByKey(colour.Name);
+                            simulation.RemoveProjectile(colour.Name);
+
                             //Add the projectile to the simulation and add a tab for it
                             simulation.AddProjectile(toAdd);
                             AddTab();
@@ -543,6 +547,7 @@ namespace Projectile_Sim
                     }
                 }
                 HandleTabsChanged();
+                
                 reader.Dispose();
             }
         }
