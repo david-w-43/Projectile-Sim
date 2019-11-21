@@ -1,6 +1,6 @@
 ﻿namespace Projectile_Sim
 {
-    partial class ComponentTab
+    partial class TabContents
     {
         /// <summary> 
         /// Required designer variable.
@@ -49,18 +49,29 @@
             this.lblRange = new System.Windows.Forms.Label();
             this.lblPosOpenBracket = new System.Windows.Forms.Label();
             this.lblDuration = new System.Windows.Forms.Label();
-            this.lblApex = new System.Windows.Forms.Label();
             this.lblVelocity = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
+            this.lblApex2 = new System.Windows.Forms.Label();
+            this.lblVelocityDeg = new System.Windows.Forms.Label();
+            this.lblVelocitym = new System.Windows.Forms.Label();
+            this.lblPositionDeg = new System.Windows.Forms.Label();
+            this.lblPositionM = new System.Windows.Forms.Label();
+            this.txtAnglePos = new System.Windows.Forms.TextBox();
+            this.txtAngleVel = new System.Windows.Forms.TextBox();
+            this.txtMagPos = new System.Windows.Forms.TextBox();
+            this.txtMagVel = new System.Windows.Forms.TextBox();
+            this.lblVelocity2 = new System.Windows.Forms.Label();
+            this.lblPosition2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDurationUnits
             // 
             this.lblDurationUnits.AutoSize = true;
-            this.lblDurationUnits.Location = new System.Drawing.Point(177, 195);
+            this.lblDurationUnits.Location = new System.Drawing.Point(177, 173);
             this.lblDurationUnits.Name = "lblDurationUnits";
             this.lblDurationUnits.Size = new System.Drawing.Size(12, 13);
-            this.lblDurationUnits.TabIndex = 47;
+            this.lblDurationUnits.TabIndex = 71;
+            this.lblDurationUnits.Tag = "Common";
             this.lblDurationUnits.Text = "s";
             // 
             // lblVelocityUnits
@@ -69,25 +80,29 @@
             this.lblVelocityUnits.Location = new System.Drawing.Point(185, 71);
             this.lblVelocityUnits.Name = "lblVelocityUnits";
             this.lblVelocityUnits.Size = new System.Drawing.Size(25, 13);
-            this.lblVelocityUnits.TabIndex = 46;
+            this.lblVelocityUnits.TabIndex = 70;
+            this.lblVelocityUnits.Tag = "Component";
             this.lblVelocityUnits.Text = "m/s";
+            this.lblVelocityUnits.Visible = false;
             // 
             // lblRangeUnits
             // 
             this.lblRangeUnits.AutoSize = true;
-            this.lblRangeUnits.Location = new System.Drawing.Point(177, 221);
+            this.lblRangeUnits.Location = new System.Drawing.Point(177, 199);
             this.lblRangeUnits.Name = "lblRangeUnits";
             this.lblRangeUnits.Size = new System.Drawing.Size(15, 13);
-            this.lblRangeUnits.TabIndex = 43;
+            this.lblRangeUnits.TabIndex = 67;
+            this.lblRangeUnits.Tag = "Common";
             this.lblRangeUnits.Text = "m";
             // 
             // lblApexUnits
             // 
             this.lblApexUnits.AutoSize = true;
-            this.lblApexUnits.Location = new System.Drawing.Point(185, 139);
+            this.lblApexUnits.Location = new System.Drawing.Point(185, 147);
             this.lblApexUnits.Name = "lblApexUnits";
             this.lblApexUnits.Size = new System.Drawing.Size(15, 13);
-            this.lblApexUnits.TabIndex = 44;
+            this.lblApexUnits.TabIndex = 68;
+            this.lblApexUnits.Tag = "Common";
             this.lblApexUnits.Text = "m";
             // 
             // lblPositionUnits
@@ -96,34 +111,39 @@
             this.lblPositionUnits.Location = new System.Drawing.Point(185, 27);
             this.lblPositionUnits.Name = "lblPositionUnits";
             this.lblPositionUnits.Size = new System.Drawing.Size(15, 13);
-            this.lblPositionUnits.TabIndex = 45;
+            this.lblPositionUnits.TabIndex = 69;
+            this.lblPositionUnits.Tag = "Component";
             this.lblPositionUnits.Text = "m";
+            this.lblPositionUnits.Visible = false;
             // 
             // txtRange
             // 
-            this.txtRange.Location = new System.Drawing.Point(76, 218);
+            this.txtRange.Location = new System.Drawing.Point(76, 196);
             this.txtRange.Name = "txtRange";
             this.txtRange.ReadOnly = true;
             this.txtRange.Size = new System.Drawing.Size(95, 20);
-            this.txtRange.TabIndex = 41;
+            this.txtRange.TabIndex = 65;
+            this.txtRange.Tag = "Common";
             this.txtRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDuration
             // 
-            this.txtDuration.Location = new System.Drawing.Point(76, 192);
+            this.txtDuration.Location = new System.Drawing.Point(76, 170);
             this.txtDuration.Name = "txtDuration";
             this.txtDuration.ReadOnly = true;
             this.txtDuration.Size = new System.Drawing.Size(95, 20);
-            this.txtDuration.TabIndex = 40;
+            this.txtDuration.TabIndex = 64;
+            this.txtDuration.Tag = "Common";
             this.txtDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtVApex
             // 
-            this.txtVApex.Location = new System.Drawing.Point(76, 136);
+            this.txtVApex.Location = new System.Drawing.Point(76, 144);
             this.txtVApex.Name = "txtVApex";
             this.txtVApex.ReadOnly = true;
             this.txtVApex.Size = new System.Drawing.Size(95, 20);
-            this.txtVApex.TabIndex = 39;
+            this.txtVApex.TabIndex = 63;
+            this.txtVApex.Tag = "Common";
             this.txtVApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtVVel
@@ -132,8 +152,10 @@
             this.txtVVel.Name = "txtVVel";
             this.txtVVel.ReadOnly = true;
             this.txtVVel.Size = new System.Drawing.Size(95, 20);
-            this.txtVVel.TabIndex = 38;
+            this.txtVVel.TabIndex = 62;
+            this.txtVVel.Tag = "Component";
             this.txtVVel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtVVel.Visible = false;
             // 
             // txtVPos
             // 
@@ -141,16 +163,19 @@
             this.txtVPos.Name = "txtVPos";
             this.txtVPos.ReadOnly = true;
             this.txtVPos.Size = new System.Drawing.Size(95, 20);
-            this.txtVPos.TabIndex = 37;
+            this.txtVPos.TabIndex = 61;
+            this.txtVPos.Tag = "Component";
             this.txtVPos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtVPos.Visible = false;
             // 
             // txtHApex
             // 
-            this.txtHApex.Location = new System.Drawing.Point(76, 115);
+            this.txtHApex.Location = new System.Drawing.Point(76, 123);
             this.txtHApex.Name = "txtHApex";
             this.txtHApex.ReadOnly = true;
             this.txtHApex.Size = new System.Drawing.Size(95, 20);
-            this.txtHApex.TabIndex = 42;
+            this.txtHApex.TabIndex = 66;
+            this.txtHApex.Tag = "Common";
             this.txtHApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHVel
@@ -159,17 +184,20 @@
             this.txtHVel.Name = "txtHVel";
             this.txtHVel.ReadOnly = true;
             this.txtHVel.Size = new System.Drawing.Size(95, 20);
-            this.txtHVel.TabIndex = 36;
+            this.txtHVel.TabIndex = 60;
+            this.txtHVel.Tag = "Component";
             this.txtHVel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHVel.Visible = false;
             // 
             // lblApexCloseBracket
             // 
             this.lblApexCloseBracket.AutoSize = true;
             this.lblApexCloseBracket.Font = new System.Drawing.Font("Calibri Light", 28F);
-            this.lblApexCloseBracket.Location = new System.Drawing.Point(164, 112);
+            this.lblApexCloseBracket.Location = new System.Drawing.Point(164, 120);
             this.lblApexCloseBracket.Name = "lblApexCloseBracket";
             this.lblApexCloseBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblApexCloseBracket.TabIndex = 34;
+            this.lblApexCloseBracket.TabIndex = 58;
+            this.lblApexCloseBracket.Tag = "Common";
             this.lblApexCloseBracket.Text = ")";
             // 
             // txtHPos
@@ -178,17 +206,20 @@
             this.txtHPos.Name = "txtHPos";
             this.txtHPos.ReadOnly = true;
             this.txtHPos.Size = new System.Drawing.Size(95, 20);
-            this.txtHPos.TabIndex = 35;
+            this.txtHPos.TabIndex = 59;
+            this.txtHPos.Tag = "Component";
             this.txtHPos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHPos.Visible = false;
             // 
             // lblApexOpenBracket
             // 
             this.lblApexOpenBracket.AutoSize = true;
             this.lblApexOpenBracket.Font = new System.Drawing.Font("Calibri Light", 28F);
-            this.lblApexOpenBracket.Location = new System.Drawing.Point(54, 112);
+            this.lblApexOpenBracket.Location = new System.Drawing.Point(54, 120);
             this.lblApexOpenBracket.Name = "lblApexOpenBracket";
             this.lblApexOpenBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblApexOpenBracket.TabIndex = 33;
+            this.lblApexOpenBracket.TabIndex = 57;
+            this.lblApexOpenBracket.Tag = "Common";
             this.lblApexOpenBracket.Text = "(";
             // 
             // lblVelCloseBracket
@@ -198,8 +229,10 @@
             this.lblVelCloseBracket.Location = new System.Drawing.Point(164, 47);
             this.lblVelCloseBracket.Name = "lblVelCloseBracket";
             this.lblVelCloseBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblVelCloseBracket.TabIndex = 32;
+            this.lblVelCloseBracket.TabIndex = 56;
+            this.lblVelCloseBracket.Tag = "Component";
             this.lblVelCloseBracket.Text = ")";
+            this.lblVelCloseBracket.Visible = false;
             // 
             // lblVelOpenBracket
             // 
@@ -208,8 +241,10 @@
             this.lblVelOpenBracket.Location = new System.Drawing.Point(54, 47);
             this.lblVelOpenBracket.Name = "lblVelOpenBracket";
             this.lblVelOpenBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblVelOpenBracket.TabIndex = 31;
+            this.lblVelOpenBracket.TabIndex = 55;
+            this.lblVelOpenBracket.Tag = "Component";
             this.lblVelOpenBracket.Text = "(";
+            this.lblVelOpenBracket.Visible = false;
             // 
             // lblPosCloseBracket
             // 
@@ -218,16 +253,19 @@
             this.lblPosCloseBracket.Location = new System.Drawing.Point(164, 0);
             this.lblPosCloseBracket.Name = "lblPosCloseBracket";
             this.lblPosCloseBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblPosCloseBracket.TabIndex = 30;
+            this.lblPosCloseBracket.TabIndex = 54;
+            this.lblPosCloseBracket.Tag = "Component";
             this.lblPosCloseBracket.Text = ")";
+            this.lblPosCloseBracket.Visible = false;
             // 
             // lblRange
             // 
             this.lblRange.AutoSize = true;
-            this.lblRange.Location = new System.Drawing.Point(28, 221);
+            this.lblRange.Location = new System.Drawing.Point(28, 199);
             this.lblRange.Name = "lblRange";
             this.lblRange.Size = new System.Drawing.Size(42, 13);
-            this.lblRange.TabIndex = 27;
+            this.lblRange.TabIndex = 51;
+            this.lblRange.Tag = "Common";
             this.lblRange.Text = "Range:";
             // 
             // lblPosOpenBracket
@@ -237,26 +275,20 @@
             this.lblPosOpenBracket.Location = new System.Drawing.Point(54, 0);
             this.lblPosOpenBracket.Name = "lblPosOpenBracket";
             this.lblPosOpenBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblPosOpenBracket.TabIndex = 29;
+            this.lblPosOpenBracket.TabIndex = 53;
+            this.lblPosOpenBracket.Tag = "Component";
             this.lblPosOpenBracket.Text = "(";
+            this.lblPosOpenBracket.Visible = false;
             // 
             // lblDuration
             // 
             this.lblDuration.AutoSize = true;
-            this.lblDuration.Location = new System.Drawing.Point(20, 195);
+            this.lblDuration.Location = new System.Drawing.Point(20, 173);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(50, 13);
-            this.lblDuration.TabIndex = 26;
+            this.lblDuration.TabIndex = 50;
+            this.lblDuration.Tag = "Common";
             this.lblDuration.Text = "Duration:";
-            // 
-            // lblApex
-            // 
-            this.lblApex.AutoSize = true;
-            this.lblApex.Location = new System.Drawing.Point(11, 122);
-            this.lblApex.Name = "lblApex";
-            this.lblApex.Size = new System.Drawing.Size(34, 13);
-            this.lblApex.TabIndex = 25;
-            this.lblApex.Text = "Apex:";
             // 
             // lblVelocity
             // 
@@ -264,8 +296,10 @@
             this.lblVelocity.Location = new System.Drawing.Point(11, 57);
             this.lblVelocity.Name = "lblVelocity";
             this.lblVelocity.Size = new System.Drawing.Size(47, 13);
-            this.lblVelocity.TabIndex = 28;
+            this.lblVelocity.TabIndex = 52;
+            this.lblVelocity.Tag = "Component";
             this.lblVelocity.Text = "Velocity:";
+            this.lblVelocity.Visible = false;
             // 
             // lblPosition
             // 
@@ -273,14 +307,147 @@
             this.lblPosition.Location = new System.Drawing.Point(11, 10);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(47, 13);
-            this.lblPosition.TabIndex = 24;
+            this.lblPosition.TabIndex = 48;
+            this.lblPosition.Tag = "Component";
             this.lblPosition.Text = "Position:";
+            this.lblPosition.Visible = false;
             // 
-            // ComponentTab
+            // lblApex2
+            // 
+            this.lblApex2.AutoSize = true;
+            this.lblApex2.Location = new System.Drawing.Point(28, 130);
+            this.lblApex2.Name = "lblApex2";
+            this.lblApex2.Size = new System.Drawing.Size(34, 13);
+            this.lblApex2.TabIndex = 83;
+            this.lblApex2.Tag = "Common";
+            this.lblApex2.Text = "Apex:";
+            // 
+            // lblVelocityDeg
+            // 
+            this.lblVelocityDeg.AutoSize = true;
+            this.lblVelocityDeg.Location = new System.Drawing.Point(177, 88);
+            this.lblVelocityDeg.Name = "lblVelocityDeg";
+            this.lblVelocityDeg.Size = new System.Drawing.Size(11, 13);
+            this.lblVelocityDeg.TabIndex = 82;
+            this.lblVelocityDeg.Tag = "Magnitude";
+            this.lblVelocityDeg.Text = "°\r\n";
+            this.lblVelocityDeg.Visible = false;
+            // 
+            // lblVelocitym
+            // 
+            this.lblVelocitym.AutoSize = true;
+            this.lblVelocitym.Location = new System.Drawing.Point(177, 64);
+            this.lblVelocitym.Name = "lblVelocitym";
+            this.lblVelocitym.Size = new System.Drawing.Size(25, 13);
+            this.lblVelocitym.TabIndex = 81;
+            this.lblVelocitym.Tag = "Magnitude";
+            this.lblVelocitym.Text = "m/s";
+            this.lblVelocitym.Visible = false;
+            // 
+            // lblPositionDeg
+            // 
+            this.lblPositionDeg.AutoSize = true;
+            this.lblPositionDeg.Location = new System.Drawing.Point(177, 32);
+            this.lblPositionDeg.Name = "lblPositionDeg";
+            this.lblPositionDeg.Size = new System.Drawing.Size(11, 13);
+            this.lblPositionDeg.TabIndex = 80;
+            this.lblPositionDeg.Tag = "Magnitude";
+            this.lblPositionDeg.Text = "°\r\n";
+            this.lblPositionDeg.Visible = false;
+            // 
+            // lblPositionM
+            // 
+            this.lblPositionM.AutoSize = true;
+            this.lblPositionM.Location = new System.Drawing.Point(177, 8);
+            this.lblPositionM.Name = "lblPositionM";
+            this.lblPositionM.Size = new System.Drawing.Size(15, 13);
+            this.lblPositionM.TabIndex = 78;
+            this.lblPositionM.Tag = "Magnitude";
+            this.lblPositionM.Text = "m";
+            this.lblPositionM.Visible = false;
+            // 
+            // txtAnglePos
+            // 
+            this.txtAnglePos.Location = new System.Drawing.Point(76, 29);
+            this.txtAnglePos.Name = "txtAnglePos";
+            this.txtAnglePos.ReadOnly = true;
+            this.txtAnglePos.Size = new System.Drawing.Size(95, 20);
+            this.txtAnglePos.TabIndex = 75;
+            this.txtAnglePos.Tag = "Magnitude";
+            this.txtAnglePos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAnglePos.Visible = false;
+            // 
+            // txtAngleVel
+            // 
+            this.txtAngleVel.Location = new System.Drawing.Point(76, 85);
+            this.txtAngleVel.Name = "txtAngleVel";
+            this.txtAngleVel.ReadOnly = true;
+            this.txtAngleVel.Size = new System.Drawing.Size(95, 20);
+            this.txtAngleVel.TabIndex = 74;
+            this.txtAngleVel.Tag = "Magnitude";
+            this.txtAngleVel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAngleVel.Visible = false;
+            // 
+            // txtMagPos
+            // 
+            this.txtMagPos.Location = new System.Drawing.Point(76, 3);
+            this.txtMagPos.Name = "txtMagPos";
+            this.txtMagPos.ReadOnly = true;
+            this.txtMagPos.Size = new System.Drawing.Size(95, 20);
+            this.txtMagPos.TabIndex = 77;
+            this.txtMagPos.Tag = "Magnitude";
+            this.txtMagPos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMagPos.Visible = false;
+            // 
+            // txtMagVel
+            // 
+            this.txtMagVel.Location = new System.Drawing.Point(76, 61);
+            this.txtMagVel.Name = "txtMagVel";
+            this.txtMagVel.ReadOnly = true;
+            this.txtMagVel.Size = new System.Drawing.Size(95, 20);
+            this.txtMagVel.TabIndex = 76;
+            this.txtMagVel.Tag = "Magnitude";
+            this.txtMagVel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMagVel.Visible = false;
+            // 
+            // lblVelocity2
+            // 
+            this.lblVelocity2.AutoSize = true;
+            this.lblVelocity2.Location = new System.Drawing.Point(23, 64);
+            this.lblVelocity2.Name = "lblVelocity2";
+            this.lblVelocity2.Size = new System.Drawing.Size(47, 13);
+            this.lblVelocity2.TabIndex = 72;
+            this.lblVelocity2.Tag = "Magnitude";
+            this.lblVelocity2.Text = "Velocity:";
+            this.lblVelocity2.Visible = false;
+            // 
+            // lblPosition2
+            // 
+            this.lblPosition2.AutoSize = true;
+            this.lblPosition2.Location = new System.Drawing.Point(23, 8);
+            this.lblPosition2.Name = "lblPosition2";
+            this.lblPosition2.Size = new System.Drawing.Size(47, 13);
+            this.lblPosition2.TabIndex = 73;
+            this.lblPosition2.Tag = "Magnitude";
+            this.lblPosition2.Text = "Position:";
+            this.lblPosition2.Visible = false;
+            // 
+            // TabContents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.lblApex2);
+            this.Controls.Add(this.lblVelocityDeg);
+            this.Controls.Add(this.lblVelocitym);
+            this.Controls.Add(this.lblPositionDeg);
+            this.Controls.Add(this.lblPositionM);
+            this.Controls.Add(this.txtAnglePos);
+            this.Controls.Add(this.txtAngleVel);
+            this.Controls.Add(this.txtMagPos);
+            this.Controls.Add(this.txtMagVel);
+            this.Controls.Add(this.lblVelocity2);
+            this.Controls.Add(this.lblPosition2);
             this.Controls.Add(this.lblDurationUnits);
             this.Controls.Add(this.lblVelocityUnits);
             this.Controls.Add(this.lblRangeUnits);
@@ -302,11 +469,10 @@
             this.Controls.Add(this.lblRange);
             this.Controls.Add(this.lblPosOpenBracket);
             this.Controls.Add(this.lblDuration);
-            this.Controls.Add(this.lblApex);
             this.Controls.Add(this.lblVelocity);
             this.Controls.Add(this.lblPosition);
-            this.Name = "ComponentTab";
-            this.Size = new System.Drawing.Size(228, 252);
+            this.Name = "TabContents";
+            this.Size = new System.Drawing.Size(228, 230);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,8 +501,18 @@
         private System.Windows.Forms.Label lblRange;
         private System.Windows.Forms.Label lblPosOpenBracket;
         private System.Windows.Forms.Label lblDuration;
-        private System.Windows.Forms.Label lblApex;
         private System.Windows.Forms.Label lblVelocity;
         private System.Windows.Forms.Label lblPosition;
+        private System.Windows.Forms.Label lblApex2;
+        private System.Windows.Forms.Label lblVelocityDeg;
+        private System.Windows.Forms.Label lblVelocitym;
+        private System.Windows.Forms.Label lblPositionDeg;
+        private System.Windows.Forms.Label lblPositionM;
+        private System.Windows.Forms.TextBox txtAnglePos;
+        private System.Windows.Forms.TextBox txtAngleVel;
+        private System.Windows.Forms.TextBox txtMagPos;
+        private System.Windows.Forms.TextBox txtMagVel;
+        private System.Windows.Forms.Label lblVelocity2;
+        private System.Windows.Forms.Label lblPosition2;
     }
 }
