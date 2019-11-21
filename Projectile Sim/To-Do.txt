@@ -1,4 +1,5 @@
 ﻿Add labels to axes of canvas
+Resize image, sized from bottom left of canvas
 
 //All tabs in one array, single class for all tab types
 //Single control for the tabs, instantiate with type. Should be able to switch between types freely
