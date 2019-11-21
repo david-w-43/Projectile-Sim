@@ -53,10 +53,25 @@ namespace Projectile_Sim
             txtTime.Text = time.ToString("F3");
 
             //Update progress bar
-            double permilleage = (time / simulation.maxDuration) * 1000;
-            //Constrain to 1000 max
-            if (permilleage > 1000) { permilleage = 1000; }
-            animationProgressBar.Value = (int)permilleage;
+            int value = (int)((time / simulation.maxDuration) * animationProgressBar.Maximum);
+            
+            //Constrain to max
+            if (value > 1000) { value = animationProgressBar.Maximum; }
+            UpdateProgressBarWorkaround(value);
+        }
+
+        private void UpdateProgressBarWorkaround(int value)
+        {
+            //Works stop animation by decrementing value
+            if (value < animationProgressBar.Maximum)
+            {
+                animationProgressBar.Value = value + 1;
+            }
+            else
+            {
+                value = animationProgressBar.Maximum;
+            }
+            animationProgressBar.Value = value;
         }
 
         private void MethodUpdateTabs(ref List<Projectile> projectiles)
