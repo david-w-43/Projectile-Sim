@@ -1,5 +1,4 @@
 ﻿Add labels to axes of canvas
-//Implement events to restrict use of pause/plot buttons
-Update tabs with relevant information
-Save canvas as image
-//Remove projectiles from simulation
+
+All tabs in one array, single class for all tab types
+Single control for the tabs, instantiate with type. Should be able to switch between types freely

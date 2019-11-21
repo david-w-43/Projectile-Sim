@@ -49,16 +49,16 @@ namespace Projectile_Sim
         private Vector GetDisplacement(double time)
         {
             // s = ut + 1/2 a t^2
-            Vector toReturn = new Vector(VectorType.component)
-            {
-                //Horizontal component
-                horizontal = initDisplacement.horizontal + (initVelocity.horizontal * time +
-                ((acceleration.horizontal * time * time) / 2)),
 
-                //Vertical component
-                vertical = initDisplacement.vertical + (initVelocity.vertical * time +
-                ((acceleration.vertical * time * time) / 2))
-            };
+            //Horizontal component
+            double horizontal = initDisplacement.horizontal + (initVelocity.horizontal * time +
+            ((acceleration.horizontal * time * time) / 2));
+
+            //Vertical component
+            double vertical = initDisplacement.vertical + (initVelocity.vertical * time +
+            ((acceleration.vertical * time * time) / 2));
+
+            Vector toReturn = new Vector(VectorType.component, horizontal, vertical);
 
             //If reached end of motion, set displacement as appropriate
             if (time > duration) { return GetDisplacement(duration); }
@@ -70,15 +70,13 @@ namespace Projectile_Sim
         private Vector GetVelocity(double time)
         {
             //v = u + at
-            Vector toReturn = new Vector(VectorType.component)
-            {
+            //Horizontal component
+            double horizontal = initVelocity.horizontal + acceleration.horizontal * time;
 
-                //Horizontal component
-                horizontal = initVelocity.horizontal + acceleration.horizontal * time,
+            //Vertical component
+            double vertical = initVelocity.vertical + acceleration.vertical * time;
 
-                //Vertical component
-                vertical = initVelocity.vertical + acceleration.vertical * time
-            };
+            Vector toReturn = new Vector(VectorType.component, horizontal, vertical);
 
             //If reached end of motion, set velocity as appropriate
             if (time > duration) { return GetVelocity(duration); }

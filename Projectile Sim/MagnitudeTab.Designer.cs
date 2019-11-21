@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.lblDurationUnits2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtRange = new System.Windows.Forms.TextBox();
+            this.txtDuration = new System.Windows.Forms.TextBox();
+            this.txtVApex = new System.Windows.Forms.TextBox();
+            this.txtHApex = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lblRange2 = new System.Windows.Forms.Label();
@@ -61,41 +61,41 @@
             this.lblDurationUnits2.TabIndex = 40;
             this.lblDurationUnits2.Text = "s";
             // 
-            // textBox2
+            // txtRange
             // 
-            this.textBox2.Location = new System.Drawing.Point(78, 214);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(95, 20);
-            this.textBox2.TabIndex = 36;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRange.Location = new System.Drawing.Point(78, 214);
+            this.txtRange.Name = "txtRange";
+            this.txtRange.ReadOnly = true;
+            this.txtRange.Size = new System.Drawing.Size(95, 20);
+            this.txtRange.TabIndex = 36;
+            this.txtRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox3
+            // txtDuration
             // 
-            this.textBox3.Location = new System.Drawing.Point(78, 188);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(95, 20);
-            this.textBox3.TabIndex = 37;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDuration.Location = new System.Drawing.Point(78, 188);
+            this.txtDuration.Name = "txtDuration";
+            this.txtDuration.ReadOnly = true;
+            this.txtDuration.Size = new System.Drawing.Size(95, 20);
+            this.txtDuration.TabIndex = 37;
+            this.txtDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox4
+            // txtVApex
             // 
-            this.textBox4.Location = new System.Drawing.Point(78, 132);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(95, 20);
-            this.textBox4.TabIndex = 38;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtVApex.Location = new System.Drawing.Point(78, 132);
+            this.txtVApex.Name = "txtVApex";
+            this.txtVApex.ReadOnly = true;
+            this.txtVApex.Size = new System.Drawing.Size(95, 20);
+            this.txtVApex.TabIndex = 38;
+            this.txtVApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox5
+            // txtHApex
             // 
-            this.textBox5.Location = new System.Drawing.Point(78, 111);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(95, 20);
-            this.textBox5.TabIndex = 39;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHApex.Location = new System.Drawing.Point(78, 111);
+            this.txtHApex.Name = "txtHApex";
+            this.txtHApex.ReadOnly = true;
+            this.txtHApex.Size = new System.Drawing.Size(95, 20);
+            this.txtHApex.TabIndex = 39;
+            this.txtHApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
@@ -258,10 +258,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.lblDurationUnits2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtRange);
+            this.Controls.Add(this.txtDuration);
+            this.Controls.Add(this.txtVApex);
+            this.Controls.Add(this.txtHApex);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.lblRange2);
@@ -289,10 +289,10 @@
         #endregion
 
         private System.Windows.Forms.Label lblDurationUnits2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtRange;
+        private System.Windows.Forms.TextBox txtDuration;
+        private System.Windows.Forms.TextBox txtVApex;
+        private System.Windows.Forms.TextBox txtHApex;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblRange2;

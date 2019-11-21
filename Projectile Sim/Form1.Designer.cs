@@ -255,12 +255,14 @@
             this.btnViewComponent.Name = "btnViewComponent";
             this.btnViewComponent.Size = new System.Drawing.Size(191, 22);
             this.btnViewComponent.Text = "Component";
+            this.btnViewComponent.Click += new System.EventHandler(this.HandleTabStyleChange);
             // 
             // btnViewMagnitudeDirection
             // 
             this.btnViewMagnitudeDirection.Name = "btnViewMagnitudeDirection";
             this.btnViewMagnitudeDirection.Size = new System.Drawing.Size(191, 22);
             this.btnViewMagnitudeDirection.Text = "Magnitude / Direction";
+            this.btnViewMagnitudeDirection.Click += new System.EventHandler(this.HandleTabStyleChange);
             // 
             // btnViewEnergies
             // 
@@ -268,6 +270,7 @@
             this.btnViewEnergies.Name = "btnViewEnergies";
             this.btnViewEnergies.Size = new System.Drawing.Size(191, 22);
             this.btnViewEnergies.Text = "Energies";
+            this.btnViewEnergies.Click += new System.EventHandler(this.HandleTabStyleChange);
             // 
             // settingsToolStripMenuItem
             // 
@@ -379,8 +382,6 @@
             this.tabSelectProjectile.SelectedIndex = 0;
             this.tabSelectProjectile.Size = new System.Drawing.Size(214, 209);
             this.tabSelectProjectile.TabIndex = 2;
-            this.tabSelectProjectile.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.handleTabsChanged);
-            this.tabSelectProjectile.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.handleTabsChanged);
             // 
             // txtTime
             // 

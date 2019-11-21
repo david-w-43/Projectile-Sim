@@ -31,11 +31,15 @@ namespace Projectile_Sim
 
         //public Simulation simulation = new Simulation(); //Empty constructor
 
+        private enum TabDisplayType { Component, Magnitude, Energy};
+        private TabDisplayType displayType = 0; //Default to component
+
         //Simulation.canvasUpdated += new Simulation.UpdatePictureBox(this.UpdatePictureBox);
         public Simulation simulation = new Simulation();
 
         public ComponentTab[] componentTabs;
         public MagnitudeTab[] magnitudeTabs;
+        public EnergyTab[] energyTabs;
 
         //private List<Projectile> projectiles = new List<Projectile>();
 
@@ -65,33 +69,61 @@ namespace Projectile_Sim
             //Works stop animation by decrementing value
             if (value < animationProgressBar.Maximum)
             {
+                //Set one above correct value
                 animationProgressBar.Value = value + 1;
             }
             else
             {
+                //Special case, set the value to max
                 value = animationProgressBar.Maximum;
             }
+            //Immediately set it to the correct value, == previous value - 1
             animationProgressBar.Value = value;
         }
+
+        
 
         private void MethodUpdateTabs(ref List<Projectile> projectiles)
         {
             foreach (var projectile in projectiles)
             {
-                //If it is a component-style tab
                 TabPage tab = tabSelectProjectile.TabPages[tabSelectProjectile.TabPages.IndexOfKey(projectile.colour.Name)];
+                //View type specific controls
+                switch (displayType)
+                {
+                    case TabDisplayType.Component:
+                        TextBox txtHPos = (TextBox)tab.Controls.Find("txtHPos", true).First(); //Horizontal position
+                        txtHPos.Text = projectile.displacement.horizontal.ToString("F3");
 
-                TextBox txtHPos = (TextBox)tab.Controls.Find("txtHPos", true).First(); //Horizontal position
-                txtHPos.Text = projectile.displacement.horizontal.ToString("F3");
+                        TextBox txtVPos = (TextBox)tab.Controls.Find("txtVPos", true).First(); //Vertical position
+                        txtVPos.Text = projectile.displacement.vertical.ToString("F3");
 
-                TextBox txtVPos = (TextBox)tab.Controls.Find("txtVPos", true).First(); //Vertical position
-                txtVPos.Text = projectile.displacement.vertical.ToString("F3");
+                        TextBox txtHVel = (TextBox)tab.Controls.Find("txtHVel", true).First(); //Vertical position
+                        txtHVel.Text = projectile.velocity.horizontal.ToString("F3");
 
-                TextBox txtHVel = (TextBox)tab.Controls.Find("txtHVel", true).First(); //Vertical position
-                txtHVel.Text = projectile.velocity.horizontal.ToString("F3");
+                        TextBox txtVVel = (TextBox)tab.Controls.Find("txtVVel", true).First(); //Vertical position
+                        txtVVel.Text = projectile.velocity.vertical.ToString("F3");
 
-                TextBox txtVVel = (TextBox)tab.Controls.Find("txtVVel", true).First(); //Vertical position
-                txtVVel.Text = projectile.velocity.vertical.ToString("F3");
+                        break;
+                    case TabDisplayType.Magnitude:
+                        TextBox txtMagPos = (TextBox)tab.Controls.Find("txtMagPos", true).First(); //Mag of position
+                        txtMagPos.Text = projectile.displacement.magnitude.ToString("F3");
+
+                        TextBox txtAnglePos = (TextBox)tab.Controls.Find("txtAnglePos", true).First(); //Direction of position
+                        txtAnglePos.Text = (projectile.displacement.direction * (180/Math.PI)).ToString("F3");
+
+                        TextBox txtMagVel = (TextBox)tab.Controls.Find("txtMagVel", true).First(); //Mag of velocity
+                        txtMagVel.Text = projectile.velocity.magnitude.ToString("F3");
+
+                        TextBox txtAngleVel = (TextBox)tab.Controls.Find("txtAngleVel", true).First(); //Direction of velocity
+                        txtAngleVel.Text = (projectile.velocity.direction * (180 / Math.PI)).ToString("F3");
+
+                        break;
+                    case TabDisplayType.Energy:
+                        //To-do
+
+                        break;
+                }
             }
         }
 
@@ -178,47 +210,50 @@ namespace Projectile_Sim
 
             //Add a tab
             AddTab();
-
-            //TabPage newTab = new TabPage();
-            //int index = tabSelectProjectile.TabCount;
-            ////if vector display style is component
-            //componentTabs = new ComponentTab[maxProjectiles]; //Initialise array
-            ////New control in array, docked to fill
-            //componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
-            ////Add control to the tab
-            //newTab.Controls.Add(componentTabs[index]);
-            
-            ////Set tab text and name to the colour
-            //newTab.Text = colourName;
-            //newTab.Name = colourName;
-            //tabSelectProjectile.TabPages.Add(newTab);
-            //tabSelectProjectile.SelectedIndex = index;
-
-
-            ////Get control by "name"
-            //Control txtDuration = componentTabs[index].Controls.Find("txtDuration", true).First();
-            //txtDuration.Text = simulation.projectiles[index].duration.ToString("F3");
-
-            //Control txtRange = componentTabs[index].Controls.Find("txtRange", true).First();
-            //txtRange.Text = simulation.projectiles[index].range.ToString("F3");
-
-            //Control txtHApex = componentTabs[index].Controls.Find("txtHApex", true).First();
-            //txtHApex.Text = simulation.projectiles[index].apex.horizontal.ToString("F3");
-
-            //Control txtVApex = componentTabs[index].Controls.Find("txtVApex", true).First();
-            //txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString("F3");
         }
 
         private void AddTab()
         {
             TabPage newTab = new TabPage();
             int index = tabSelectProjectile.TabCount;
+            System.Windows.Forms.Control.ControlCollection controlCollection = null;
             //if vector display style is component
-            componentTabs = new ComponentTab[maxProjectiles]; //Initialise array
-            //New control in array, docked to fill
-            componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
-            //Add control to the tab
-            newTab.Controls.Add(componentTabs[index]);
+            //componentTabs = new ComponentTab[maxProjectiles]; //Initialise array
+            ////New control in array, docked to fill
+            //componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
+            ////Add control to the tab
+            //newTab.Controls.Add(componentTabs[index]);
+
+            switch (displayType)
+            {
+                case TabDisplayType.Component:
+                    componentTabs = new ComponentTab[maxProjectiles]; //Initialise array
+                    //New control in array, docked to fill
+                    componentTabs[index] = new ComponentTab() { Dock = DockStyle.Fill };
+                    //Add control to the tab
+                    newTab.Controls.Add(componentTabs[index]);
+
+                    controlCollection = componentTabs[index].Controls;
+
+                    break;
+                case TabDisplayType.Magnitude:
+                    magnitudeTabs = new MagnitudeTab[maxProjectiles];
+                    magnitudeTabs[index] = new MagnitudeTab() { Dock = DockStyle.Fill };
+                    newTab.Controls.Add(magnitudeTabs[index]);
+
+                    controlCollection = magnitudeTabs[index].Controls;
+
+                    break;
+                case TabDisplayType.Energy:
+                    energyTabs = new EnergyTab[maxProjectiles];
+                    energyTabs[index] = new EnergyTab() { Dock = DockStyle.Fill };
+                    newTab.Controls.Add(energyTabs[index]);
+
+                    controlCollection = energyTabs[index].Controls;
+
+
+                    break;
+            }
 
             //Set tab text and name to the colour
             newTab.Text = simulation.projectiles[index].colour.Name;
@@ -226,19 +261,22 @@ namespace Projectile_Sim
             tabSelectProjectile.TabPages.Add(newTab);
             tabSelectProjectile.SelectedIndex = index;
 
-
+            //Common controls
             //Get control by "name"
-            Control txtDuration = componentTabs[index].Controls.Find("txtDuration", true).First();
+            Control txtDuration = controlCollection.Find("txtDuration", true).First();
             txtDuration.Text = simulation.projectiles[index].duration.ToString("F3");
 
-            Control txtRange = componentTabs[index].Controls.Find("txtRange", true).First();
+            Control txtRange = controlCollection.Find("txtRange", true).First();
             txtRange.Text = simulation.projectiles[index].range.ToString("F3");
 
-            Control txtHApex = componentTabs[index].Controls.Find("txtHApex", true).First();
+            Control txtHApex = controlCollection.Find("txtHApex", true).First();
             txtHApex.Text = simulation.projectiles[index].apex.horizontal.ToString("F3");
 
-            Control txtVApex = componentTabs[index].Controls.Find("txtVApex", true).First();
+            Control txtVApex = controlCollection.Find("txtVApex", true).First();
             txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString("F3");
+
+
+            HandleTabsChanged();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -341,6 +379,8 @@ namespace Projectile_Sim
 
             //Removes tab from control
             tabSelectProjectile.TabPages.Remove(tab);
+
+            HandleTabsChanged();
         }
 
         private void txtPlotToValidate (object sender, EventArgs e)
@@ -514,10 +554,11 @@ namespace Projectile_Sim
                     }
                 }
             }
+            HandleTabsChanged();
             reader.Dispose();
         }
 
-        private void handleTabsChanged(object sender, ControlEventArgs e)
+        private void HandleTabsChanged()
         //Runs when a tab is added or removed, sets buttons accordingly
         {
             if (tabSelectProjectile.TabPages.Count == 0)
@@ -535,6 +576,19 @@ namespace Projectile_Sim
             Settings settings = new Settings(); //Defines settings form
             settings.ShowDialog(); //Show as a dialog box
             settings.Dispose(); //Dispose of resources used
+        }
+
+        private void HandleTabStyleChange(object sender, EventArgs e)
+        {
+            ToolStripMenuItem btn = (ToolStripMenuItem)sender;
+            
+            //Always check the item clicked
+            btn.Checked = true;
+
+            //Set the other items to unchecked
+            if (btn.Equals(btnViewComponent)) { btnViewMagnitudeDirection.Checked = btnViewEnergies.Checked = false; displayType = TabDisplayType.Component; }
+            if (btn.Equals(btnViewMagnitudeDirection)) { btnViewComponent.Checked = btnViewEnergies.Checked = false; displayType = TabDisplayType.Magnitude; }
+            if (btn.Equals(btnViewEnergies)) { btnViewComponent.Checked = btnViewMagnitudeDirection.Checked = false; displayType = TabDisplayType.Energy; }
         }
     }
 }
