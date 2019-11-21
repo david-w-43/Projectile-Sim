@@ -13,6 +13,7 @@ using System.Timers;
 
 namespace Projectile_Sim
 {
+    public enum TabDisplayType { Component, Magnitude, Energy };
 
     public partial class Form1 : Form
     {
@@ -31,7 +32,7 @@ namespace Projectile_Sim
 
         //public Simulation simulation = new Simulation(); //Empty constructor
 
-        private enum TabDisplayType { Component, Magnitude, Energy};
+        
         private TabDisplayType displayType = 0; //Default to component
 
         //Simulation.canvasUpdated += new Simulation.UpdatePictureBox(this.UpdatePictureBox);
