@@ -45,11 +45,6 @@ namespace Projectile_Sim
 
 		/* End variables------------- */
 
-        public void UpdateTabs()
-        {
-            //Update tabs with current information
-        }
-
         public void DrawAxes()
         {
             //Bitmap canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
@@ -141,46 +136,6 @@ namespace Projectile_Sim
             }
         }
 
-        #region Old plotting algorithm without recursion
-        /*
-        private Bitmap NoAnimation(double fromTime, double toTime)
-        {
-			//Defines canvas with required width and height
-            Bitmap canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
-            //Run on 3 updates per pixel
-            double timePerPixel = maxDuration / maxX;
-            double timeInterval = timePerPixel / 3;
-
-            double time = fromTime; //Initialise as 0 to plot from start
-            while (time < toTime)
-            {
-                foreach (var projectile in projectiles)
-                {
-					//Updates time of projectile
-                    projectile.Update(time);
-
-					//Calculates x, inverted y for scale
-                    int x = (int)((projectile.displacement.horizontal) * pxPerX);
-					int y = canvasContainer.Height - (int)((projectile.displacement.vertical) * pxPerY);
-
-					//If valid to plot
-					if (x >= 0 && x < canvas.Width && y >= 0 && y < canvas.Height)
-                    {
-						//Set pixel to colour of projectile
-                        canvas.SetPixel(x, y, projectile.colour);
-                    }
-                }
-
-                time += timeInterval;
-            }
-
-			//Sets PictureBox image
-            //canvasContainer.Image = canvas;
-            return canvas;
-        }
-        */
-        #endregion
-
         private Bitmap RecursivePlot(Bitmap prevImage, double time, double toTime, double timeInterval)
         {
             if (time < toTime + timeInterval)
@@ -268,8 +223,7 @@ namespace Projectile_Sim
             for (int i = 0; i < projectiles.Count; i++)
             {
                 if (projectiles[i].colour.Name == name) { projectiles.RemoveAt(i); }
-            }
-               
+            } 
         }
 
         private void GetMaxValues()

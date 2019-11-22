@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
 
-
-
 namespace Projectile_Sim
 {
     public enum TabDisplayType { Component, Magnitude, Energy };
@@ -19,8 +17,9 @@ namespace Projectile_Sim
     {
         const int maxProjectiles = 8;
 
-        private Bitmap customBackground = null;
-
+        //----Start variables
+        
+        //Delegates and events
         public delegate void HandlePlotComplete();
         public HandlePlotComplete plotCompleteDelegate;
 
@@ -30,18 +29,19 @@ namespace Projectile_Sim
         public delegate void HandleUpdateTabs(ref List<Projectile> projectiles);
         public HandleUpdateTabs updateTabsDelegate;
 
-        //public Simulation simulation = new Simulation(); //Empty constructor
+        //Container for the custom background
+        private Bitmap customBackground = null;
 
-        
+        //Stores the type of tab to be displayed
         private TabDisplayType displayType = 0; //Default to component
 
-        //Simulation.canvasUpdated += new Simulation.UpdatePictureBox(this.UpdatePictureBox);
-
+        //Instantiates simulation class
         public Simulation simulation = new Simulation();
 
-        public TabContents[] ProjectileTabs;
+        //Stores the tab pages
+        private TabContents[] ProjectileTabs;
 
-        //private List<Projectile> projectiles = new List<Projectile>();
+        //----End variables
 
         public Form1()
         {
@@ -134,7 +134,6 @@ namespace Projectile_Sim
             //Allow the window to be resized
             Program.form1.FormBorderStyle = FormBorderStyle.Sizable;
             
-            
             //Re-enable controls
             groupAddProjectile.Enabled = true;
             groupPlotOptions.Enabled = true;
@@ -150,10 +149,6 @@ namespace Projectile_Sim
 
         private void BtnAddProjectile_Click(object sender, EventArgs e)
         {
-            ////Enable plot and delete buttons
-            //btnPlot.Enabled = true;
-            //btnDelete.Enabled = true;
-
             //Get colour from combobox
             String colourName = comboColour.Text;
             Color colour = Color.FromName(colourName);
@@ -553,8 +548,8 @@ namespace Projectile_Sim
         }
 
         private void HandleTabsChanged()
-        //Runs when a tab is added or removed, sets buttons accordingly
         {
+            //Runs when a tab is added or removed, sets buttons accordingly
             if (tabSelectProjectile.TabPages.Count == 0)
             {
                 btnPlot.Enabled = false; btnDelete.Enabled = false;

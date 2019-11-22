@@ -19,6 +19,8 @@ namespace Projectile_Sim
         public readonly Color colour;
         public readonly ProjectileType projectileType;
 
+        //End variables
+
         public Projectile(ProjectileType type, Color colour, Vector initVelocity, double initialHeight, double g)
         {
             this.projectileType = type;
