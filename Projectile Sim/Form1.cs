@@ -17,8 +17,8 @@ namespace Projectile_Sim
     {
         const int maxProjectiles = 8;
 
-        //----Start variables
-        
+        #region Variables
+
         //Delegates and events
         public delegate void HandlePlotComplete();
         public HandlePlotComplete plotCompleteDelegate;
@@ -39,9 +39,9 @@ namespace Projectile_Sim
         public Simulation simulation = new Simulation();
 
         //Stores the tab pages
-        private TabContents[] ProjectileTabs;
+        private TabContents[] projectileTabs;
 
-        //----End variables
+        #endregion
 
         public Form1()
         {
@@ -49,7 +49,7 @@ namespace Projectile_Sim
             plotCompleteDelegate = new HandlePlotComplete(MethodPlotComplete);
             updateTabsDelegate = new HandleUpdateTabs(MethodUpdateTabs);
             updateTimeDelegate = new HandleUpdateTime(MethodUpdateTime);
-            ProjectileTabs = new TabContents[maxProjectiles];
+            projectileTabs = new TabContents[maxProjectiles];
         }
 
         private void MethodUpdateTime(double time)
@@ -65,23 +65,6 @@ namespace Projectile_Sim
             UpdateProgressBarWorkaround(value);
         }
 
-        private void UpdateProgressBarWorkaround(int value)
-        {
-            //Works stop animation by decrementing value
-            if (value < animationProgressBar.Maximum)
-            {
-                //Set one above correct value
-                animationProgressBar.Value = value + 1;
-            }
-            else
-            {
-                //Special case, set the value to max
-                value = animationProgressBar.Maximum;
-            }
-            //Immediately set it to the correct value, == previous value - 1
-            animationProgressBar.Value = value;
-        }
-
         private void MethodUpdateTabs(ref List<Projectile> projectiles)
         {
             foreach (var projectile in projectiles)
@@ -92,35 +75,38 @@ namespace Projectile_Sim
                 //Gets the control collection of the current tab
                 Control.ControlCollection controlCollection = ((TabContents)tab.Controls[0]).Controls;
 
+                Vector displacement = projectile.GetDisplacement();
+                Vector velocity = projectile.GetVelocity();
+
                 switch (((TabContents)tab.Controls[0]).displayType)
                 {
                     case TabDisplayType.Component:
                         //Get the textbox
                         TextBox txtHPos = (TextBox)tab.Controls.Find("txtHPos", true).First(); //Horizontal position
                         //Set the text
-                        txtHPos.Text = projectile.displacement.horizontal.ToString("F3");
+                        txtHPos.Text = displacement.horizontal.ToString("F3");
 
                         TextBox txtVPos = (TextBox)tab.Controls.Find("txtVPos", true).First(); //Vertical position
-                        txtVPos.Text = projectile.displacement.vertical.ToString("F3");
+                        txtVPos.Text = displacement.vertical.ToString("F3");
 
                         TextBox txtHVel = (TextBox)tab.Controls.Find("txtHVel", true).First(); //Vertical position
-                        txtHVel.Text = projectile.velocity.horizontal.ToString("F3");
+                        txtHVel.Text = velocity.horizontal.ToString("F3");
 
                         TextBox txtVVel = (TextBox)tab.Controls.Find("txtVVel", true).First(); //Vertical position
-                        txtVVel.Text = projectile.velocity.vertical.ToString("F3");
+                        txtVVel.Text = velocity.vertical.ToString("F3");
                         break;
                     case TabDisplayType.Magnitude:
                         TextBox txtMagPos = (TextBox)tab.Controls.Find("txtMagPos", true).First(); //Mag of position
-                        txtMagPos.Text = projectile.displacement.magnitude.ToString("F3");
+                        txtMagPos.Text = displacement.magnitude.ToString("F3");
 
                         TextBox txtAnglePos = (TextBox)tab.Controls.Find("txtAnglePos", true).First(); //Direction of position
-                        txtAnglePos.Text = (projectile.displacement.direction * (180 / Math.PI)).ToString("F3");
+                        txtAnglePos.Text = (displacement.direction * (180 / Math.PI)).ToString("F3");
 
                         TextBox txtMagVel = (TextBox)tab.Controls.Find("txtMagVel", true).First(); //Mag of velocity
-                        txtMagVel.Text = projectile.velocity.magnitude.ToString("F3");
+                        txtMagVel.Text = velocity.magnitude.ToString("F3");
 
                         TextBox txtAngleVel = (TextBox)tab.Controls.Find("txtAngleVel", true).First(); //Direction of velocity
-                        txtAngleVel.Text = (projectile.velocity.direction * (180 / Math.PI)).ToString("F3");
+                        txtAngleVel.Text = (velocity.direction * (180 / Math.PI)).ToString("F3");
                         break;
                     case TabDisplayType.Energy:
                         //Set the values for energy
@@ -144,7 +130,25 @@ namespace Projectile_Sim
             btnPause.Enabled = false;
             btnPause.Text = "II";
             btnPlot.Enabled = true;
-            btnView.Enabled = true;
+            tsiView.Enabled = true;
+            btnDelete.Enabled = true;
+        }
+
+        private void UpdateProgressBarWorkaround(int value)
+        {
+            //Works stop animation by decrementing value
+            if (value < animationProgressBar.Maximum)
+            {
+                //Set one above correct value
+                animationProgressBar.Value = value + 1;
+            }
+            else
+            {
+                //Special case, set the value to max
+                value = animationProgressBar.Maximum;
+            }
+            //Immediately set it to the correct value, == previous value - 1
+            animationProgressBar.Value = value;
         }
 
         private void BtnAddProjectile_Click(object sender, EventArgs e)
@@ -203,8 +207,11 @@ namespace Projectile_Sim
                     break;
             }
 
+            Vector initDisplacement = new Vector(VectorType.component, 0, height);
+            Vector initAcceleration = new Vector(VectorType.component, 0, -g);
+
             //Adds projectile
-            simulation.projectiles.Add(new Projectile(ProjectileType.component, colour, initVelocity, height, -g));
+            simulation.projectiles.Add(new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration));
 
             //Add a tab
             AddTab();
@@ -217,10 +224,10 @@ namespace Projectile_Sim
             Control.ControlCollection controlCollection;
 
             //Define new tab contents control with selected type
-            ProjectileTabs[index] = new TabContents(displayType) { Dock = DockStyle.Fill };
+            projectileTabs[index] = new TabContents(displayType) { Dock = DockStyle.Fill };
             //Add the control to the tab
-            newTab.Controls.Add(ProjectileTabs[index]);
-            controlCollection = ProjectileTabs[index].Controls;
+            newTab.Controls.Add(projectileTabs[index]);
+            controlCollection = projectileTabs[index].Controls;
 
             //Set tab text and name to the colour
             newTab.Text = simulation.projectiles[index].colour.Name;
@@ -269,7 +276,7 @@ namespace Projectile_Sim
             btnPause.Enabled = true;
             btnPlot.Enabled = false;
             btnDelete.Enabled = false;
-            btnView.Enabled = false;
+            tsiView.Enabled = false;
 
             //Disable groups
             groupAddProjectile.Enabled = false;
@@ -328,13 +335,13 @@ namespace Projectile_Sim
             {
                 btnPause.Text = "II";
                 simulation.Resume();
-                btnView.Enabled = false;
+                tsiView.Enabled = false;
             }
             else
             {
                 btnPause.Text = "▶";
                 simulation.Pause();
-                btnView.Enabled = true;
+                tsiView.Enabled = true;
             }
         }
         
@@ -360,7 +367,7 @@ namespace Projectile_Sim
             if (txtPlotTo.Text == "") { txtPlotTo.Text = "End"; }
         }
 
-        private void btnExportGraph_Click(object sender, EventArgs e)
+        private void tsiExportGraph_Click(object sender, EventArgs e)
         {
             //Code to save the image displayed
             DialogResult result = MessageBox.Show("Use a transparent background?", "Background", MessageBoxButtons.YesNo);
@@ -412,7 +419,7 @@ namespace Projectile_Sim
             }
         }
 
-        private void btnExportPreset_Click(object sender, EventArgs e)
+        private void tsiExportPreset_Click(object sender, EventArgs e)
         {
             //Export a preset to an XML file, https://csharp.net-tutorials.com/xml/writing-xml-with-the-xmlwriter-class/
 
@@ -451,7 +458,7 @@ namespace Projectile_Sim
             }
         }
 
-        private void btnImportBackground_Click(object sender, EventArgs e)
+        private void tsiImportBackground_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog(); //Define dialog
             dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp"; //Set filter
@@ -461,7 +468,7 @@ namespace Projectile_Sim
             customBackground = new Bitmap(filepath); //Create a new bitmap from the file
             if (filepath != "") //If the filepath is not blank
             {
-                if (btnBrightenImage.Checked) //Only if the user wants to brighten their image
+                if (tsiBrightenImage.Checked) //Only if the user wants to brighten their image
                 {
                     for (int i = 0; i < customBackground.Width; i++)
                     {
@@ -490,14 +497,14 @@ namespace Projectile_Sim
             }
         }
 
-        private void removeBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsiRemoveBackground_Click(object sender, EventArgs e)
         {
             //Remove the custom background
             customBackground = null;
             pictureBoxPlot.Image = new Bitmap(pictureBoxPlot.Width, pictureBoxPlot.Height);
         }
 
-        private void btnImportPreset_Click(object sender, EventArgs e)
+        private void tsiImportPreset_Click(object sender, EventArgs e)
         {
             //Import preset from XML file
             OpenFileDialog dialog = new OpenFileDialog(); //Define dialog
@@ -529,11 +536,12 @@ namespace Projectile_Sim
                             Vector initAcceleration = new Vector(VectorType.component, Double.Parse(accelerationComponents[0]), Double.Parse(accelerationComponents[1]));
 
                             //Define projectile to add
-                            Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement.vertical, initAcceleration.vertical);
+                            Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration);
 
                             //Remove projectile with same name
                             tabSelectProjectile.TabPages.RemoveByKey(colour.Name);
                             simulation.RemoveProjectile(colour.Name);
+                            comboColour.Items.Remove(colour.Name);
 
                             //Add the projectile to the simulation and add a tab for it
                             simulation.AddProjectile(toAdd);
@@ -541,6 +549,16 @@ namespace Projectile_Sim
                         }
                     }
                 }
+
+                if (comboColour.Items.Count != 0) //If there are still colours left
+                {
+                    comboColour.SelectedItem = comboColour.Items[0]; //Go to next colour in list
+                }
+                else
+                {
+                    btnAddProjectile.Enabled = false; //Disable add projectile button
+                }
+
                 HandleTabsChanged();
                 
                 reader.Dispose();
@@ -560,7 +578,7 @@ namespace Projectile_Sim
             }
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsiSettings_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings(); //Defines settings form
             settings.ShowDialog(); //Show as a dialog box
@@ -574,21 +592,21 @@ namespace Projectile_Sim
             //Always check the item clicked
             btn.Checked = true;
 
-            if (btn.Equals(btnViewComponent))
+            if (btn.Equals(tsiViewComponent))
             {
                 //Set the other items to unchecked
-                btnViewMagnitudeDirection.Checked = btnViewEnergies.Checked = false;
+                tsiViewMagnitudeDirection.Checked = tsiViewEnergies.Checked = false;
                 //Set the displayType var
                 displayType = TabDisplayType.Component;
             }
-            if (btn.Equals(btnViewMagnitudeDirection))
+            if (btn.Equals(tsiViewMagnitudeDirection))
             {
-                btnViewComponent.Checked = btnViewEnergies.Checked = false;
+                tsiViewComponent.Checked = tsiViewEnergies.Checked = false;
                 displayType = TabDisplayType.Magnitude;
             }
-            if (btn.Equals(btnViewEnergies))
+            if (btn.Equals(tsiViewEnergies))
             {
-                btnViewComponent.Checked = btnViewMagnitudeDirection.Checked = false;
+                tsiViewComponent.Checked = tsiViewMagnitudeDirection.Checked = false;
                 displayType = TabDisplayType.Energy;
             }
 

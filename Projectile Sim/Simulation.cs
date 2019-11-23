@@ -45,7 +45,7 @@ namespace Projectile_Sim
 
 		/* End variables------------- */
 
-        public void DrawAxes()
+        private void DrawAxes()
         {
             //Bitmap canvas = new Bitmap(canvasContainer.Width, canvasContainer.Height);
             Bitmap canvas;
@@ -146,9 +146,11 @@ namespace Projectile_Sim
                 foreach (var projectile in projectiles)
                 {
                     //Update time, calculate scaled positions to plot
-                    projectile.Update(time);
-                    int x = (int)((projectile.displacement.horizontal) * pxPerX) + vAxisPos;
-                    int y = hAxisPos - (int)((projectile.displacement.vertical) * pxPerY);
+                    projectile.Update(time); //Update values for projectile
+                    Vector currentDisplacement = projectile.GetDisplacement();
+
+                    int x = (int)((currentDisplacement.horizontal) * pxPerX) + vAxisPos;
+                    int y = hAxisPos - (int)((currentDisplacement.vertical) * pxPerY);
 
                     //For each pixel surrounding the value to plot, radius = lineWidth
                     for (int i = x - (lineWidth - 1); i <= x + (lineWidth - 1); i++)

@@ -10,7 +10,7 @@ namespace Projectile_Sim
 
     public class Vector
     {
-        public double horizontal, vertical, magnitude, direction;
+        public readonly double horizontal, vertical, magnitude, direction;
         public readonly VectorType type;
 
         public Vector() => this.type = VectorType.component; //default vector type

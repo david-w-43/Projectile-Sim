@@ -7,29 +7,30 @@ using System.Drawing;
 
 namespace Projectile_Sim
 {
-
     public enum ProjectileType { speed, component, energy }
 
     public class Projectile
     {
-        public Vector displacement, velocity, acceleration = new Vector(VectorType.component);
+        private Vector displacement, velocity, acceleration = new Vector(VectorType.component);
+        private double kineticEnergy, gpEnergy;
         public readonly Vector initDisplacement, initVelocity, initAcceleration = new Vector(VectorType.component);
         public readonly double range, duration;
         public readonly Vector apex = new Vector(VectorType.component);
         public readonly Color colour;
         public readonly ProjectileType projectileType;
-
+        public readonly double mass;
         //End variables
 
-        public Projectile(ProjectileType type, Color colour, Vector initVelocity, double initialHeight, double g)
+        public Projectile(ProjectileType type, Color colour, Vector initVelocity, Vector initDisplacement, Vector initAcceleration, double mass = 1)
         {
             this.projectileType = type;
             this.initVelocity = initVelocity;
-            this.initDisplacement = new Vector(VectorType.component, 0, initialHeight);
+            this.initDisplacement = initDisplacement;
 
             //Only implementing vertical acceleration for now
-            acceleration = new Vector(VectorType.component, 0, g);
-            this.initAcceleration = acceleration;
+            this.initAcceleration = initAcceleration;
+            //Constant acceleration
+            acceleration = initAcceleration;
 
             this.colour = colour;
 
@@ -48,7 +49,11 @@ namespace Projectile_Sim
             this.apex = GetDisplacement(apexTime);    
         }
 
-        private Vector GetDisplacement(double time)
+        public Vector GetDisplacement() { return displacement; }
+
+        public Vector GetVelocity() { return velocity; }
+
+        public Vector GetDisplacement(double time)
         {
             // s = ut + 1/2 a t^2
 
@@ -69,7 +74,7 @@ namespace Projectile_Sim
             return toReturn;
         }
 
-        private Vector GetVelocity(double time)
+        public Vector GetVelocity(double time)
         {
             //v = u + at
             //Horizontal component
@@ -91,7 +96,24 @@ namespace Projectile_Sim
         {
             GetDisplacement(time);
             GetVelocity(time);
+            GetKineticEnergy(time);
+            GetGPEnergy(time);
         }
 
+        public double GetKineticEnergy(double time)
+        {
+            this.kineticEnergy = 0.5 * mass * velocity.magnitude * velocity.magnitude;
+            return this.kineticEnergy;
+        }
+
+        public double GetGPEnergy(double time)
+        {
+            this.gpEnergy = mass * initAcceleration.vertical * displacement.vertical;
+            return this.gpEnergy;
+        }
+
+        public double GetKineticEnergy() { return kineticEnergy; }
+
+        public double GetGPEnergy() { return gpEnergy; }
     }
 }

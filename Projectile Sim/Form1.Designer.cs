@@ -29,11 +29,19 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.btnView = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnViewComponent = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnViewMagnitudeDirection = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnViewEnergies = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiPreset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiImportPreset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiExportPreset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiBrightenImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiImportBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiRemoveBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiView = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiViewComponent = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiViewMagnitudeDirection = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiViewEnergies = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiExportGraph = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxPlot = new System.Windows.Forms.PictureBox();
@@ -111,14 +119,6 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
-            this.btnPreset = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnBackground = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnImportPreset = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnExportPreset = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnImportBackground = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnBrightenImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnExportGraph = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -160,58 +160,119 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnPreset,
-            this.btnBackground,
-            this.btnView,
-            this.btnExportGraph,
-            this.btnSettings});
+            this.tsiPreset,
+            this.tsiBackground,
+            this.tsiView,
+            this.tsiExportGraph,
+            this.tsiSettings});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // btnView
+            // tsiPreset
             // 
-            this.btnView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnViewComponent,
-            this.btnViewMagnitudeDirection,
-            this.btnViewEnergies});
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(44, 20);
-            this.btnView.Text = "View";
+            this.tsiPreset.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsiImportPreset,
+            this.tsiExportPreset});
+            this.tsiPreset.Name = "tsiPreset";
+            this.tsiPreset.Size = new System.Drawing.Size(51, 20);
+            this.tsiPreset.Text = "Preset";
             // 
-            // btnViewComponent
+            // tsiImportPreset
             // 
-            this.btnViewComponent.Checked = true;
-            this.btnViewComponent.CheckOnClick = true;
-            this.btnViewComponent.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.btnViewComponent.Name = "btnViewComponent";
-            this.btnViewComponent.Size = new System.Drawing.Size(191, 22);
-            this.btnViewComponent.Text = "Component";
-            this.btnViewComponent.Click += new System.EventHandler(this.HandleTabStyleChange);
+            this.tsiImportPreset.Name = "tsiImportPreset";
+            this.tsiImportPreset.Size = new System.Drawing.Size(154, 22);
+            this.tsiImportPreset.Text = "Import Preset...";
+            this.tsiImportPreset.Click += new System.EventHandler(this.tsiImportPreset_Click);
             // 
-            // btnViewMagnitudeDirection
+            // tsiExportPreset
             // 
-            this.btnViewMagnitudeDirection.Name = "btnViewMagnitudeDirection";
-            this.btnViewMagnitudeDirection.Size = new System.Drawing.Size(191, 22);
-            this.btnViewMagnitudeDirection.Text = "Magnitude / Direction";
-            this.btnViewMagnitudeDirection.Click += new System.EventHandler(this.HandleTabStyleChange);
+            this.tsiExportPreset.Name = "tsiExportPreset";
+            this.tsiExportPreset.Size = new System.Drawing.Size(154, 22);
+            this.tsiExportPreset.Text = "Export Preset...";
+            this.tsiExportPreset.Click += new System.EventHandler(this.tsiExportPreset_Click);
             // 
-            // btnViewEnergies
+            // tsiBackground
             // 
-            this.btnViewEnergies.CheckOnClick = true;
-            this.btnViewEnergies.Name = "btnViewEnergies";
-            this.btnViewEnergies.Size = new System.Drawing.Size(191, 22);
-            this.btnViewEnergies.Text = "Energies";
-            this.btnViewEnergies.Click += new System.EventHandler(this.HandleTabStyleChange);
+            this.tsiBackground.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsiBrightenImage,
+            this.tsiImportBackground,
+            this.tsiRemoveBackground});
+            this.tsiBackground.Name = "tsiBackground";
+            this.tsiBackground.Size = new System.Drawing.Size(83, 20);
+            this.tsiBackground.Text = "Background";
             // 
-            // btnSettings
+            // tsiBrightenImage
             // 
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(70, 20);
-            this.btnSettings.Text = "Settings...";
-            this.btnSettings.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            this.tsiBrightenImage.CheckOnClick = true;
+            this.tsiBrightenImage.Name = "tsiBrightenImage";
+            this.tsiBrightenImage.Size = new System.Drawing.Size(186, 22);
+            this.tsiBrightenImage.Text = "Brighten Image";
+            // 
+            // tsiImportBackground
+            // 
+            this.tsiImportBackground.Name = "tsiImportBackground";
+            this.tsiImportBackground.Size = new System.Drawing.Size(186, 22);
+            this.tsiImportBackground.Text = "Import Background...";
+            this.tsiImportBackground.Click += new System.EventHandler(this.tsiImportBackground_Click);
+            // 
+            // tsiRemoveBackground
+            // 
+            this.tsiRemoveBackground.Name = "tsiRemoveBackground";
+            this.tsiRemoveBackground.Size = new System.Drawing.Size(186, 22);
+            this.tsiRemoveBackground.Text = "Remove Background";
+            this.tsiRemoveBackground.Click += new System.EventHandler(this.tsiRemoveBackground_Click);
+            // 
+            // tsiView
+            // 
+            this.tsiView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsiViewComponent,
+            this.tsiViewMagnitudeDirection,
+            this.tsiViewEnergies});
+            this.tsiView.Name = "tsiView";
+            this.tsiView.Size = new System.Drawing.Size(44, 20);
+            this.tsiView.Text = "View";
+            // 
+            // tsiViewComponent
+            // 
+            this.tsiViewComponent.Checked = true;
+            this.tsiViewComponent.CheckOnClick = true;
+            this.tsiViewComponent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsiViewComponent.Name = "tsiViewComponent";
+            this.tsiViewComponent.Size = new System.Drawing.Size(191, 22);
+            this.tsiViewComponent.Text = "Component";
+            this.tsiViewComponent.Click += new System.EventHandler(this.HandleTabStyleChange);
+            // 
+            // tsiViewMagnitudeDirection
+            // 
+            this.tsiViewMagnitudeDirection.Name = "tsiViewMagnitudeDirection";
+            this.tsiViewMagnitudeDirection.Size = new System.Drawing.Size(191, 22);
+            this.tsiViewMagnitudeDirection.Text = "Magnitude / Direction";
+            this.tsiViewMagnitudeDirection.Click += new System.EventHandler(this.HandleTabStyleChange);
+            // 
+            // tsiViewEnergies
+            // 
+            this.tsiViewEnergies.CheckOnClick = true;
+            this.tsiViewEnergies.Name = "tsiViewEnergies";
+            this.tsiViewEnergies.Size = new System.Drawing.Size(191, 22);
+            this.tsiViewEnergies.Text = "Energies";
+            this.tsiViewEnergies.Click += new System.EventHandler(this.HandleTabStyleChange);
+            // 
+            // tsiExportGraph
+            // 
+            this.tsiExportGraph.Name = "tsiExportGraph";
+            this.tsiExportGraph.Size = new System.Drawing.Size(97, 20);
+            this.tsiExportGraph.Text = "Export Graph...";
+            this.tsiExportGraph.Click += new System.EventHandler(this.tsiExportGraph_Click);
+            // 
+            // tsiSettings
+            // 
+            this.tsiSettings.Name = "tsiSettings";
+            this.tsiSettings.Size = new System.Drawing.Size(70, 20);
+            this.tsiSettings.Text = "Settings...";
+            this.tsiSettings.Click += new System.EventHandler(this.tsiSettings_Click);
             // 
             // splitContainer1
             // 
@@ -313,6 +374,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabSelectProjectile.Location = new System.Drawing.Point(6, 45);
+            this.tabSelectProjectile.Multiline = true;
             this.tabSelectProjectile.Name = "tabSelectProjectile";
             this.tabSelectProjectile.SelectedIndex = 0;
             this.tabSelectProjectile.Size = new System.Drawing.Size(214, 209);
@@ -383,10 +445,12 @@
             this.comboColour.FormattingEnabled = true;
             this.comboColour.Items.AddRange(new object[] {
             "Black",
-            "Blue",
+            "Red",
             "Green",
+            "Blue",
+            "Cyan",
             "Magenta",
-            "Red"});
+            "Orange"});
             this.comboColour.Location = new System.Drawing.Point(87, 192);
             this.comboColour.Name = "comboColour";
             this.comboColour.Size = new System.Drawing.Size(126, 21);
@@ -1297,62 +1361,6 @@
             this.radioAnimated.Text = "Timescale:";
             this.radioAnimated.UseVisualStyleBackColor = true;
             // 
-            // btnPreset
-            // 
-            this.btnPreset.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnImportPreset,
-            this.btnExportPreset});
-            this.btnPreset.Name = "btnPreset";
-            this.btnPreset.Size = new System.Drawing.Size(51, 20);
-            this.btnPreset.Text = "Preset";
-            // 
-            // btnBackground
-            // 
-            this.btnBackground.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnBrightenImage,
-            this.btnImportBackground,
-            this.removeBackgroundToolStripMenuItem});
-            this.btnBackground.Name = "btnBackground";
-            this.btnBackground.Size = new System.Drawing.Size(83, 20);
-            this.btnBackground.Text = "Background";
-            // 
-            // btnImportPreset
-            // 
-            this.btnImportPreset.Name = "btnImportPreset";
-            this.btnImportPreset.Size = new System.Drawing.Size(180, 22);
-            this.btnImportPreset.Text = "Import Preset...";
-            // 
-            // btnExportPreset
-            // 
-            this.btnExportPreset.Name = "btnExportPreset";
-            this.btnExportPreset.Size = new System.Drawing.Size(180, 22);
-            this.btnExportPreset.Text = "Export Preset...";
-            // 
-            // btnImportBackground
-            // 
-            this.btnImportBackground.Name = "btnImportBackground";
-            this.btnImportBackground.Size = new System.Drawing.Size(186, 22);
-            this.btnImportBackground.Text = "Import Background...";
-            // 
-            // btnBrightenImage
-            // 
-            this.btnBrightenImage.CheckOnClick = true;
-            this.btnBrightenImage.Name = "btnBrightenImage";
-            this.btnBrightenImage.Size = new System.Drawing.Size(186, 22);
-            this.btnBrightenImage.Text = "Brighten Image";
-            // 
-            // removeBackgroundToolStripMenuItem
-            // 
-            this.removeBackgroundToolStripMenuItem.Name = "removeBackgroundToolStripMenuItem";
-            this.removeBackgroundToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.removeBackgroundToolStripMenuItem.Text = "Remove Background";
-            // 
-            // btnExportGraph
-            // 
-            this.btnExportGraph.Name = "btnExportGraph";
-            this.btnExportGraph.Size = new System.Drawing.Size(97, 20);
-            this.btnExportGraph.Text = "Export Graph...";
-            // 
             // Form1
             // 
             this.AcceptButton = this.btnPlot;
@@ -1496,20 +1504,20 @@
         private System.Windows.Forms.NumericUpDown upDownLineWidth;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ToolStripMenuItem btnView;
-        private System.Windows.Forms.ToolStripMenuItem btnViewComponent;
-        private System.Windows.Forms.ToolStripMenuItem btnViewMagnitudeDirection;
-        private System.Windows.Forms.ToolStripMenuItem btnViewEnergies;
-        private System.Windows.Forms.ToolStripMenuItem btnSettings;
+        private System.Windows.Forms.ToolStripMenuItem tsiView;
+        private System.Windows.Forms.ToolStripMenuItem tsiViewComponent;
+        private System.Windows.Forms.ToolStripMenuItem tsiViewMagnitudeDirection;
+        private System.Windows.Forms.ToolStripMenuItem tsiViewEnergies;
+        private System.Windows.Forms.ToolStripMenuItem tsiSettings;
         private System.Windows.Forms.ProgressBar animationProgressBar;
-        private System.Windows.Forms.ToolStripMenuItem btnPreset;
-        private System.Windows.Forms.ToolStripMenuItem btnImportPreset;
-        private System.Windows.Forms.ToolStripMenuItem btnExportPreset;
-        private System.Windows.Forms.ToolStripMenuItem btnBackground;
-        private System.Windows.Forms.ToolStripMenuItem btnBrightenImage;
-        private System.Windows.Forms.ToolStripMenuItem btnImportBackground;
-        private System.Windows.Forms.ToolStripMenuItem removeBackgroundToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem btnExportGraph;
+        private System.Windows.Forms.ToolStripMenuItem tsiPreset;
+        private System.Windows.Forms.ToolStripMenuItem tsiImportPreset;
+        private System.Windows.Forms.ToolStripMenuItem tsiExportPreset;
+        private System.Windows.Forms.ToolStripMenuItem tsiBackground;
+        private System.Windows.Forms.ToolStripMenuItem tsiBrightenImage;
+        private System.Windows.Forms.ToolStripMenuItem tsiImportBackground;
+        private System.Windows.Forms.ToolStripMenuItem tsiRemoveBackground;
+        private System.Windows.Forms.ToolStripMenuItem tsiExportGraph;
     }
 }
 
