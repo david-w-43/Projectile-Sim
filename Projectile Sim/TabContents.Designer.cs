@@ -62,6 +62,15 @@
             this.txtMagVel = new System.Windows.Forms.TextBox();
             this.lblVelocity2 = new System.Windows.Forms.Label();
             this.lblPosition2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtKineticEnergy = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtGPE = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTotalEnergy = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDurationUnits
@@ -432,6 +441,105 @@
             this.lblPosition2.Text = "Position:";
             this.lblPosition2.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 13);
+            this.label1.TabIndex = 73;
+            this.label1.Tag = "Energy";
+            this.label1.Text = "KE:";
+            this.label1.Visible = false;
+            // 
+            // txtKineticEnergy
+            // 
+            this.txtKineticEnergy.Location = new System.Drawing.Point(76, 3);
+            this.txtKineticEnergy.Name = "txtKineticEnergy";
+            this.txtKineticEnergy.ReadOnly = true;
+            this.txtKineticEnergy.Size = new System.Drawing.Size(95, 20);
+            this.txtKineticEnergy.TabIndex = 77;
+            this.txtKineticEnergy.Tag = "Energy";
+            this.txtKineticEnergy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKineticEnergy.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(177, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(12, 13);
+            this.label2.TabIndex = 78;
+            this.label2.Tag = "Energy";
+            this.label2.Text = "J";
+            this.label2.Visible = false;
+            // 
+            // txtGPE
+            // 
+            this.txtGPE.Location = new System.Drawing.Point(76, 29);
+            this.txtGPE.Name = "txtGPE";
+            this.txtGPE.ReadOnly = true;
+            this.txtGPE.Size = new System.Drawing.Size(95, 20);
+            this.txtGPE.TabIndex = 77;
+            this.txtGPE.Tag = "Energy";
+            this.txtGPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtGPE.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(38, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.TabIndex = 73;
+            this.label3.Tag = "Energy";
+            this.label3.Text = "GPE:";
+            this.label3.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(177, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(12, 13);
+            this.label4.TabIndex = 78;
+            this.label4.Tag = "Energy";
+            this.label4.Text = "J";
+            this.label4.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(36, 58);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(34, 13);
+            this.label5.TabIndex = 73;
+            this.label5.Tag = "Energy";
+            this.label5.Text = "Total:";
+            this.label5.Visible = false;
+            // 
+            // txtTotalEnergy
+            // 
+            this.txtTotalEnergy.Location = new System.Drawing.Point(76, 55);
+            this.txtTotalEnergy.Name = "txtTotalEnergy";
+            this.txtTotalEnergy.ReadOnly = true;
+            this.txtTotalEnergy.Size = new System.Drawing.Size(95, 20);
+            this.txtTotalEnergy.TabIndex = 77;
+            this.txtTotalEnergy.Tag = "Energy";
+            this.txtTotalEnergy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotalEnergy.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(177, 60);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(12, 13);
+            this.label6.TabIndex = 78;
+            this.label6.Tag = "Energy";
+            this.label6.Text = "J";
+            this.label6.Visible = false;
+            // 
             // TabContents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,11 +549,20 @@
             this.Controls.Add(this.lblVelocityDeg);
             this.Controls.Add(this.lblVelocitym);
             this.Controls.Add(this.lblPositionDeg);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblPositionM);
             this.Controls.Add(this.txtAnglePos);
             this.Controls.Add(this.txtAngleVel);
+            this.Controls.Add(this.txtTotalEnergy);
+            this.Controls.Add(this.txtGPE);
+            this.Controls.Add(this.txtKineticEnergy);
             this.Controls.Add(this.txtMagPos);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtMagVel);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblVelocity2);
             this.Controls.Add(this.lblPosition2);
             this.Controls.Add(this.lblDurationUnits);
@@ -471,8 +588,9 @@
             this.Controls.Add(this.lblDuration);
             this.Controls.Add(this.lblVelocity);
             this.Controls.Add(this.lblPosition);
+            this.MinimumSize = new System.Drawing.Size(228, 230);
             this.Name = "TabContents";
-            this.Size = new System.Drawing.Size(228, 230);
+            this.Size = new System.Drawing.Size(431, 230);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -514,5 +632,14 @@
         private System.Windows.Forms.TextBox txtMagVel;
         private System.Windows.Forms.Label lblVelocity2;
         private System.Windows.Forms.Label lblPosition2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtKineticEnergy;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtGPE;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtTotalEnergy;
+        private System.Windows.Forms.Label label6;
     }
 }

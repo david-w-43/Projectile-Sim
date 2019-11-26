@@ -77,6 +77,8 @@ namespace Projectile_Sim
 
                 Vector displacement = projectile.GetDisplacement();
                 Vector velocity = projectile.GetVelocity();
+                double KE = projectile.GetKineticEnergy();
+                double GPE = projectile.GetGPEnergy();
 
                 switch (((TabContents)tab.Controls[0]).displayType)
                 {
@@ -110,6 +112,16 @@ namespace Projectile_Sim
                         break;
                     case TabDisplayType.Energy:
                         //Set the values for energy
+
+                        TextBox txtKineticEnergy = (TextBox)tab.Controls.Find("txtKineticEnergy", true).First(); //Mag of position
+                        txtKineticEnergy.Text = KE.ToString("F3");
+
+                        TextBox txtGPE = (TextBox)tab.Controls.Find("txtGPE", true).First(); //Mag of position
+                        txtGPE.Text = GPE.ToString("F3");
+
+                        TextBox txtTotalEnergy = (TextBox)tab.Controls.Find("txtTotalEnergy", true).First(); //Mag of position
+                        txtTotalEnergy.Text = (KE + GPE).ToString("F3");
+
                         break;
                 }
             }

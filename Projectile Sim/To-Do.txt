@@ -1,7 +1,3 @@
 ﻿Add labels to axes of canvas
 Resize image, sized from bottom left of canvas
-Rewrite Projectile class to have getters and setters, use getters instead of property access in other classes
-Improve all class definitions and tidy up
-
-//All tabs in one array, single class for all tab types
-//Single control for the tabs, instantiate with type. Should be able to switch between types freely
+Implement mass
