@@ -21,7 +21,7 @@ namespace Projectile_Sim
         public readonly double mass;
         //End variables
 
-        public Projectile(ProjectileType type, Color colour, Vector initVelocity, Vector initDisplacement, Vector initAcceleration, double mass = 1)
+        public Projectile(ProjectileType type, Color colour, Vector initVelocity, Vector initDisplacement, Vector initAcceleration, double mass)
         {
             this.projectileType = type;
             this.initVelocity = initVelocity;

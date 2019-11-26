@@ -28,30 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblDurationUnits = new System.Windows.Forms.Label();
             this.lblVelocityUnits = new System.Windows.Forms.Label();
-            this.lblRangeUnits = new System.Windows.Forms.Label();
-            this.lblApexUnits = new System.Windows.Forms.Label();
             this.lblPositionUnits = new System.Windows.Forms.Label();
-            this.txtRange = new System.Windows.Forms.TextBox();
-            this.txtDuration = new System.Windows.Forms.TextBox();
-            this.txtVApex = new System.Windows.Forms.TextBox();
             this.txtVVel = new System.Windows.Forms.TextBox();
             this.txtVPos = new System.Windows.Forms.TextBox();
-            this.txtHApex = new System.Windows.Forms.TextBox();
             this.txtHVel = new System.Windows.Forms.TextBox();
-            this.lblApexCloseBracket = new System.Windows.Forms.Label();
             this.txtHPos = new System.Windows.Forms.TextBox();
-            this.lblApexOpenBracket = new System.Windows.Forms.Label();
             this.lblVelCloseBracket = new System.Windows.Forms.Label();
             this.lblVelOpenBracket = new System.Windows.Forms.Label();
             this.lblPosCloseBracket = new System.Windows.Forms.Label();
-            this.lblRange = new System.Windows.Forms.Label();
             this.lblPosOpenBracket = new System.Windows.Forms.Label();
-            this.lblDuration = new System.Windows.Forms.Label();
             this.lblVelocity = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
-            this.lblApex2 = new System.Windows.Forms.Label();
             this.lblVelocityDeg = new System.Windows.Forms.Label();
             this.lblVelocitym = new System.Windows.Forms.Label();
             this.lblPositionDeg = new System.Windows.Forms.Label();
@@ -71,17 +59,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtTotalEnergy = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.groupFixed = new System.Windows.Forms.GroupBox();
+            this.lblApex2 = new System.Windows.Forms.Label();
+            this.lblMassUnits = new System.Windows.Forms.Label();
+            this.lblDurationUnits = new System.Windows.Forms.Label();
+            this.lblRangeUnits = new System.Windows.Forms.Label();
+            this.lblApexUnits = new System.Windows.Forms.Label();
+            this.txtRange = new System.Windows.Forms.TextBox();
+            this.txtMass = new System.Windows.Forms.TextBox();
+            this.txtDuration = new System.Windows.Forms.TextBox();
+            this.txtVApex = new System.Windows.Forms.TextBox();
+            this.txtHApex = new System.Windows.Forms.TextBox();
+            this.lblApexCloseBracket = new System.Windows.Forms.Label();
+            this.lblApexOpenBracket = new System.Windows.Forms.Label();
+            this.lblRange = new System.Windows.Forms.Label();
+            this.lblMass = new System.Windows.Forms.Label();
+            this.lblDuration = new System.Windows.Forms.Label();
+            this.groupFixed.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblDurationUnits
-            // 
-            this.lblDurationUnits.AutoSize = true;
-            this.lblDurationUnits.Location = new System.Drawing.Point(177, 173);
-            this.lblDurationUnits.Name = "lblDurationUnits";
-            this.lblDurationUnits.Size = new System.Drawing.Size(12, 13);
-            this.lblDurationUnits.TabIndex = 71;
-            this.lblDurationUnits.Tag = "Common";
-            this.lblDurationUnits.Text = "s";
             // 
             // lblVelocityUnits
             // 
@@ -94,26 +89,6 @@
             this.lblVelocityUnits.Text = "m/s";
             this.lblVelocityUnits.Visible = false;
             // 
-            // lblRangeUnits
-            // 
-            this.lblRangeUnits.AutoSize = true;
-            this.lblRangeUnits.Location = new System.Drawing.Point(177, 199);
-            this.lblRangeUnits.Name = "lblRangeUnits";
-            this.lblRangeUnits.Size = new System.Drawing.Size(15, 13);
-            this.lblRangeUnits.TabIndex = 67;
-            this.lblRangeUnits.Tag = "Common";
-            this.lblRangeUnits.Text = "m";
-            // 
-            // lblApexUnits
-            // 
-            this.lblApexUnits.AutoSize = true;
-            this.lblApexUnits.Location = new System.Drawing.Point(185, 147);
-            this.lblApexUnits.Name = "lblApexUnits";
-            this.lblApexUnits.Size = new System.Drawing.Size(15, 13);
-            this.lblApexUnits.TabIndex = 68;
-            this.lblApexUnits.Tag = "Common";
-            this.lblApexUnits.Text = "m";
-            // 
             // lblPositionUnits
             // 
             this.lblPositionUnits.AutoSize = true;
@@ -124,36 +99,6 @@
             this.lblPositionUnits.Tag = "Component";
             this.lblPositionUnits.Text = "m";
             this.lblPositionUnits.Visible = false;
-            // 
-            // txtRange
-            // 
-            this.txtRange.Location = new System.Drawing.Point(76, 196);
-            this.txtRange.Name = "txtRange";
-            this.txtRange.ReadOnly = true;
-            this.txtRange.Size = new System.Drawing.Size(95, 20);
-            this.txtRange.TabIndex = 65;
-            this.txtRange.Tag = "Common";
-            this.txtRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtDuration
-            // 
-            this.txtDuration.Location = new System.Drawing.Point(76, 170);
-            this.txtDuration.Name = "txtDuration";
-            this.txtDuration.ReadOnly = true;
-            this.txtDuration.Size = new System.Drawing.Size(95, 20);
-            this.txtDuration.TabIndex = 64;
-            this.txtDuration.Tag = "Common";
-            this.txtDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtVApex
-            // 
-            this.txtVApex.Location = new System.Drawing.Point(76, 144);
-            this.txtVApex.Name = "txtVApex";
-            this.txtVApex.ReadOnly = true;
-            this.txtVApex.Size = new System.Drawing.Size(95, 20);
-            this.txtVApex.TabIndex = 63;
-            this.txtVApex.Tag = "Common";
-            this.txtVApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtVVel
             // 
@@ -177,16 +122,6 @@
             this.txtVPos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtVPos.Visible = false;
             // 
-            // txtHApex
-            // 
-            this.txtHApex.Location = new System.Drawing.Point(76, 123);
-            this.txtHApex.Name = "txtHApex";
-            this.txtHApex.ReadOnly = true;
-            this.txtHApex.Size = new System.Drawing.Size(95, 20);
-            this.txtHApex.TabIndex = 66;
-            this.txtHApex.Tag = "Common";
-            this.txtHApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // txtHVel
             // 
             this.txtHVel.Location = new System.Drawing.Point(76, 50);
@@ -198,17 +133,6 @@
             this.txtHVel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHVel.Visible = false;
             // 
-            // lblApexCloseBracket
-            // 
-            this.lblApexCloseBracket.AutoSize = true;
-            this.lblApexCloseBracket.Font = new System.Drawing.Font("Calibri Light", 28F);
-            this.lblApexCloseBracket.Location = new System.Drawing.Point(164, 120);
-            this.lblApexCloseBracket.Name = "lblApexCloseBracket";
-            this.lblApexCloseBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblApexCloseBracket.TabIndex = 58;
-            this.lblApexCloseBracket.Tag = "Common";
-            this.lblApexCloseBracket.Text = ")";
-            // 
             // txtHPos
             // 
             this.txtHPos.Location = new System.Drawing.Point(76, 3);
@@ -219,17 +143,6 @@
             this.txtHPos.Tag = "Component";
             this.txtHPos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHPos.Visible = false;
-            // 
-            // lblApexOpenBracket
-            // 
-            this.lblApexOpenBracket.AutoSize = true;
-            this.lblApexOpenBracket.Font = new System.Drawing.Font("Calibri Light", 28F);
-            this.lblApexOpenBracket.Location = new System.Drawing.Point(54, 120);
-            this.lblApexOpenBracket.Name = "lblApexOpenBracket";
-            this.lblApexOpenBracket.Size = new System.Drawing.Size(31, 46);
-            this.lblApexOpenBracket.TabIndex = 57;
-            this.lblApexOpenBracket.Tag = "Common";
-            this.lblApexOpenBracket.Text = "(";
             // 
             // lblVelCloseBracket
             // 
@@ -267,16 +180,6 @@
             this.lblPosCloseBracket.Text = ")";
             this.lblPosCloseBracket.Visible = false;
             // 
-            // lblRange
-            // 
-            this.lblRange.AutoSize = true;
-            this.lblRange.Location = new System.Drawing.Point(28, 199);
-            this.lblRange.Name = "lblRange";
-            this.lblRange.Size = new System.Drawing.Size(42, 13);
-            this.lblRange.TabIndex = 51;
-            this.lblRange.Tag = "Common";
-            this.lblRange.Text = "Range:";
-            // 
             // lblPosOpenBracket
             // 
             this.lblPosOpenBracket.AutoSize = true;
@@ -288,16 +191,6 @@
             this.lblPosOpenBracket.Tag = "Component";
             this.lblPosOpenBracket.Text = "(";
             this.lblPosOpenBracket.Visible = false;
-            // 
-            // lblDuration
-            // 
-            this.lblDuration.AutoSize = true;
-            this.lblDuration.Location = new System.Drawing.Point(20, 173);
-            this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(50, 13);
-            this.lblDuration.TabIndex = 50;
-            this.lblDuration.Tag = "Common";
-            this.lblDuration.Text = "Duration:";
             // 
             // lblVelocity
             // 
@@ -320,16 +213,6 @@
             this.lblPosition.Tag = "Component";
             this.lblPosition.Text = "Position:";
             this.lblPosition.Visible = false;
-            // 
-            // lblApex2
-            // 
-            this.lblApex2.AutoSize = true;
-            this.lblApex2.Location = new System.Drawing.Point(28, 130);
-            this.lblApex2.Name = "lblApex2";
-            this.lblApex2.Size = new System.Drawing.Size(34, 13);
-            this.lblApex2.TabIndex = 83;
-            this.lblApex2.Tag = "Common";
-            this.lblApex2.Text = "Apex:";
             // 
             // lblVelocityDeg
             // 
@@ -540,12 +423,189 @@
             this.label6.Text = "J";
             this.label6.Visible = false;
             // 
+            // groupFixed
+            // 
+            this.groupFixed.Controls.Add(this.lblApex2);
+            this.groupFixed.Controls.Add(this.lblMassUnits);
+            this.groupFixed.Controls.Add(this.lblDurationUnits);
+            this.groupFixed.Controls.Add(this.lblRangeUnits);
+            this.groupFixed.Controls.Add(this.lblApexUnits);
+            this.groupFixed.Controls.Add(this.txtRange);
+            this.groupFixed.Controls.Add(this.txtMass);
+            this.groupFixed.Controls.Add(this.txtDuration);
+            this.groupFixed.Controls.Add(this.txtVApex);
+            this.groupFixed.Controls.Add(this.txtHApex);
+            this.groupFixed.Controls.Add(this.lblApexCloseBracket);
+            this.groupFixed.Controls.Add(this.lblApexOpenBracket);
+            this.groupFixed.Controls.Add(this.lblRange);
+            this.groupFixed.Controls.Add(this.lblMass);
+            this.groupFixed.Controls.Add(this.lblDuration);
+            this.groupFixed.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupFixed.Location = new System.Drawing.Point(0, 114);
+            this.groupFixed.Name = "groupFixed";
+            this.groupFixed.Size = new System.Drawing.Size(228, 141);
+            this.groupFixed.TabIndex = 83;
+            this.groupFixed.TabStop = false;
+            this.groupFixed.Tag = "Common";
+            // 
+            // lblApex2
+            // 
+            this.lblApex2.AutoSize = true;
+            this.lblApex2.Location = new System.Drawing.Point(28, 26);
+            this.lblApex2.Name = "lblApex2";
+            this.lblApex2.Size = new System.Drawing.Size(34, 13);
+            this.lblApex2.TabIndex = 98;
+            this.lblApex2.Tag = "Common";
+            this.lblApex2.Text = "Apex:";
+            // 
+            // lblMassUnits
+            // 
+            this.lblMassUnits.AutoSize = true;
+            this.lblMassUnits.Location = new System.Drawing.Point(177, 69);
+            this.lblMassUnits.Name = "lblMassUnits";
+            this.lblMassUnits.Size = new System.Drawing.Size(19, 13);
+            this.lblMassUnits.TabIndex = 96;
+            this.lblMassUnits.Tag = "Common";
+            this.lblMassUnits.Text = "kg";
+            // 
+            // lblDurationUnits
+            // 
+            this.lblDurationUnits.AutoSize = true;
+            this.lblDurationUnits.Location = new System.Drawing.Point(177, 95);
+            this.lblDurationUnits.Name = "lblDurationUnits";
+            this.lblDurationUnits.Size = new System.Drawing.Size(12, 13);
+            this.lblDurationUnits.TabIndex = 97;
+            this.lblDurationUnits.Tag = "Common";
+            this.lblDurationUnits.Text = "s";
+            // 
+            // lblRangeUnits
+            // 
+            this.lblRangeUnits.AutoSize = true;
+            this.lblRangeUnits.Location = new System.Drawing.Point(177, 121);
+            this.lblRangeUnits.Name = "lblRangeUnits";
+            this.lblRangeUnits.Size = new System.Drawing.Size(15, 13);
+            this.lblRangeUnits.TabIndex = 94;
+            this.lblRangeUnits.Tag = "Common";
+            this.lblRangeUnits.Text = "m";
+            // 
+            // lblApexUnits
+            // 
+            this.lblApexUnits.AutoSize = true;
+            this.lblApexUnits.Location = new System.Drawing.Point(185, 43);
+            this.lblApexUnits.Name = "lblApexUnits";
+            this.lblApexUnits.Size = new System.Drawing.Size(15, 13);
+            this.lblApexUnits.TabIndex = 95;
+            this.lblApexUnits.Tag = "Common";
+            this.lblApexUnits.Text = "m";
+            // 
+            // txtRange
+            // 
+            this.txtRange.Location = new System.Drawing.Point(76, 118);
+            this.txtRange.Name = "txtRange";
+            this.txtRange.ReadOnly = true;
+            this.txtRange.Size = new System.Drawing.Size(95, 20);
+            this.txtRange.TabIndex = 92;
+            this.txtRange.Tag = "Common";
+            this.txtRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtMass
+            // 
+            this.txtMass.Location = new System.Drawing.Point(76, 66);
+            this.txtMass.Name = "txtMass";
+            this.txtMass.ReadOnly = true;
+            this.txtMass.Size = new System.Drawing.Size(95, 20);
+            this.txtMass.TabIndex = 90;
+            this.txtMass.Tag = "Common";
+            this.txtMass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtDuration
+            // 
+            this.txtDuration.Location = new System.Drawing.Point(76, 92);
+            this.txtDuration.Name = "txtDuration";
+            this.txtDuration.ReadOnly = true;
+            this.txtDuration.Size = new System.Drawing.Size(95, 20);
+            this.txtDuration.TabIndex = 91;
+            this.txtDuration.Tag = "Common";
+            this.txtDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtVApex
+            // 
+            this.txtVApex.Location = new System.Drawing.Point(76, 40);
+            this.txtVApex.Name = "txtVApex";
+            this.txtVApex.ReadOnly = true;
+            this.txtVApex.Size = new System.Drawing.Size(95, 20);
+            this.txtVApex.TabIndex = 89;
+            this.txtVApex.Tag = "Common";
+            this.txtVApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtHApex
+            // 
+            this.txtHApex.Location = new System.Drawing.Point(76, 19);
+            this.txtHApex.Name = "txtHApex";
+            this.txtHApex.ReadOnly = true;
+            this.txtHApex.Size = new System.Drawing.Size(95, 20);
+            this.txtHApex.TabIndex = 93;
+            this.txtHApex.Tag = "Common";
+            this.txtHApex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblApexCloseBracket
+            // 
+            this.lblApexCloseBracket.AutoSize = true;
+            this.lblApexCloseBracket.Font = new System.Drawing.Font("Calibri Light", 28F);
+            this.lblApexCloseBracket.Location = new System.Drawing.Point(164, 16);
+            this.lblApexCloseBracket.Name = "lblApexCloseBracket";
+            this.lblApexCloseBracket.Size = new System.Drawing.Size(31, 46);
+            this.lblApexCloseBracket.TabIndex = 88;
+            this.lblApexCloseBracket.Tag = "Common";
+            this.lblApexCloseBracket.Text = ")";
+            // 
+            // lblApexOpenBracket
+            // 
+            this.lblApexOpenBracket.AutoSize = true;
+            this.lblApexOpenBracket.Font = new System.Drawing.Font("Calibri Light", 28F);
+            this.lblApexOpenBracket.Location = new System.Drawing.Point(54, 16);
+            this.lblApexOpenBracket.Name = "lblApexOpenBracket";
+            this.lblApexOpenBracket.Size = new System.Drawing.Size(31, 46);
+            this.lblApexOpenBracket.TabIndex = 87;
+            this.lblApexOpenBracket.Tag = "Common";
+            this.lblApexOpenBracket.Text = "(";
+            // 
+            // lblRange
+            // 
+            this.lblRange.AutoSize = true;
+            this.lblRange.Location = new System.Drawing.Point(28, 121);
+            this.lblRange.Name = "lblRange";
+            this.lblRange.Size = new System.Drawing.Size(42, 13);
+            this.lblRange.TabIndex = 86;
+            this.lblRange.Tag = "Common";
+            this.lblRange.Text = "Range:";
+            // 
+            // lblMass
+            // 
+            this.lblMass.AutoSize = true;
+            this.lblMass.Location = new System.Drawing.Point(35, 69);
+            this.lblMass.Name = "lblMass";
+            this.lblMass.Size = new System.Drawing.Size(35, 13);
+            this.lblMass.TabIndex = 84;
+            this.lblMass.Tag = "Common";
+            this.lblMass.Text = "Mass:";
+            // 
+            // lblDuration
+            // 
+            this.lblDuration.AutoSize = true;
+            this.lblDuration.Location = new System.Drawing.Point(20, 95);
+            this.lblDuration.Name = "lblDuration";
+            this.lblDuration.Size = new System.Drawing.Size(50, 13);
+            this.lblDuration.TabIndex = 85;
+            this.lblDuration.Tag = "Common";
+            this.lblDuration.Text = "Duration:";
+            // 
             // TabContents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.lblApex2);
+            this.Controls.Add(this.groupFixed);
             this.Controls.Add(this.lblVelocityDeg);
             this.Controls.Add(this.lblVelocitym);
             this.Controls.Add(this.lblPositionDeg);
@@ -565,63 +625,41 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblVelocity2);
             this.Controls.Add(this.lblPosition2);
-            this.Controls.Add(this.lblDurationUnits);
             this.Controls.Add(this.lblVelocityUnits);
-            this.Controls.Add(this.lblRangeUnits);
-            this.Controls.Add(this.lblApexUnits);
             this.Controls.Add(this.lblPositionUnits);
-            this.Controls.Add(this.txtRange);
-            this.Controls.Add(this.txtDuration);
-            this.Controls.Add(this.txtVApex);
             this.Controls.Add(this.txtVVel);
             this.Controls.Add(this.txtVPos);
-            this.Controls.Add(this.txtHApex);
             this.Controls.Add(this.txtHVel);
-            this.Controls.Add(this.lblApexCloseBracket);
             this.Controls.Add(this.txtHPos);
-            this.Controls.Add(this.lblApexOpenBracket);
             this.Controls.Add(this.lblVelCloseBracket);
             this.Controls.Add(this.lblVelOpenBracket);
             this.Controls.Add(this.lblPosCloseBracket);
-            this.Controls.Add(this.lblRange);
             this.Controls.Add(this.lblPosOpenBracket);
-            this.Controls.Add(this.lblDuration);
             this.Controls.Add(this.lblVelocity);
             this.Controls.Add(this.lblPosition);
             this.MinimumSize = new System.Drawing.Size(228, 230);
             this.Name = "TabContents";
-            this.Size = new System.Drawing.Size(431, 230);
+            this.Size = new System.Drawing.Size(228, 255);
+            this.groupFixed.ResumeLayout(false);
+            this.groupFixed.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblDurationUnits;
         private System.Windows.Forms.Label lblVelocityUnits;
-        private System.Windows.Forms.Label lblRangeUnits;
-        private System.Windows.Forms.Label lblApexUnits;
         private System.Windows.Forms.Label lblPositionUnits;
-        private System.Windows.Forms.TextBox txtRange;
-        private System.Windows.Forms.TextBox txtDuration;
-        private System.Windows.Forms.TextBox txtVApex;
         private System.Windows.Forms.TextBox txtVVel;
         private System.Windows.Forms.TextBox txtVPos;
-        private System.Windows.Forms.TextBox txtHApex;
         private System.Windows.Forms.TextBox txtHVel;
-        private System.Windows.Forms.Label lblApexCloseBracket;
         private System.Windows.Forms.TextBox txtHPos;
-        private System.Windows.Forms.Label lblApexOpenBracket;
         private System.Windows.Forms.Label lblVelCloseBracket;
         private System.Windows.Forms.Label lblVelOpenBracket;
         private System.Windows.Forms.Label lblPosCloseBracket;
-        private System.Windows.Forms.Label lblRange;
         private System.Windows.Forms.Label lblPosOpenBracket;
-        private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.Label lblVelocity;
         private System.Windows.Forms.Label lblPosition;
-        private System.Windows.Forms.Label lblApex2;
         private System.Windows.Forms.Label lblVelocityDeg;
         private System.Windows.Forms.Label lblVelocitym;
         private System.Windows.Forms.Label lblPositionDeg;
@@ -641,5 +679,21 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtTotalEnergy;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupFixed;
+        private System.Windows.Forms.Label lblApex2;
+        private System.Windows.Forms.Label lblMassUnits;
+        private System.Windows.Forms.Label lblDurationUnits;
+        private System.Windows.Forms.Label lblRangeUnits;
+        private System.Windows.Forms.Label lblApexUnits;
+        private System.Windows.Forms.TextBox txtRange;
+        private System.Windows.Forms.TextBox txtMass;
+        private System.Windows.Forms.TextBox txtDuration;
+        private System.Windows.Forms.TextBox txtVApex;
+        private System.Windows.Forms.TextBox txtHApex;
+        private System.Windows.Forms.Label lblApexCloseBracket;
+        private System.Windows.Forms.Label lblApexOpenBracket;
+        private System.Windows.Forms.Label lblRange;
+        private System.Windows.Forms.Label lblMass;
+        private System.Windows.Forms.Label lblDuration;
     }
 }

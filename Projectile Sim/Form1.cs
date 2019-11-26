@@ -180,7 +180,10 @@ namespace Projectile_Sim
 
 
             //Defines common variables
-            double height = 0, g = 0, speed, angle;
+            double height = (double)upDownInitHeight.Value;
+            double g = (double)upDownG.Value, speed, angle;
+            double mass = (double)upDownMass.Value;
+
             Vector initVelocity = new Vector();
             
             //Depending on the current tab
@@ -193,19 +196,12 @@ namespace Projectile_Sim
 
                     //Create vector for initial velocity
                     initVelocity = new Vector(VectorType.magnitude, speed, angle);
-
-                    //Sets height and g
-                    height = (double)upDownInitHeight1.Value;
-                    g = (double)upDownG1.Value;
                     break;
                 case "Components":
                     double hVelocity = (double)upDownHVelocity.Value;
                     double vVelocity = (double)upDownVVelocity.Value;
 
                     initVelocity = new Vector(VectorType.component, hVelocity, vVelocity);
-
-                    height = (double)upDownInitHeight2.Value;
-                    g = (double)upDownG2.Value;
                     break;
                 case "Energy":
                     //Find speed from energy and mass
@@ -213,9 +209,6 @@ namespace Projectile_Sim
                     angle = (double)upDownAngle3.Value * (Math.PI / 180);
 
                     initVelocity = new Vector(VectorType.magnitude, speed, angle);
-
-                    height = (double)upDownInitHeight3.Value;
-                    g = (double)upDownG3.Value;
                     break;
             }
 
@@ -223,7 +216,7 @@ namespace Projectile_Sim
             Vector initAcceleration = new Vector(VectorType.component, 0, -g);
 
             //Adds projectile
-            simulation.projectiles.Add(new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration));
+            simulation.projectiles.Add(new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration, mass));
 
             //Add a tab
             AddTab();
@@ -260,6 +253,9 @@ namespace Projectile_Sim
 
             Control txtVApex = controlCollection.Find("txtVApex", true).First();
             txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString("F3");
+
+            Control txtMass = controlCollection.Find("txtMass", true).First();
+            txtMass.Text = simulation.projectiles[index].mass.ToString("F3");
 
 
             HandleTabsChanged();
@@ -453,14 +449,16 @@ namespace Projectile_Sim
                 {
                     writer.WriteStartElement("projectile");
                     writer.WriteAttributeString("colour", projectile.colour.Name);
-                    string velocity, acceleration, displacement;
+                    string velocity, acceleration, displacement, mass;
                     velocity = projectile.initVelocity.horizontal.ToString() + "," + projectile.initVelocity.vertical.ToString();
                     acceleration = projectile.initAcceleration.horizontal.ToString() + "," + projectile.initAcceleration.vertical.ToString();
                     displacement = projectile.initDisplacement.horizontal.ToString() + "," + projectile.initDisplacement.vertical.ToString();
+                    mass = projectile.mass.ToString();
 
                     writer.WriteAttributeString("velocity", velocity);
                     writer.WriteAttributeString("acceleration", acceleration);
                     writer.WriteAttributeString("displacement", displacement);
+                    writer.WriteAttributeString("mass", mass);
                     writer.WriteEndElement();
                 }
 
@@ -541,6 +539,7 @@ namespace Projectile_Sim
                             string[] velocityComponents = reader.GetAttribute("velocity").Split(","[0]);
                             string[] accelerationComponents = reader.GetAttribute("acceleration").Split(","[0]);
                             string[] displacementComponents = reader.GetAttribute("displacement").Split(","[0]);
+                            string mass = reader.GetAttribute("mass");
 
                             //Create vectors from components
                             Vector initVelocity = new Vector(VectorType.component, Double.Parse(velocityComponents[0]), Double.Parse(velocityComponents[1]));
@@ -548,7 +547,7 @@ namespace Projectile_Sim
                             Vector initAcceleration = new Vector(VectorType.component, Double.Parse(accelerationComponents[0]), Double.Parse(accelerationComponents[1]));
 
                             //Define projectile to add
-                            Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration);
+                            Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration, Double.Parse(mass));
 
                             //Remove projectile with same name
                             tabSelectProjectile.TabPages.RemoveByKey(colour.Name);

@@ -57,25 +57,13 @@
             this.lblColour = new System.Windows.Forms.Label();
             this.tabProjectileType = new System.Windows.Forms.TabControl();
             this.tabSpeedAngle = new System.Windows.Forms.TabPage();
-            this.upDownG1 = new System.Windows.Forms.NumericUpDown();
-            this.upDownInitHeight1 = new System.Windows.Forms.NumericUpDown();
             this.upDownAngle1 = new System.Windows.Forms.NumericUpDown();
             this.upDownSpeed1 = new System.Windows.Forms.NumericUpDown();
-            this.lblGUnits = new System.Windows.Forms.Label();
-            this.lblG = new System.Windows.Forms.Label();
-            this.lblHeightUnits = new System.Windows.Forms.Label();
-            this.lblInitHeight = new System.Windows.Forms.Label();
             this.lblAngleUnits = new System.Windows.Forms.Label();
             this.lblAngle = new System.Windows.Forms.Label();
             this.lblSpeedUnits = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
             this.tabComponents = new System.Windows.Forms.TabPage();
-            this.upDownG2 = new System.Windows.Forms.NumericUpDown();
-            this.upDownInitHeight2 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.upDownVVelocity = new System.Windows.Forms.NumericUpDown();
             this.upDownHVelocity = new System.Windows.Forms.NumericUpDown();
             this.lblVelocityUnits = new System.Windows.Forms.Label();
@@ -83,19 +71,10 @@
             this.lblVelOpenBracket = new System.Windows.Forms.Label();
             this.lblVelocity = new System.Windows.Forms.Label();
             this.tabEnergy = new System.Windows.Forms.TabPage();
-            this.upDownG3 = new System.Windows.Forms.NumericUpDown();
-            this.upDownMass = new System.Windows.Forms.NumericUpDown();
             this.upDownEnergy = new System.Windows.Forms.NumericUpDown();
-            this.upDownInitHeight3 = new System.Windows.Forms.NumericUpDown();
             this.upDownAngle3 = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnPause = new System.Windows.Forms.Button();
@@ -119,6 +98,15 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
+            this.upDownMass = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.upDownG = new System.Windows.Forms.NumericUpDown();
+            this.upDownInitHeight = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -133,20 +121,13 @@
             this.groupAddProjectile.SuspendLayout();
             this.tabProjectileType.SuspendLayout();
             this.tabSpeedAngle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownAngle1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownSpeed1)).BeginInit();
             this.tabComponents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownVVelocity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownHVelocity)).BeginInit();
             this.tabEnergy.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownEnergy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownAngle3)).BeginInit();
             this.groupPlotOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownLineWidth)).BeginInit();
@@ -155,6 +136,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.upDownHorizontal)).BeginInit();
             this.groupAnimation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -348,9 +332,9 @@
             this.groupCurrentValues.Controls.Add(this.txtTime);
             this.groupCurrentValues.Controls.Add(this.lblTime);
             this.groupCurrentValues.Controls.Add(this.lblTimeUnits);
-            this.groupCurrentValues.Location = new System.Drawing.Point(3, 257);
+            this.groupCurrentValues.Location = new System.Drawing.Point(3, 258);
             this.groupCurrentValues.Name = "groupCurrentValues";
-            this.groupCurrentValues.Size = new System.Drawing.Size(226, 290);
+            this.groupCurrentValues.Size = new System.Drawing.Size(226, 289);
             this.groupCurrentValues.TabIndex = 1;
             this.groupCurrentValues.TabStop = false;
             this.groupCurrentValues.Text = "Current Values";
@@ -360,7 +344,7 @@
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(6, 261);
+            this.btnDelete.Location = new System.Drawing.Point(6, 260);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(214, 23);
             this.btnDelete.TabIndex = 3;
@@ -377,7 +361,7 @@
             this.tabSelectProjectile.Multiline = true;
             this.tabSelectProjectile.Name = "tabSelectProjectile";
             this.tabSelectProjectile.SelectedIndex = 0;
-            this.tabSelectProjectile.Size = new System.Drawing.Size(214, 209);
+            this.tabSelectProjectile.Size = new System.Drawing.Size(214, 208);
             this.tabSelectProjectile.TabIndex = 2;
             // 
             // txtTime
@@ -412,13 +396,22 @@
             // 
             this.groupAddProjectile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupAddProjectile.Controls.Add(this.upDownG);
+            this.groupAddProjectile.Controls.Add(this.upDownInitHeight);
+            this.groupAddProjectile.Controls.Add(this.label5);
+            this.groupAddProjectile.Controls.Add(this.label6);
+            this.groupAddProjectile.Controls.Add(this.label7);
+            this.groupAddProjectile.Controls.Add(this.label8);
+            this.groupAddProjectile.Controls.Add(this.upDownMass);
+            this.groupAddProjectile.Controls.Add(this.label14);
+            this.groupAddProjectile.Controls.Add(this.label13);
             this.groupAddProjectile.Controls.Add(this.btnAddProjectile);
             this.groupAddProjectile.Controls.Add(this.comboColour);
             this.groupAddProjectile.Controls.Add(this.lblColour);
             this.groupAddProjectile.Controls.Add(this.tabProjectileType);
             this.groupAddProjectile.Location = new System.Drawing.Point(3, 3);
             this.groupAddProjectile.Name = "groupAddProjectile";
-            this.groupAddProjectile.Size = new System.Drawing.Size(226, 248);
+            this.groupAddProjectile.Size = new System.Drawing.Size(226, 249);
             this.groupAddProjectile.TabIndex = 0;
             this.groupAddProjectile.TabStop = false;
             this.groupAddProjectile.Text = "Add Projectile";
@@ -427,7 +420,7 @@
             // 
             this.btnAddProjectile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddProjectile.Location = new System.Drawing.Point(6, 219);
+            this.btnAddProjectile.Location = new System.Drawing.Point(6, 220);
             this.btnAddProjectile.Name = "btnAddProjectile";
             this.btnAddProjectile.Size = new System.Drawing.Size(214, 23);
             this.btnAddProjectile.TabIndex = 7;
@@ -451,7 +444,7 @@
             "Cyan",
             "Magenta",
             "Orange"});
-            this.comboColour.Location = new System.Drawing.Point(87, 192);
+            this.comboColour.Location = new System.Drawing.Point(87, 193);
             this.comboColour.Name = "comboColour";
             this.comboColour.Size = new System.Drawing.Size(126, 21);
             this.comboColour.TabIndex = 6;
@@ -461,7 +454,7 @@
             this.lblColour.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblColour.AutoSize = true;
-            this.lblColour.Location = new System.Drawing.Point(41, 195);
+            this.lblColour.Location = new System.Drawing.Point(41, 196);
             this.lblColour.Name = "lblColour";
             this.lblColour.Size = new System.Drawing.Size(40, 13);
             this.lblColour.TabIndex = 1;
@@ -479,19 +472,13 @@
             this.tabProjectileType.Multiline = true;
             this.tabProjectileType.Name = "tabProjectileType";
             this.tabProjectileType.SelectedIndex = 0;
-            this.tabProjectileType.Size = new System.Drawing.Size(214, 167);
+            this.tabProjectileType.Size = new System.Drawing.Size(214, 87);
             this.tabProjectileType.TabIndex = 0;
             // 
             // tabSpeedAngle
             // 
-            this.tabSpeedAngle.Controls.Add(this.upDownG1);
-            this.tabSpeedAngle.Controls.Add(this.upDownInitHeight1);
             this.tabSpeedAngle.Controls.Add(this.upDownAngle1);
             this.tabSpeedAngle.Controls.Add(this.upDownSpeed1);
-            this.tabSpeedAngle.Controls.Add(this.lblGUnits);
-            this.tabSpeedAngle.Controls.Add(this.lblG);
-            this.tabSpeedAngle.Controls.Add(this.lblHeightUnits);
-            this.tabSpeedAngle.Controls.Add(this.lblInitHeight);
             this.tabSpeedAngle.Controls.Add(this.lblAngleUnits);
             this.tabSpeedAngle.Controls.Add(this.lblAngle);
             this.tabSpeedAngle.Controls.Add(this.lblSpeedUnits);
@@ -499,48 +486,10 @@
             this.tabSpeedAngle.Location = new System.Drawing.Point(4, 22);
             this.tabSpeedAngle.Name = "tabSpeedAngle";
             this.tabSpeedAngle.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSpeedAngle.Size = new System.Drawing.Size(206, 141);
+            this.tabSpeedAngle.Size = new System.Drawing.Size(206, 61);
             this.tabSpeedAngle.TabIndex = 0;
             this.tabSpeedAngle.Text = "Speed / Angle";
             this.tabSpeedAngle.UseVisualStyleBackColor = true;
-            // 
-            // upDownG1
-            // 
-            this.upDownG1.DecimalPlaces = 2;
-            this.upDownG1.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownG1.Location = new System.Drawing.Point(92, 84);
-            this.upDownG1.Name = "upDownG1";
-            this.upDownG1.Size = new System.Drawing.Size(76, 20);
-            this.upDownG1.TabIndex = 4;
-            this.upDownG1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.upDownG1.Value = new decimal(new int[] {
-            98,
-            0,
-            0,
-            65536});
-            // 
-            // upDownInitHeight1
-            // 
-            this.upDownInitHeight1.DecimalPlaces = 2;
-            this.upDownInitHeight1.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownInitHeight1.Location = new System.Drawing.Point(92, 58);
-            this.upDownInitHeight1.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.upDownInitHeight1.Name = "upDownInitHeight1";
-            this.upDownInitHeight1.Size = new System.Drawing.Size(76, 20);
-            this.upDownInitHeight1.TabIndex = 3;
-            this.upDownInitHeight1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // upDownAngle1
             // 
@@ -590,42 +539,6 @@
             this.upDownSpeed1.TabIndex = 1;
             this.upDownSpeed1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // lblGUnits
-            // 
-            this.lblGUnits.AutoSize = true;
-            this.lblGUnits.Location = new System.Drawing.Point(174, 86);
-            this.lblGUnits.Name = "lblGUnits";
-            this.lblGUnits.Size = new System.Drawing.Size(28, 13);
-            this.lblGUnits.TabIndex = 0;
-            this.lblGUnits.Text = "m/s²";
-            // 
-            // lblG
-            // 
-            this.lblG.AutoSize = true;
-            this.lblG.Location = new System.Drawing.Point(70, 86);
-            this.lblG.Name = "lblG";
-            this.lblG.Size = new System.Drawing.Size(16, 13);
-            this.lblG.TabIndex = 0;
-            this.lblG.Text = "g:";
-            // 
-            // lblHeightUnits
-            // 
-            this.lblHeightUnits.AutoSize = true;
-            this.lblHeightUnits.Location = new System.Drawing.Point(174, 60);
-            this.lblHeightUnits.Name = "lblHeightUnits";
-            this.lblHeightUnits.Size = new System.Drawing.Size(15, 13);
-            this.lblHeightUnits.TabIndex = 0;
-            this.lblHeightUnits.Text = "m";
-            // 
-            // lblInitHeight
-            // 
-            this.lblInitHeight.AutoSize = true;
-            this.lblInitHeight.Location = new System.Drawing.Point(25, 60);
-            this.lblInitHeight.Name = "lblInitHeight";
-            this.lblInitHeight.Size = new System.Drawing.Size(61, 13);
-            this.lblInitHeight.TabIndex = 0;
-            this.lblInitHeight.Text = "Init. Height:";
-            // 
             // lblAngleUnits
             // 
             this.lblAngleUnits.AutoSize = true;
@@ -664,12 +577,6 @@
             // 
             // tabComponents
             // 
-            this.tabComponents.Controls.Add(this.upDownG2);
-            this.tabComponents.Controls.Add(this.upDownInitHeight2);
-            this.tabComponents.Controls.Add(this.label1);
-            this.tabComponents.Controls.Add(this.label2);
-            this.tabComponents.Controls.Add(this.label3);
-            this.tabComponents.Controls.Add(this.label4);
             this.tabComponents.Controls.Add(this.upDownVVelocity);
             this.tabComponents.Controls.Add(this.upDownHVelocity);
             this.tabComponents.Controls.Add(this.lblVelocityUnits);
@@ -679,84 +586,10 @@
             this.tabComponents.Location = new System.Drawing.Point(4, 22);
             this.tabComponents.Name = "tabComponents";
             this.tabComponents.Padding = new System.Windows.Forms.Padding(3);
-            this.tabComponents.Size = new System.Drawing.Size(206, 141);
+            this.tabComponents.Size = new System.Drawing.Size(206, 61);
             this.tabComponents.TabIndex = 1;
             this.tabComponents.Text = "Components";
             this.tabComponents.UseVisualStyleBackColor = true;
-            // 
-            // upDownG2
-            // 
-            this.upDownG2.DecimalPlaces = 2;
-            this.upDownG2.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownG2.Location = new System.Drawing.Point(92, 84);
-            this.upDownG2.Name = "upDownG2";
-            this.upDownG2.Size = new System.Drawing.Size(76, 20);
-            this.upDownG2.TabIndex = 4;
-            this.upDownG2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.upDownG2.Value = new decimal(new int[] {
-            98,
-            0,
-            0,
-            65536});
-            // 
-            // upDownInitHeight2
-            // 
-            this.upDownInitHeight2.DecimalPlaces = 2;
-            this.upDownInitHeight2.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownInitHeight2.Location = new System.Drawing.Point(92, 58);
-            this.upDownInitHeight2.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.upDownInitHeight2.Name = "upDownInitHeight2";
-            this.upDownInitHeight2.Size = new System.Drawing.Size(76, 20);
-            this.upDownInitHeight2.TabIndex = 3;
-            this.upDownInitHeight2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(174, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 13);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "m/s²";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 13);
-            this.label2.TabIndex = 55;
-            this.label2.Text = "g:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(174, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(15, 13);
-            this.label3.TabIndex = 56;
-            this.label3.Text = "m";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 60);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
-            this.label4.TabIndex = 57;
-            this.label4.Text = "Init. Height:";
             // 
             // upDownVVelocity
             // 
@@ -841,65 +674,18 @@
             // 
             // tabEnergy
             // 
-            this.tabEnergy.Controls.Add(this.upDownG3);
-            this.tabEnergy.Controls.Add(this.upDownMass);
             this.tabEnergy.Controls.Add(this.upDownEnergy);
-            this.tabEnergy.Controls.Add(this.upDownInitHeight3);
             this.tabEnergy.Controls.Add(this.upDownAngle3);
-            this.tabEnergy.Controls.Add(this.label14);
-            this.tabEnergy.Controls.Add(this.label5);
             this.tabEnergy.Controls.Add(this.label12);
-            this.tabEnergy.Controls.Add(this.label13);
-            this.tabEnergy.Controls.Add(this.label6);
             this.tabEnergy.Controls.Add(this.label11);
-            this.tabEnergy.Controls.Add(this.label7);
-            this.tabEnergy.Controls.Add(this.label8);
             this.tabEnergy.Controls.Add(this.label9);
             this.tabEnergy.Controls.Add(this.label10);
             this.tabEnergy.Location = new System.Drawing.Point(4, 22);
             this.tabEnergy.Name = "tabEnergy";
-            this.tabEnergy.Size = new System.Drawing.Size(206, 141);
+            this.tabEnergy.Size = new System.Drawing.Size(206, 61);
             this.tabEnergy.TabIndex = 2;
             this.tabEnergy.Text = "Energy";
             this.tabEnergy.UseVisualStyleBackColor = true;
-            // 
-            // upDownG3
-            // 
-            this.upDownG3.DecimalPlaces = 2;
-            this.upDownG3.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownG3.Location = new System.Drawing.Point(92, 110);
-            this.upDownG3.Name = "upDownG3";
-            this.upDownG3.Size = new System.Drawing.Size(76, 20);
-            this.upDownG3.TabIndex = 5;
-            this.upDownG3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.upDownG3.Value = new decimal(new int[] {
-            98,
-            0,
-            0,
-            65536});
-            // 
-            // upDownMass
-            // 
-            this.upDownMass.DecimalPlaces = 2;
-            this.upDownMass.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownMass.Location = new System.Drawing.Point(92, 32);
-            this.upDownMass.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.upDownMass.Name = "upDownMass";
-            this.upDownMass.Size = new System.Drawing.Size(76, 20);
-            this.upDownMass.TabIndex = 2;
-            this.upDownMass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // upDownEnergy
             // 
@@ -920,25 +706,6 @@
             this.upDownEnergy.TabIndex = 1;
             this.upDownEnergy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // upDownInitHeight3
-            // 
-            this.upDownInitHeight3.DecimalPlaces = 2;
-            this.upDownInitHeight3.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownInitHeight3.Location = new System.Drawing.Point(92, 84);
-            this.upDownInitHeight3.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.upDownInitHeight3.Name = "upDownInitHeight3";
-            this.upDownInitHeight3.Size = new System.Drawing.Size(76, 20);
-            this.upDownInitHeight3.TabIndex = 4;
-            this.upDownInitHeight3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // upDownAngle3
             // 
             this.upDownAngle3.DecimalPlaces = 2;
@@ -947,7 +714,7 @@
             0,
             0,
             65536});
-            this.upDownAngle3.Location = new System.Drawing.Point(92, 58);
+            this.upDownAngle3.Location = new System.Drawing.Point(92, 32);
             this.upDownAngle3.Maximum = new decimal(new int[] {
             90,
             0,
@@ -968,24 +735,6 @@
             0,
             0});
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(174, 34);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(19, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "kg";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(174, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "m/s²";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -994,24 +743,6 @@
             this.label12.Size = new System.Drawing.Size(12, 13);
             this.label12.TabIndex = 4;
             this.label12.Text = "J";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(51, 34);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Mass:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(70, 112);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(16, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "g:";
             // 
             // label11
             // 
@@ -1022,28 +753,10 @@
             this.label11.TabIndex = 5;
             this.label11.Text = "Kinetic Energy:";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(174, 86);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(15, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "m";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 86);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Init. Height:";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(174, 60);
+            this.label9.Location = new System.Drawing.Point(174, 34);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(11, 13);
             this.label9.TabIndex = 6;
@@ -1052,7 +765,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(49, 60);
+            this.label10.Location = new System.Drawing.Point(49, 34);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 13);
             this.label10.TabIndex = 7;
@@ -1361,6 +1074,131 @@
             this.radioAnimated.Text = "Timescale:";
             this.radioAnimated.UseVisualStyleBackColor = true;
             // 
+            // upDownMass
+            // 
+            this.upDownMass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.upDownMass.DecimalPlaces = 2;
+            this.upDownMass.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.upDownMass.Location = new System.Drawing.Point(102, 167);
+            this.upDownMass.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.upDownMass.Name = "upDownMass";
+            this.upDownMass.Size = new System.Drawing.Size(76, 20);
+            this.upDownMass.TabIndex = 8;
+            this.upDownMass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.upDownMass.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(184, 169);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(19, 13);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "kg";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(61, 169);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Mass:";
+            // 
+            // upDownG
+            // 
+            this.upDownG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.upDownG.DecimalPlaces = 2;
+            this.upDownG.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.upDownG.Location = new System.Drawing.Point(102, 141);
+            this.upDownG.Name = "upDownG";
+            this.upDownG.Size = new System.Drawing.Size(76, 20);
+            this.upDownG.TabIndex = 21;
+            this.upDownG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.upDownG.Value = new decimal(new int[] {
+            98,
+            0,
+            0,
+            65536});
+            // 
+            // upDownInitHeight
+            // 
+            this.upDownInitHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.upDownInitHeight.DecimalPlaces = 2;
+            this.upDownInitHeight.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.upDownInitHeight.Location = new System.Drawing.Point(102, 115);
+            this.upDownInitHeight.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.upDownInitHeight.Name = "upDownInitHeight";
+            this.upDownInitHeight.Size = new System.Drawing.Size(76, 20);
+            this.upDownInitHeight.TabIndex = 19;
+            this.upDownInitHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(184, 143);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "m/s²";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(80, 143);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(16, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "g:";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(184, 117);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(15, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "m";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(35, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 13);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Init. Height:";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnPlot;
@@ -1393,22 +1231,15 @@
             this.tabProjectileType.ResumeLayout(false);
             this.tabSpeedAngle.ResumeLayout(false);
             this.tabSpeedAngle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownAngle1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownSpeed1)).EndInit();
             this.tabComponents.ResumeLayout(false);
             this.tabComponents.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownVVelocity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownHVelocity)).EndInit();
             this.tabEnergy.ResumeLayout(false);
             this.tabEnergy.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownEnergy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownAngle3)).EndInit();
             this.groupPlotOptions.ResumeLayout(false);
             this.groupPlotOptions.PerformLayout();
@@ -1420,6 +1251,9 @@
             this.groupAnimation.ResumeLayout(false);
             this.groupAnimation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1442,25 +1276,13 @@
         private System.Windows.Forms.Label lblColour;
         private System.Windows.Forms.TabControl tabProjectileType;
         private System.Windows.Forms.TabPage tabSpeedAngle;
-        private System.Windows.Forms.NumericUpDown upDownG1;
-        private System.Windows.Forms.NumericUpDown upDownInitHeight1;
         private System.Windows.Forms.NumericUpDown upDownAngle1;
         private System.Windows.Forms.NumericUpDown upDownSpeed1;
-        private System.Windows.Forms.Label lblGUnits;
-        private System.Windows.Forms.Label lblG;
-        private System.Windows.Forms.Label lblHeightUnits;
-        private System.Windows.Forms.Label lblInitHeight;
         private System.Windows.Forms.Label lblAngleUnits;
         private System.Windows.Forms.Label lblAngle;
         private System.Windows.Forms.Label lblSpeedUnits;
         private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.TabPage tabComponents;
-        private System.Windows.Forms.NumericUpDown upDownG2;
-        private System.Windows.Forms.NumericUpDown upDownInitHeight2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown upDownVVelocity;
         private System.Windows.Forms.NumericUpDown upDownHVelocity;
         private System.Windows.Forms.Label lblVelocityUnits;
@@ -1468,19 +1290,10 @@
         private System.Windows.Forms.Label lblVelOpenBracket;
         private System.Windows.Forms.Label lblVelocity;
         private System.Windows.Forms.TabPage tabEnergy;
-        private System.Windows.Forms.NumericUpDown upDownG3;
-        private System.Windows.Forms.NumericUpDown upDownMass;
         private System.Windows.Forms.NumericUpDown upDownEnergy;
-        private System.Windows.Forms.NumericUpDown upDownInitHeight3;
         private System.Windows.Forms.NumericUpDown upDownAngle3;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupAnimation;
@@ -1518,6 +1331,15 @@
         private System.Windows.Forms.ToolStripMenuItem tsiImportBackground;
         private System.Windows.Forms.ToolStripMenuItem tsiRemoveBackground;
         private System.Windows.Forms.ToolStripMenuItem tsiExportGraph;
+        private System.Windows.Forms.NumericUpDown upDownMass;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.NumericUpDown upDownG;
+        private System.Windows.Forms.NumericUpDown upDownInitHeight;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 
