@@ -185,7 +185,7 @@ namespace Projectile_Sim
             Program.form1.Invoke(Program.form1.updateTimeDelegate, time);
 
             //Experimenting with upper bound, due to system variations it is not always consistent with update intervals and whatnot
-            if (time < toTime + (10 * updateTimeInterval)) 
+            if (time < toTime + (10 * updateTimeInterval * timescale)) 
             {
                 if (time > toTime) { time = toTime; } //If overshot the time to plot to, restrict
 
