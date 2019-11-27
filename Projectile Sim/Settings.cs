@@ -24,6 +24,7 @@ namespace Projectile_Sim
 
             //Load current settings into controls
             upDownMarginOffset.Value = properties.margin;
+            upDownDecimalPlaces.Value = properties.decimalPlaces;
             upDownFramerate.Value = properties.framerate;
             upDownXScale.Value = (decimal)properties.defaultXScale;
             upDownYScale.Value = (decimal)properties.defaultYScale;
@@ -45,6 +46,7 @@ namespace Projectile_Sim
             //Check if values are valid or not
             bool valid = true;
             if (upDownMarginOffset.Value < 0) { valid = false; }
+            if (upDownDecimalPlaces.Value < 0) { valid = false; }
             if (upDownFramerate.Value <= 0) { valid = false; }
             if (upDownXScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
             if (upDownYScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
@@ -54,6 +56,7 @@ namespace Projectile_Sim
                 var properties = Properties.Settings.Default;
 
                 properties.margin = (int)upDownMarginOffset.Value;
+                properties.decimalPlaces = (int)upDownDecimalPlaces.Value;
                 properties.framerate = (int)upDownFramerate.Value;
                 properties.useScales = checkBoxUseScales.Checked;
                 properties.defaultXScale = (double)upDownXScale.Value;

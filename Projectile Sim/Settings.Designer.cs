@@ -43,19 +43,22 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.upDownFramerate = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.upDownDecimalPlaces = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.upDownMarginOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownXScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownYScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownFramerate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownDecimalPlaces)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(153, 165);
+            this.btnOK.Location = new System.Drawing.Point(153, 198);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 0;
+            this.btnOK.TabIndex = 7;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -64,10 +67,10 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(72, 165);
+            this.btnCancel.Location = new System.Drawing.Point(72, 198);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -96,7 +99,7 @@
             0});
             this.upDownMarginOffset.Name = "upDownMarginOffset";
             this.upDownMarginOffset.Size = new System.Drawing.Size(67, 20);
-            this.upDownMarginOffset.TabIndex = 3;
+            this.upDownMarginOffset.TabIndex = 0;
             // 
             // label2
             // 
@@ -110,7 +113,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 95);
+            this.label3.Location = new System.Drawing.Point(32, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 4;
@@ -119,7 +122,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(191, 95);
+            this.label4.Location = new System.Drawing.Point(191, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(15, 13);
             this.label4.TabIndex = 2;
@@ -132,7 +135,7 @@
             0,
             0,
             0});
-            this.upDownXScale.Location = new System.Drawing.Point(118, 93);
+            this.upDownXScale.Location = new System.Drawing.Point(118, 135);
             this.upDownXScale.Maximum = new decimal(new int[] {
             50,
             0,
@@ -140,12 +143,12 @@
             0});
             this.upDownXScale.Name = "upDownXScale";
             this.upDownXScale.Size = new System.Drawing.Size(67, 20);
-            this.upDownXScale.TabIndex = 3;
+            this.upDownXScale.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(191, 121);
+            this.label5.Location = new System.Drawing.Point(191, 163);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(15, 13);
             this.label5.TabIndex = 2;
@@ -158,7 +161,7 @@
             0,
             0,
             0});
-            this.upDownYScale.Location = new System.Drawing.Point(118, 119);
+            this.upDownYScale.Location = new System.Drawing.Point(118, 161);
             this.upDownYScale.Maximum = new decimal(new int[] {
             50,
             0,
@@ -166,12 +169,12 @@
             0});
             this.upDownYScale.Name = "upDownYScale";
             this.upDownYScale.Size = new System.Drawing.Size(67, 20);
-            this.upDownYScale.TabIndex = 3;
+            this.upDownYScale.TabIndex = 5;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 121);
+            this.label6.Location = new System.Drawing.Point(32, 163);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 4;
@@ -182,10 +185,10 @@
             this.checkBoxUseScales.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxUseScales.AutoSize = true;
-            this.checkBoxUseScales.Location = new System.Drawing.Point(60, 70);
+            this.checkBoxUseScales.Location = new System.Drawing.Point(60, 112);
             this.checkBoxUseScales.Name = "checkBoxUseScales";
             this.checkBoxUseScales.Size = new System.Drawing.Size(110, 17);
-            this.checkBoxUseScales.TabIndex = 5;
+            this.checkBoxUseScales.TabIndex = 3;
             this.checkBoxUseScales.Text = "Use preset scales";
             this.checkBoxUseScales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxUseScales.UseVisualStyleBackColor = true;
@@ -193,7 +196,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(55, 40);
+            this.label7.Location = new System.Drawing.Point(55, 66);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 2;
@@ -202,7 +205,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(191, 40);
+            this.label8.Location = new System.Drawing.Point(191, 66);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(20, 13);
             this.label8.TabIndex = 2;
@@ -215,7 +218,7 @@
             0,
             0,
             0});
-            this.upDownFramerate.Location = new System.Drawing.Point(118, 38);
+            this.upDownFramerate.Location = new System.Drawing.Point(118, 64);
             this.upDownFramerate.Maximum = new decimal(new int[] {
             60,
             0,
@@ -223,7 +226,28 @@
             0});
             this.upDownFramerate.Name = "upDownFramerate";
             this.upDownFramerate.Size = new System.Drawing.Size(67, 20);
-            this.upDownFramerate.TabIndex = 3;
+            this.upDownFramerate.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(29, 40);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(83, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Decimal Places:";
+            // 
+            // upDownDecimalPlaces
+            // 
+            this.upDownDecimalPlaces.Location = new System.Drawing.Point(118, 38);
+            this.upDownDecimalPlaces.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.upDownDecimalPlaces.Name = "upDownDecimalPlaces";
+            this.upDownDecimalPlaces.Size = new System.Drawing.Size(67, 20);
+            this.upDownDecimalPlaces.TabIndex = 1;
             // 
             // Settings
             // 
@@ -231,7 +255,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(240, 200);
+            this.ClientSize = new System.Drawing.Size(240, 233);
             this.Controls.Add(this.checkBoxUseScales);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
@@ -239,8 +263,10 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.upDownXScale);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.upDownDecimalPlaces);
             this.Controls.Add(this.upDownFramerate);
             this.Controls.Add(this.label8);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.upDownMarginOffset);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
@@ -257,6 +283,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.upDownXScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownYScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownFramerate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownDecimalPlaces)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,5 +306,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown upDownFramerate;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown upDownDecimalPlaces;
     }
 }

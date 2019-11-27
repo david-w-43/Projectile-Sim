@@ -26,6 +26,7 @@ namespace Projectile_Sim
             this.projectileType = type;
             this.initVelocity = initVelocity;
             this.initDisplacement = initDisplacement;
+            this.mass = mass;
 
             //Only implementing vertical acceleration for now
             this.initAcceleration = initAcceleration;
@@ -108,7 +109,8 @@ namespace Projectile_Sim
 
         public double GetGPEnergy(double time)
         {
-            this.gpEnergy = mass * initAcceleration.vertical * displacement.vertical;
+            //Using acceleration due to gravity as g
+            this.gpEnergy = mass * Math.Abs(initAcceleration.vertical) * displacement.vertical;
             return this.gpEnergy;
         }
 

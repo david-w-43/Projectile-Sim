@@ -55,7 +55,7 @@ namespace Projectile_Sim
         private void MethodUpdateTime(double time)
         {
             //Update time textbox
-            txtTime.Text = time.ToString("F3");
+            txtTime.Text = time.ToString("F" + Properties.Settings.Default.decimalPlaces);
 
             //Update progress bar
             int value = (int)((time / simulation.maxDuration) * animationProgressBar.Maximum);
@@ -75,6 +75,8 @@ namespace Projectile_Sim
                 //Gets the control collection of the current tab
                 Control.ControlCollection controlCollection = ((TabContents)tab.Controls[0]).Controls;
 
+                string formatString = "F" + Properties.Settings.Default.decimalPlaces.ToString();
+
                 Vector displacement = projectile.GetDisplacement();
                 Vector velocity = projectile.GetVelocity();
                 double KE = projectile.GetKineticEnergy();
@@ -86,41 +88,41 @@ namespace Projectile_Sim
                         //Get the textbox
                         TextBox txtHPos = (TextBox)tab.Controls.Find("txtHPos", true).First(); //Horizontal position
                         //Set the text
-                        txtHPos.Text = displacement.horizontal.ToString("F3");
+                        txtHPos.Text = displacement.horizontal.ToString(formatString);
 
                         TextBox txtVPos = (TextBox)tab.Controls.Find("txtVPos", true).First(); //Vertical position
-                        txtVPos.Text = displacement.vertical.ToString("F3");
+                        txtVPos.Text = displacement.vertical.ToString(formatString);
 
                         TextBox txtHVel = (TextBox)tab.Controls.Find("txtHVel", true).First(); //Vertical position
-                        txtHVel.Text = velocity.horizontal.ToString("F3");
+                        txtHVel.Text = velocity.horizontal.ToString(formatString);
 
                         TextBox txtVVel = (TextBox)tab.Controls.Find("txtVVel", true).First(); //Vertical position
-                        txtVVel.Text = velocity.vertical.ToString("F3");
+                        txtVVel.Text = velocity.vertical.ToString(formatString);
                         break;
                     case TabDisplayType.Magnitude:
                         TextBox txtMagPos = (TextBox)tab.Controls.Find("txtMagPos", true).First(); //Mag of position
-                        txtMagPos.Text = displacement.magnitude.ToString("F3");
+                        txtMagPos.Text = displacement.magnitude.ToString(formatString);
 
                         TextBox txtAnglePos = (TextBox)tab.Controls.Find("txtAnglePos", true).First(); //Direction of position
-                        txtAnglePos.Text = (displacement.direction * (180 / Math.PI)).ToString("F3");
+                        txtAnglePos.Text = (displacement.direction * (180 / Math.PI)).ToString(formatString);
 
                         TextBox txtMagVel = (TextBox)tab.Controls.Find("txtMagVel", true).First(); //Mag of velocity
-                        txtMagVel.Text = velocity.magnitude.ToString("F3");
+                        txtMagVel.Text = velocity.magnitude.ToString(formatString);
 
                         TextBox txtAngleVel = (TextBox)tab.Controls.Find("txtAngleVel", true).First(); //Direction of velocity
-                        txtAngleVel.Text = (velocity.direction * (180 / Math.PI)).ToString("F3");
+                        txtAngleVel.Text = (velocity.direction * (180 / Math.PI)).ToString(formatString);
                         break;
                     case TabDisplayType.Energy:
                         //Set the values for energy
 
                         TextBox txtKineticEnergy = (TextBox)tab.Controls.Find("txtKineticEnergy", true).First(); //Mag of position
-                        txtKineticEnergy.Text = KE.ToString("F3");
+                        txtKineticEnergy.Text = KE.ToString(formatString);
 
                         TextBox txtGPE = (TextBox)tab.Controls.Find("txtGPE", true).First(); //Mag of position
-                        txtGPE.Text = GPE.ToString("F3");
+                        txtGPE.Text = GPE.ToString(formatString);
 
                         TextBox txtTotalEnergy = (TextBox)tab.Controls.Find("txtTotalEnergy", true).First(); //Mag of position
-                        txtTotalEnergy.Text = (KE + GPE).ToString("F3");
+                        txtTotalEnergy.Text = (KE + GPE).ToString(formatString);
 
                         break;
                 }
@@ -228,6 +230,8 @@ namespace Projectile_Sim
             int index = tabSelectProjectile.TabCount;
             Control.ControlCollection controlCollection;
 
+            string formatString = "F" + Properties.Settings.Default.decimalPlaces.ToString();
+
             //Define new tab contents control with selected type
             projectileTabs[index] = new TabContents(displayType) { Dock = DockStyle.Fill };
             //Add the control to the tab
@@ -243,19 +247,19 @@ namespace Projectile_Sim
             //Common controls
             //Get control by "name"
             Control txtDuration = controlCollection.Find("txtDuration", true).First();
-            txtDuration.Text = simulation.projectiles[index].duration.ToString("F3");
+            txtDuration.Text = simulation.projectiles[index].duration.ToString(formatString);
 
             Control txtRange = controlCollection.Find("txtRange", true).First();
-            txtRange.Text = simulation.projectiles[index].range.ToString("F3");
+            txtRange.Text = simulation.projectiles[index].range.ToString(formatString);
 
             Control txtHApex = controlCollection.Find("txtHApex", true).First();
-            txtHApex.Text = simulation.projectiles[index].apex.horizontal.ToString("F3");
+            txtHApex.Text = simulation.projectiles[index].apex.horizontal.ToString(formatString);
 
             Control txtVApex = controlCollection.Find("txtVApex", true).First();
-            txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString("F3");
+            txtVApex.Text = simulation.projectiles[index].apex.vertical.ToString(formatString);
 
             Control txtMass = controlCollection.Find("txtMass", true).First();
-            txtMass.Text = simulation.projectiles[index].mass.ToString("F3");
+            txtMass.Text = simulation.projectiles[index].mass.ToString(formatString);
 
 
             HandleTabsChanged();
@@ -276,6 +280,18 @@ namespace Projectile_Sim
                 upDownHorizontal.Value = pictureBoxPlot.Width;
                 upDownVertical.Value = pictureBoxPlot.Height;
             }
+
+            //Sets all upDown boxes to the correct number of decimal places
+            List<NumericUpDown> upDownList = new List<NumericUpDown>();
+            upDownList.AddRange(groupAddProjectile.Controls.OfType<NumericUpDown>());
+            upDownList.AddRange(tabSpeedAngle.Controls.OfType<NumericUpDown>());
+            upDownList.AddRange(tabComponents.Controls.OfType<NumericUpDown>());
+            upDownList.AddRange(tabEnergy.Controls.OfType<NumericUpDown>());
+            foreach (NumericUpDown upDown in upDownList)
+            {
+                upDown.DecimalPlaces = Properties.Settings.Default.decimalPlaces;
+            }
+
         }
 
         private void BtnPlot_Click(object sender, EventArgs e)
