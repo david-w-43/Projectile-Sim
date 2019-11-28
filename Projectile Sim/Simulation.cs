@@ -84,6 +84,8 @@ namespace Projectile_Sim
             string xLabel = ((canvas.Width - marginWidth) / pxPerX).ToString("G3");
             string yLabel = ((canvas.Height - marginWidth) / pxPerY).ToString("G3");
             canvasContainer.Image = canvas;
+
+            //Some code to draw labels on the axes
         }
         
         public void SetScales(double xScale, double yscale) { pxPerX = xScale; pxPerY = yscale;}
