@@ -491,7 +491,7 @@ namespace Projectile_Sim
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to save to
 
-            customBackground = new Bitmap(filepath); //Create a new bitmap from the file
+            customBackground = new Bitmap(new Bitmap(filepath), pictureBoxPlot.Size); //Create a new bitmap from the file,scaled to picturebox
             if (filepath != "") //If the filepath is not blank
             {
                 if (tsiBrightenImage.Checked) //Only if the user wants to brighten their image
