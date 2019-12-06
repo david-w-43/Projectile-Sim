@@ -86,6 +86,11 @@ namespace Projectile_Sim
             canvasContainer.Image = canvas;
 
             //Some code to draw labels on the axes
+            Control[] axesLabels = new Control[3];
+            axesLabels[0] = new Label() { BackColor = Color.Transparent, Text = "0", Left = 3, Top = canvasContainer.Height - marginWidth };
+            axesLabels[1] = new Label() { BackColor = Color.Transparent, Text = xLabel, Left = canvasContainer.Width - marginWidth, Top = canvasContainer.Height - marginWidth };
+            axesLabels[2] = new Label() { BackColor = Color.Transparent, Text = yLabel, Left = marginWidth, Top = marginWidth };
+            canvasContainer.Controls.AddRange(axesLabels);
         }
         
         public void SetScales(double xScale, double yscale) { pxPerX = xScale; pxPerY = yscale;}
@@ -96,7 +101,6 @@ namespace Projectile_Sim
 
 		public void Plot(double timescale = 0, double toTime = 0)
         {
-
             paused = false;
             this.timescale = timescale;
             //Get the maximum values and update interval
