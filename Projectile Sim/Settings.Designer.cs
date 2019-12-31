@@ -137,7 +137,7 @@
             0});
             this.upDownXScale.Location = new System.Drawing.Point(118, 135);
             this.upDownXScale.Maximum = new decimal(new int[] {
-            50,
+            100000000,
             0,
             0,
             0});
@@ -163,7 +163,7 @@
             0});
             this.upDownYScale.Location = new System.Drawing.Point(118, 161);
             this.upDownYScale.Maximum = new decimal(new int[] {
-            50,
+            100000000,
             0,
             0,
             0});
@@ -187,9 +187,9 @@
             this.checkBoxUseScales.AutoSize = true;
             this.checkBoxUseScales.Location = new System.Drawing.Point(60, 112);
             this.checkBoxUseScales.Name = "checkBoxUseScales";
-            this.checkBoxUseScales.Size = new System.Drawing.Size(110, 17);
+            this.checkBoxUseScales.Size = new System.Drawing.Size(113, 17);
             this.checkBoxUseScales.TabIndex = 3;
-            this.checkBoxUseScales.Text = "Use preset scales";
+            this.checkBoxUseScales.Text = "Use default scales";
             this.checkBoxUseScales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxUseScales.UseVisualStyleBackColor = true;
             // 

@@ -31,14 +31,14 @@ namespace Projectile_Sim
 
             //If not using scales, disable inputs
             checkBoxUseScales.Checked = properties.useScales;
-            if (checkBoxUseScales.Checked)
-            {
-                upDownXScale.Enabled = upDownYScale.Enabled = true;
-            }
-            else
-            {
-                upDownXScale.Enabled = upDownYScale.Enabled = false;
-            }
+            //if (checkBoxUseScales.Checked)
+            //{
+            //    upDownXScale.Enabled = upDownYScale.Enabled = true;
+            //}
+            //else
+            //{
+            //    upDownXScale.Enabled = upDownYScale.Enabled = false;
+            //}
         }
 
         private void btnOK_Click(object sender, EventArgs e)

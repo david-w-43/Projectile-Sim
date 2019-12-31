@@ -81,15 +81,16 @@ namespace Projectile_Sim
                 }
             }
             canvasContainer.Image = canvas;
-            string xLabel = ((canvas.Width - marginWidth) / pxPerX).ToString("G3");
-            string yLabel = ((canvas.Height - marginWidth) / pxPerY).ToString("G3");
+            string xLabel = ((canvas.Width - marginWidth) / pxPerX).ToString("G5");
+            string yLabel = ((canvas.Height - marginWidth) / pxPerY).ToString("G5");
             canvasContainer.Image = canvas;
 
             //Some code to draw labels on the axes
             Control[] axesLabels = new Control[3];
             axesLabels[0] = new Label() { BackColor = Color.Transparent, Text = "0", Left = 3, Top = canvasContainer.Height - marginWidth };
-            axesLabels[1] = new Label() { BackColor = Color.Transparent, Text = xLabel, Left = canvasContainer.Width - marginWidth, Top = canvasContainer.Height - marginWidth };
+            axesLabels[1] = new Label() { BackColor = Color.Transparent, Text = xLabel, Left = canvasContainer.Width - (2 * marginWidth), Top = canvasContainer.Height - marginWidth };
             axesLabels[2] = new Label() { BackColor = Color.Transparent, Text = yLabel, Left = marginWidth, Top = marginWidth };
+            canvasContainer.Controls.Clear();
             canvasContainer.Controls.AddRange(axesLabels);
         }
         
