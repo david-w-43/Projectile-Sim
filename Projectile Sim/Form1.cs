@@ -449,7 +449,7 @@ namespace Projectile_Sim
 
             //Get path to save to
             SaveFileDialog dialog = new SaveFileDialog(); //Define dialog
-            dialog.Filter = "XML File (*.xml)|*.xml"; //Set filter
+            dialog.Filter = "Projectile File (*.projectile)|*.projectile"; //Set filter
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to save to
 
@@ -490,37 +490,47 @@ namespace Projectile_Sim
             dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp"; //Set filter
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to save to
-
-            customBackground = new Bitmap(new Bitmap(filepath), pictureBoxPlot.Size); //Create a new bitmap from the file,scaled to picturebox
-            if (filepath != "") //If the filepath is not blank
-            {
-                if (tsiBrightenImage.Checked) //Only if the user wants to brighten their image
+            string extension = filepath.Split("."[0]).Last().ToLower();
+            
+            //if (!(extension == ".png" || extension == ".jpg" || extension == ".bmp"))
+            //{
+            //    //Show error message
+            //    MessageBox.Show("Invalid file type! Only JPEG, PNG and BMP types are supported",
+            //        "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+                customBackground = new Bitmap(new Bitmap(filepath), pictureBoxPlot.Size); //Create a new bitmap from the file,scaled to picturebox
+                if (filepath != "") //If the filepath is not blank
                 {
-                    for (int i = 0; i < customBackground.Width; i++)
+                    if (tsiBrightenImage.Checked) //Only if the user wants to brighten their image
                     {
-                        for (int j = 0; j < customBackground.Height; j++)
+                        for (int i = 0; i < customBackground.Width; i++)
                         {
-                            //Get the colour of the pixel
-                            Color fromImage = customBackground.GetPixel(i, j);
+                            for (int j = 0; j < customBackground.Height; j++)
+                            {
+                                //Get the colour of the pixel
+                                Color fromImage = customBackground.GetPixel(i, j);
 
-                            int R, G, B;
-                            decimal factor = 1.5M;
+                                int R, G, B;
+                                decimal factor = 1.5M;
 
-                            //Increase the RGB values for the pixel, limited to 255 max
-                            R = (int)(fromImage.R * factor); if (R > 255) { R = 255; }
-                            G = (int)(fromImage.G * factor); if (G > 255) { G = 255; }
-                            B = (int)(fromImage.B * factor); if (B > 255) { B = 255; }
+                                //Increase the RGB values for the pixel, limited to 255 max
+                                R = (int)(fromImage.R * factor); if (R > 255) { R = 255; }
+                                G = (int)(fromImage.G * factor); if (G > 255) { G = 255; }
+                                B = (int)(fromImage.B * factor); if (B > 255) { B = 255; }
 
-                            //Set the new colour
-                            Color result = Color.FromArgb(fromImage.A, R, G, B);
-                            customBackground.SetPixel(i, j, result);
+                                //Set the new colour
+                                Color result = Color.FromArgb(fromImage.A, R, G, B);
+                                customBackground.SetPixel(i, j, result);
+                            }
                         }
                     }
-                }
 
-                //Set the current image in the picturebox
-                pictureBoxPlot.Image = customBackground;
-            }
+                    //Set the current image in the picturebox
+                    pictureBoxPlot.Image = customBackground;
+                }
+            //}
         }
 
         private void tsiRemoveBackground_Click(object sender, EventArgs e)
@@ -534,61 +544,73 @@ namespace Projectile_Sim
         {
             //Import preset from XML file
             OpenFileDialog dialog = new OpenFileDialog(); //Define dialog
-            dialog.Filter = "XML File (*.xml)|*.xml"; //Set filter
+            dialog.Filter = "Projectile File (*.projectile)|*.projectile"; //Set filter
             dialog.ShowDialog(); //Show the dialog
-            string filepath = dialog.FileName; //Get the filepath to open to
+            string filepath = dialog.FileName; //Get the filepath to open
 
+            
             if (filepath != "") //If the filepath is not blank
             {
                 System.Xml.XmlReader reader = System.Xml.XmlReader.Create(filepath); //Open XML document for reading
-
-                while (reader.Read())
+                try
                 {
-                    //If the current element is a projectile
-                    if (reader.NodeType == System.Xml.XmlNodeType.Element && reader.Name == "projectile")
+                    while (reader.Read())
                     {
-                        //If there are attributes to read
-                        if (reader.HasAttributes)
+                        //If the current element is a projectile
+                        if (reader.NodeType == System.Xml.XmlNodeType.Element && reader.Name == "projectile")
                         {
-                            //Parse attributes from XML document
-                            Color colour = Color.FromName(reader.GetAttribute("colour"));
-                            string[] velocityComponents = reader.GetAttribute("velocity").Split(","[0]);
-                            string[] accelerationComponents = reader.GetAttribute("acceleration").Split(","[0]);
-                            string[] displacementComponents = reader.GetAttribute("displacement").Split(","[0]);
-                            string mass = reader.GetAttribute("mass");
+                            //If there are attributes to read
+                            if (reader.HasAttributes)
+                            {
+                                //Read projectile attributes from file
 
-                            //Create vectors from components
-                            Vector initVelocity = new Vector(VectorType.component, Double.Parse(velocityComponents[0]), Double.Parse(velocityComponents[1]));
-                            Vector initDisplacement = new Vector(VectorType.component, Double.Parse(displacementComponents[0]), Double.Parse(displacementComponents[1]));
-                            Vector initAcceleration = new Vector(VectorType.component, Double.Parse(accelerationComponents[0]), Double.Parse(accelerationComponents[1]));
+                                //Parse attributes from XML document
+                                Color colour = Color.FromName(reader.GetAttribute("colour"));
+                                string[] velocityComponents = reader.GetAttribute("velocity").Split(","[0]);
+                                string[] accelerationComponents = reader.GetAttribute("acceleration").Split(","[0]);
+                                string[] displacementComponents = reader.GetAttribute("displacement").Split(","[0]);
+                                string mass = reader.GetAttribute("mass");
 
-                            //Define projectile to add
-                            Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration, Double.Parse(mass));
+                                //Create vectors from components
+                                Vector initVelocity = new Vector(VectorType.component, Double.Parse(velocityComponents[0]), Double.Parse(velocityComponents[1]));
+                                Vector initDisplacement = new Vector(VectorType.component, Double.Parse(displacementComponents[0]), Double.Parse(displacementComponents[1]));
+                                Vector initAcceleration = new Vector(VectorType.component, Double.Parse(accelerationComponents[0]), Double.Parse(accelerationComponents[1]));
 
-                            //Remove projectile with same name
-                            tabSelectProjectile.TabPages.RemoveByKey(colour.Name);
-                            simulation.RemoveProjectile(colour.Name);
-                            comboColour.Items.Remove(colour.Name);
+                                //Define projectile to add
+                                Projectile toAdd = new Projectile(ProjectileType.component, colour, initVelocity, initDisplacement, initAcceleration, Double.Parse(mass));
 
-                            //Add the projectile to the simulation and add a tab for it
-                            simulation.AddProjectile(toAdd);
-                            AddTab();
+                                //Remove projectile with same name
+                                tabSelectProjectile.TabPages.RemoveByKey(colour.Name);
+                                simulation.RemoveProjectile(colour.Name);
+                                comboColour.Items.Remove(colour.Name);
+
+                                //Add the projectile to the simulation and add a tab for it
+                                simulation.AddProjectile(toAdd);
+                                AddTab();
+                            }
                         }
                     }
-                }
 
-                if (comboColour.Items.Count != 0) //If there are still colours left
-                {
-                    comboColour.SelectedItem = comboColour.Items[0]; //Go to next colour in list
-                }
-                else
-                {
-                    btnAddProjectile.Enabled = false; //Disable add projectile button
-                }
+                    reader.Dispose();
 
-                HandleTabsChanged();
-                
-                reader.Dispose();
+                    if (comboColour.Items.Count != 0) //If there are still colours left
+                    {
+                        comboColour.SelectedItem = comboColour.Items[0]; //Go to next colour in list
+                    }
+                    else
+                    {
+                        btnAddProjectile.Enabled = false; //Disable add projectile button
+                    }
+
+                    HandleTabsChanged();
+                }
+                catch (Exception)
+                {
+                    //Show error message detailing correct format
+                    MessageBox.Show("Invalid preset file! Check presence of colour, velocity (x, y), acceleration (x, y), displacement (x, y), and mass.",
+                        "Invalid Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    reader.Dispose();
+                }
             }
         }
 

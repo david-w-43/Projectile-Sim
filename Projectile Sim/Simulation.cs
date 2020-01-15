@@ -140,6 +140,10 @@ namespace Projectile_Sim
             { 
                 //Create canvas with all points plotted
                 canvasContainer.Image = RecursivePlot((Bitmap)canvasContainer.Image, 0, this.toTime, updateTimeInterval);
+                //Raise plot complete event
+                Program.form1.Invoke(Program.form1.plotCompleteDelegate);
+                //Update time with max duration
+                Program.form1.Invoke(Program.form1.updateTimeDelegate, toTime);
             }
         }
 
