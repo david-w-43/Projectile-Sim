@@ -1,1 +1,4 @@
-﻿Trajectory stops before end due to lower framerate, try to delink calculation form refresh rate 
+﻿Trajectory stops before end due to lower framerate, try to delink calculation form refresh rate
+
+Record testing videos, upload to github
+Embed videos on github project page
