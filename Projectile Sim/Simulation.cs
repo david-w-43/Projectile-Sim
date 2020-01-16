@@ -29,6 +29,7 @@ namespace Projectile_Sim
         private double pxPerX = 1;
         private double pxPerY = 1;
         private const int updatesPerPixel = 3;
+        private double frameInterval;
         private double updateTimeInterval;
         private int hAxisPos, vAxisPos;
 
@@ -109,10 +110,11 @@ namespace Projectile_Sim
             updateTimeInterval = maxDuration / (maxX * updatesPerPixel);
             //If no totime specified, plot whole trajectory
             if (toTime == 0) { this.toTime = maxDuration; } else { this.toTime = toTime; }
-            
+
 
             //Instantiates timer and stopwatch for use
-            refreshTimer = new System.Timers.Timer((int)(1000/Properties.Settings.Default.framerate));
+            frameInterval = (1d / Properties.Settings.Default.framerate); //Seconds
+            refreshTimer = new System.Timers.Timer((int)(1000 * frameInterval)); //Milliseconds
             stopwatch = new System.Diagnostics.Stopwatch();
 
 			//Timer triggers canvas refresh, and automatically resets
@@ -149,7 +151,7 @@ namespace Projectile_Sim
 
         private Bitmap RecursivePlot(Bitmap prevImage, double time, double toTime, double timeInterval)
         {
-            if (time < toTime + timeInterval)
+            if (time < toTime + frameInterval)
             {
                 //Building on top of previous image
                 Bitmap currentImage = prevImage;
@@ -196,7 +198,7 @@ namespace Projectile_Sim
             Program.form1.Invoke(Program.form1.updateTimeDelegate, time);
 
             //Experimenting with upper bound, due to system variations it is not always consistent with update intervals and whatnot
-            if (time < toTime + (10 * updateTimeInterval * timescale)) 
+            if (time < toTime + (frameInterval * timescale)) 
             {
                 if (time > toTime) { time = toTime; } //If overshot the time to plot to, restrict
 
@@ -215,14 +217,21 @@ namespace Projectile_Sim
                 stopwatch.Stop();
                 refreshTimer.Stop();
 
+                //Set current time to the end time
                 time = toTime;
 
-                //Depending on system, the 
+                // Now actually calculate the correct values for the end time, you dingus
+                foreach (Projectile projectile in projectiles)
+                {
+                    projectile.Update(time);
+                }
+                List<Projectile> parameters = projectiles;
+                Program.form1.Invoke(Program.form1.updateTabsDelegate, parameters);
 
                 //Raise plot complete event
                 Program.form1.Invoke(Program.form1.plotCompleteDelegate);
                 //Update time with max duration
-                Program.form1.Invoke(Program.form1.updateTimeDelegate, toTime);
+                Program.form1.Invoke(Program.form1.updateTimeDelegate, time);
             }
         }
 
