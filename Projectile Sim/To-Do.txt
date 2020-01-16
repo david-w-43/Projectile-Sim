@@ -1,4 +1,3 @@
-﻿Trajectory stops before end due to lower framerate, try to delink calculation form refresh rate
+﻿Breaks on this laptop at high framerates, object in use. Timescale does not affect this.
 
 Record testing videos, upload to github
-Embed videos on github project page
