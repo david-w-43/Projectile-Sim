@@ -406,16 +406,21 @@ namespace Projectile_Sim
             {
                 string extension = filepath.Split("."[0]).Last().ToUpper(); //Parse the file extension
 
-                Bitmap image = (Bitmap)pictureBoxPlot.Image;
-                image.MakeTransparent(Color.FromArgb(0, 0, 0, 0)); //Make blank pixels transparent
-                if (!transparency) //If user does not want transparency
+                Bitmap image = new Bitmap(pictureBoxPlot.Image);
+                
+                if (transparency) //If user does not want transparency
+                {
+                    image.MakeTransparent(Color.FromArgb(0, 0, 0, 0)); //Make blank pixels transparent
+                }
+                else
                 {
                     //Cycle through colours
                     for (int row = 0; row < image.Height; row++)
                     {
                         for (int col = 0; col < image.Width; col++)
                         {
-                            if (image.GetPixel(col, row) == Color.Transparent) //If the pixel is blank
+                            Color colour = image.GetPixel(col, row);
+                            if (false) //If the pixel is blank
                             {
                                 image.SetPixel(col, row, Color.White); //Set it to white
                             }
@@ -487,19 +492,19 @@ namespace Projectile_Sim
         private void tsiImportBackground_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog(); //Define dialog
-            dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp"; //Set filter
+            dialog.Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG"; //Set filter
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to save to
             string extension = filepath.Split("."[0]).Last().ToLower();
-            
-            //if (!(extension == ".png" || extension == ".jpg" || extension == ".bmp"))
-            //{
-            //    //Show error message
-            //    MessageBox.Show("Invalid file type! Only JPEG, PNG and BMP types are supported",
-            //        "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //else
-            //{
+
+            if (!(extension == "png" || extension == "jpg" || extension == "bmp"))
+            {
+                //Show error message
+                MessageBox.Show("Invalid file type! Only JPEG, PNG and BMP types are supported",
+                    "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
                 customBackground = new Bitmap(new Bitmap(filepath), pictureBoxPlot.Size); //Create a new bitmap from the file,scaled to picturebox
                 if (filepath != "") //If the filepath is not blank
                 {
@@ -530,7 +535,7 @@ namespace Projectile_Sim
                     //Set the current image in the picturebox
                     pictureBoxPlot.Image = customBackground;
                 }
-            //}
+            }
         }
 
         private void tsiRemoveBackground_Click(object sender, EventArgs e)
