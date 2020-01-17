@@ -247,7 +247,8 @@ namespace Projectile_Sim
             //Common controls
             //Get control by "name"
             Control txtDuration = controlCollection.Find("txtDuration", true).First();
-            txtDuration.Text = simulation.projectiles[index].duration.ToString(formatString);
+            double duration = simulation.projectiles[index].duration;
+            txtDuration.Text = duration.ToString(formatString);
 
             Control txtRange = controlCollection.Find("txtRange", true).First();
             txtRange.Text = simulation.projectiles[index].range.ToString(formatString);
@@ -287,10 +288,13 @@ namespace Projectile_Sim
             upDownList.AddRange(tabSpeedAngle.Controls.OfType<NumericUpDown>());
             upDownList.AddRange(tabComponents.Controls.OfType<NumericUpDown>());
             upDownList.AddRange(tabEnergy.Controls.OfType<NumericUpDown>());
+            numPlotTo.DecimalPlaces = Properties.Settings.Default.decimalPlaces;
             foreach (NumericUpDown upDown in upDownList)
             {
                 upDown.DecimalPlaces = Properties.Settings.Default.decimalPlaces;
             }
+
+            HandleTabsChanged();
 
         }
 
@@ -342,14 +346,7 @@ namespace Projectile_Sim
                 timescale = 0;
             }
 
-            if (double.TryParse(txtPlotTo.Text, out double toTime))
-            {
-                simulation.Plot(timescale, toTime);
-            }
-            else
-            {
-                simulation.Plot(timescale);
-            }
+            simulation.Plot(timescale, (double)numPlotTo.Value);
 
         }
         
@@ -383,12 +380,6 @@ namespace Projectile_Sim
             tabSelectProjectile.TabPages.Remove(tab);
 
             HandleTabsChanged();
-        }
-
-        private void txtPlotToValidate (object sender, EventArgs e)
-        {
-            //If it is empty, set text to complete
-            if (txtPlotTo.Text == "") { txtPlotTo.Text = "End"; }
         }
 
         private void tsiExportGraph_Click(object sender, EventArgs e)
@@ -509,35 +500,42 @@ namespace Projectile_Sim
             }
             else
             {
-                customBackground = new Bitmap(new Bitmap(filepath), pictureBoxPlot.Size); //Create a new bitmap from the file,scaled to picturebox
-                if (filepath != "") //If the filepath is not blank
+                try
                 {
-                    if (tsiBrightenImage.Checked) //Only if the user wants to brighten their image
+                    customBackground = new Bitmap(new Bitmap(filepath), pictureBoxPlot.Size); //Create a new bitmap from the file,scaled to picturebox
+                    if (filepath != "") //If the filepath is not blank
                     {
-                        for (int i = 0; i < customBackground.Width; i++)
+                        if (tsiBrightenImage.Checked) //Only if the user wants to brighten their image
                         {
-                            for (int j = 0; j < customBackground.Height; j++)
+                            for (int i = 0; i < customBackground.Width; i++)
                             {
-                                //Get the colour of the pixel
-                                Color fromImage = customBackground.GetPixel(i, j);
+                                for (int j = 0; j < customBackground.Height; j++)
+                                {
+                                    //Get the colour of the pixel
+                                    Color fromImage = customBackground.GetPixel(i, j);
 
-                                int R, G, B;
-                                decimal factor = 1.5M;
+                                    int R, G, B;
+                                    decimal factor = 1.5M;
 
-                                //Increase the RGB values for the pixel, limited to 255 max
-                                R = (int)(fromImage.R * factor); if (R > 255) { R = 255; }
-                                G = (int)(fromImage.G * factor); if (G > 255) { G = 255; }
-                                B = (int)(fromImage.B * factor); if (B > 255) { B = 255; }
+                                    //Increase the RGB values for the pixel, limited to 255 max
+                                    R = (int)(fromImage.R * factor); if (R > 255) { R = 255; }
+                                    G = (int)(fromImage.G * factor); if (G > 255) { G = 255; }
+                                    B = (int)(fromImage.B * factor); if (B > 255) { B = 255; }
 
-                                //Set the new colour
-                                Color result = Color.FromArgb(fromImage.A, R, G, B);
-                                customBackground.SetPixel(i, j, result);
+                                    //Set the new colour
+                                    Color result = Color.FromArgb(fromImage.A, R, G, B);
+                                    customBackground.SetPixel(i, j, result);
+                                }
                             }
                         }
-                    }
 
-                    //Set the current image in the picturebox
-                    pictureBoxPlot.Image = customBackground;
+                        //Set the current image in the picturebox
+                        pictureBoxPlot.Image = customBackground;
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Image unable to be imported", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -628,12 +626,23 @@ namespace Projectile_Sim
             //Runs when a tab is added or removed, sets buttons accordingly
             if (tabSelectProjectile.TabPages.Count == 0)
             {
-                btnPlot.Enabled = false; btnDelete.Enabled = false;
+                btnPlot.Enabled = false; btnDelete.Enabled = false; tsiExportPreset.Enabled = false;
             }
             else
             {
-                btnPlot.Enabled = true; btnDelete.Enabled = true;
+                btnPlot.Enabled = true; btnDelete.Enabled = true; tsiExportPreset.Enabled = true;
             }
+
+            //Get highets duration
+            double highestDuration = 0;
+            foreach (TabPage page in tabSelectProjectile.TabPages)
+            {
+                TextBox txtDuration = (TextBox)page.Controls.Find("txtDuration", true).First();
+                double duration = Convert.ToDouble(txtDuration.Text);
+                if (duration > highestDuration) { highestDuration = duration; }
+            }
+
+            numPlotTo.Maximum = (decimal)highestDuration;
         }
 
         private void tsiSettings_Click(object sender, EventArgs e)

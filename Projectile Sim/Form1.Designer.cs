@@ -52,6 +52,15 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.lblTimeUnits = new System.Windows.Forms.Label();
             this.groupAddProjectile = new System.Windows.Forms.GroupBox();
+            this.upDownG = new System.Windows.Forms.NumericUpDown();
+            this.upDownInitHeight = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.upDownMass = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnAddProjectile = new System.Windows.Forms.Button();
             this.comboColour = new System.Windows.Forms.ComboBox();
             this.lblColour = new System.Windows.Forms.Label();
@@ -82,7 +91,6 @@
             this.upDownLineWidth = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
             this.lblDurationUnits2 = new System.Windows.Forms.Label();
-            this.txtPlotTo = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupScales = new System.Windows.Forms.GroupBox();
@@ -98,15 +106,7 @@
             this.upDownTimescale = new System.Windows.Forms.NumericUpDown();
             this.radioNoAnimation = new System.Windows.Forms.RadioButton();
             this.radioAnimated = new System.Windows.Forms.RadioButton();
-            this.upDownMass = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.upDownG = new System.Windows.Forms.NumericUpDown();
-            this.upDownInitHeight = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.numPlotTo = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -119,6 +119,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlot)).BeginInit();
             this.groupCurrentValues.SuspendLayout();
             this.groupAddProjectile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).BeginInit();
             this.tabProjectileType.SuspendLayout();
             this.tabSpeedAngle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownAngle1)).BeginInit();
@@ -136,9 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.upDownHorizontal)).BeginInit();
             this.groupAnimation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPlotTo)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -415,6 +416,131 @@
             this.groupAddProjectile.TabIndex = 0;
             this.groupAddProjectile.TabStop = false;
             this.groupAddProjectile.Text = "Add Projectile";
+            // 
+            // upDownG
+            // 
+            this.upDownG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.upDownG.DecimalPlaces = 2;
+            this.upDownG.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.upDownG.Location = new System.Drawing.Point(102, 141);
+            this.upDownG.Name = "upDownG";
+            this.upDownG.Size = new System.Drawing.Size(76, 20);
+            this.upDownG.TabIndex = 21;
+            this.upDownG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.upDownG.Value = new decimal(new int[] {
+            98,
+            0,
+            0,
+            65536});
+            // 
+            // upDownInitHeight
+            // 
+            this.upDownInitHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.upDownInitHeight.DecimalPlaces = 2;
+            this.upDownInitHeight.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.upDownInitHeight.Location = new System.Drawing.Point(102, 115);
+            this.upDownInitHeight.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.upDownInitHeight.Name = "upDownInitHeight";
+            this.upDownInitHeight.Size = new System.Drawing.Size(76, 20);
+            this.upDownInitHeight.TabIndex = 19;
+            this.upDownInitHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(184, 143);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "m/s²";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(80, 143);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(16, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "g:";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(184, 117);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(15, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "m";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(35, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 13);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Init. Height:";
+            // 
+            // upDownMass
+            // 
+            this.upDownMass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.upDownMass.DecimalPlaces = 2;
+            this.upDownMass.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.upDownMass.Location = new System.Drawing.Point(102, 167);
+            this.upDownMass.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.upDownMass.Name = "upDownMass";
+            this.upDownMass.Size = new System.Drawing.Size(76, 20);
+            this.upDownMass.TabIndex = 8;
+            this.upDownMass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.upDownMass.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(184, 169);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(19, 13);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "kg";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(61, 169);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Mass:";
             // 
             // btnAddProjectile
             // 
@@ -790,10 +916,10 @@
             // 
             this.groupPlotOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupPlotOptions.Controls.Add(this.numPlotTo);
             this.groupPlotOptions.Controls.Add(this.upDownLineWidth);
             this.groupPlotOptions.Controls.Add(this.label21);
             this.groupPlotOptions.Controls.Add(this.lblDurationUnits2);
-            this.groupPlotOptions.Controls.Add(this.txtPlotTo);
             this.groupPlotOptions.Controls.Add(this.label18);
             this.groupPlotOptions.Controls.Add(this.label15);
             this.groupPlotOptions.Location = new System.Drawing.Point(190, 3);
@@ -818,7 +944,7 @@
             0});
             this.upDownLineWidth.Name = "upDownLineWidth";
             this.upDownLineWidth.Size = new System.Drawing.Size(82, 20);
-            this.upDownLineWidth.TabIndex = 42;
+            this.upDownLineWidth.TabIndex = 44;
             this.upDownLineWidth.Value = new decimal(new int[] {
             2,
             0,
@@ -842,15 +968,6 @@
             this.lblDurationUnits2.Size = new System.Drawing.Size(12, 13);
             this.lblDurationUnits2.TabIndex = 41;
             this.lblDurationUnits2.Text = "s";
-            // 
-            // txtPlotTo
-            // 
-            this.txtPlotTo.Location = new System.Drawing.Point(71, 18);
-            this.txtPlotTo.Name = "txtPlotTo";
-            this.txtPlotTo.Size = new System.Drawing.Size(82, 20);
-            this.txtPlotTo.TabIndex = 1;
-            this.txtPlotTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPlotTo.TextChanged += new System.EventHandler(this.txtPlotToValidate);
             // 
             // label18
             // 
@@ -908,7 +1025,7 @@
             65536});
             this.upDownVertical.Name = "upDownVertical";
             this.upDownVertical.Size = new System.Drawing.Size(79, 20);
-            this.upDownVertical.TabIndex = 11;
+            this.upDownVertical.TabIndex = 12;
             this.upDownVertical.Value = new decimal(new int[] {
             1,
             0,
@@ -1074,130 +1191,23 @@
             this.radioAnimated.Text = "Timescale:";
             this.radioAnimated.UseVisualStyleBackColor = true;
             // 
-            // upDownMass
+            // numPlotTo
             // 
-            this.upDownMass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.upDownMass.DecimalPlaces = 2;
-            this.upDownMass.Increment = new decimal(new int[] {
+            this.numPlotTo.DecimalPlaces = 2;
+            this.numPlotTo.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.upDownMass.Location = new System.Drawing.Point(102, 167);
-            this.upDownMass.Maximum = new decimal(new int[] {
-            1000,
+            this.numPlotTo.Location = new System.Drawing.Point(71, 18);
+            this.numPlotTo.Maximum = new decimal(new int[] {
+            0,
             0,
             0,
             0});
-            this.upDownMass.Name = "upDownMass";
-            this.upDownMass.Size = new System.Drawing.Size(76, 20);
-            this.upDownMass.TabIndex = 8;
-            this.upDownMass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.upDownMass.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(184, 169);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(19, 13);
-            this.label14.TabIndex = 12;
-            this.label14.Text = "kg";
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(61, 169);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Mass:";
-            // 
-            // upDownG
-            // 
-            this.upDownG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.upDownG.DecimalPlaces = 2;
-            this.upDownG.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownG.Location = new System.Drawing.Point(102, 141);
-            this.upDownG.Name = "upDownG";
-            this.upDownG.Size = new System.Drawing.Size(76, 20);
-            this.upDownG.TabIndex = 21;
-            this.upDownG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.upDownG.Value = new decimal(new int[] {
-            98,
-            0,
-            0,
-            65536});
-            // 
-            // upDownInitHeight
-            // 
-            this.upDownInitHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.upDownInitHeight.DecimalPlaces = 2;
-            this.upDownInitHeight.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.upDownInitHeight.Location = new System.Drawing.Point(102, 115);
-            this.upDownInitHeight.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.upDownInitHeight.Name = "upDownInitHeight";
-            this.upDownInitHeight.Size = new System.Drawing.Size(76, 20);
-            this.upDownInitHeight.TabIndex = 19;
-            this.upDownInitHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(184, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "m/s²";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(80, 143);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(16, 13);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "g:";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(184, 117);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(15, 13);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "m";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(35, 117);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 13);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Init. Height:";
+            this.numPlotTo.Name = "numPlotTo";
+            this.numPlotTo.Size = new System.Drawing.Size(82, 20);
+            this.numPlotTo.TabIndex = 43;
             // 
             // Form1
             // 
@@ -1228,6 +1238,9 @@
             this.groupCurrentValues.PerformLayout();
             this.groupAddProjectile.ResumeLayout(false);
             this.groupAddProjectile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).EndInit();
             this.tabProjectileType.ResumeLayout(false);
             this.tabSpeedAngle.ResumeLayout(false);
             this.tabSpeedAngle.PerformLayout();
@@ -1251,9 +1264,7 @@
             this.groupAnimation.ResumeLayout(false);
             this.groupAnimation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownTimescale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownMass)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.upDownInitHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPlotTo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1311,7 +1322,6 @@
         private System.Windows.Forms.NumericUpDown upDownHorizontal;
         private System.Windows.Forms.NumericUpDown upDownVertical;
         private System.Windows.Forms.GroupBox groupPlotOptions;
-        private System.Windows.Forms.TextBox txtPlotTo;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblDurationUnits2;
         private System.Windows.Forms.NumericUpDown upDownLineWidth;
@@ -1340,6 +1350,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numPlotTo;
     }
 }
 
