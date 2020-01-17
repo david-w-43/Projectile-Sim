@@ -408,24 +408,28 @@ namespace Projectile_Sim
 
                 Bitmap image = new Bitmap(pictureBoxPlot.Image);
                 
-                if (transparency) //If user does not want transparency
+                if (!transparency) //If user does not want transparency
                 {
-                    image.MakeTransparent(Color.FromArgb(0, 0, 0, 0)); //Make blank pixels transparent
-                }
-                else
-                {
-                    //Cycle through colours
-                    for (int row = 0; row < image.Height; row++)
+                    // Create white bitmap
+                    Bitmap white = new Bitmap(image.Width, image.Height);
+                    using (Graphics graph = Graphics.FromImage(white))
                     {
-                        for (int col = 0; col < image.Width; col++)
-                        {
-                            Color colour = image.GetPixel(col, row);
-                            if (false) //If the pixel is blank
-                            {
-                                image.SetPixel(col, row, Color.White); //Set it to white
-                            }
-                        }
+                        Rectangle ImageSize = new Rectangle(0, 0, image.Width, image.Height);
+                        graph.FillRectangle(Brushes.White, ImageSize);
                     }
+
+                    //Scale to size of canvas
+                    white = new Bitmap(white, image.Size);
+
+                    Bitmap img = new Bitmap(image.Width, image.Height);
+                    using (Graphics gr = Graphics.FromImage(img))
+                    {
+                        gr.DrawImage(white, new Point(0, 0));
+                        gr.DrawImage(image, new Point(0, 0));
+                    }
+
+                    // Stores result in image variable
+                    image = new Bitmap(img);
                 }
 
 
