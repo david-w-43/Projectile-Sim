@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Timers;
 
 namespace Projectile_Sim
 {
@@ -59,7 +54,7 @@ namespace Projectile_Sim
 
             //Update progress bar
             int value = (int)((time / simulation.maxDuration) * animationProgressBar.Maximum);
-            
+
             //Constrain to max
             if (value > 1000) { value = animationProgressBar.Maximum; }
             UpdateProgressBarWorkaround(value);
@@ -133,7 +128,7 @@ namespace Projectile_Sim
         {
             //Allow the window to be resized
             Program.form1.FormBorderStyle = FormBorderStyle.Sizable;
-            
+
             //Re-enable controls
             groupAddProjectile.Enabled = true;
             groupPlotOptions.Enabled = true;
@@ -175,7 +170,8 @@ namespace Projectile_Sim
             if (comboColour.Items.Count != 0) //If there are still colours left
             {
                 comboColour.SelectedItem = comboColour.Items[0]; //Go to next colour in list
-            } else
+            }
+            else
             {
                 btnAddProjectile.Enabled = false; //Disable add projectile button
             }
@@ -187,14 +183,14 @@ namespace Projectile_Sim
             double mass = (double)upDownMass.Value;
 
             Vector initVelocity = new Vector();
-            
+
             //Depending on the current tab
             switch (tabProjectileType.SelectedTab.Text)
             {
                 case "Speed / Angle":
                     //Get variables
                     speed = (double)upDownSpeed1.Value;
-                    angle = (double)upDownAngle1.Value * (Math.PI/180);
+                    angle = (double)upDownAngle1.Value * (Math.PI / 180);
 
                     //Create vector for initial velocity
                     initVelocity = new Vector(VectorType.magnitude, speed, angle);
@@ -326,7 +322,7 @@ namespace Projectile_Sim
             }
 
             //Calculates and sets scales in pixels per metre
-            double hScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin)/ upDownHorizontal.Value);
+            double hScale = (double)((pictureBoxPlot.Width - Properties.Settings.Default.margin) / upDownHorizontal.Value);
             double vScale = (double)((pictureBoxPlot.Height - Properties.Settings.Default.margin) / upDownVertical.Value);
             simulation.SetScales(hScale, vScale);
             simulation.SetLineWidth((int)upDownLineWidth.Value);
@@ -337,7 +333,7 @@ namespace Projectile_Sim
             if (radioAnimated.Checked)
             {
                 //simulation.StartAnimation(SimulationSpeed.Animated, (double)upDownTimescale.Value);
-                
+
                 timescale = (double)upDownTimescale.Value;
             }
             else if (radioNoAnimation.Checked)
@@ -349,7 +345,7 @@ namespace Projectile_Sim
             simulation.Plot(timescale, (double)numPlotTo.Value);
 
         }
-        
+
         private void BtnPause_Click(object sender, EventArgs e)
         {
             if (simulation.paused)
@@ -365,7 +361,7 @@ namespace Projectile_Sim
                 tsiView.Enabled = true;
             }
         }
-        
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             TabPage tab = tabSelectProjectile.SelectedTab;
@@ -398,7 +394,7 @@ namespace Projectile_Sim
                 string extension = filepath.Split("."[0]).Last().ToUpper(); //Parse the file extension
 
                 Bitmap image = new Bitmap(pictureBoxPlot.Image);
-                
+
                 if (!transparency) //If user does not want transparency
                 {
                     // Create white bitmap
@@ -555,7 +551,7 @@ namespace Projectile_Sim
             dialog.ShowDialog(); //Show the dialog
             string filepath = dialog.FileName; //Get the filepath to open
 
-            
+
             if (filepath != "") //If the filepath is not blank
             {
                 System.Xml.XmlReader reader = System.Xml.XmlReader.Create(filepath); //Open XML document for reading
@@ -655,7 +651,7 @@ namespace Projectile_Sim
         private void HandleTabStyleChange(object sender, EventArgs e)
         {
             ToolStripMenuItem btn = (ToolStripMenuItem)sender;
-            
+
             //Always check the item clicked
             btn.Checked = true;
 

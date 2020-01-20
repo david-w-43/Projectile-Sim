@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
+using System.Linq;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -14,12 +12,12 @@ namespace Projectile_Sim
     public class Simulation
     {
         /* Variables----------*/
-        
+
 
         //Stores the projectiles
         public readonly List<Projectile> projectiles = new List<Projectile>();
 
-		//Stores the maximum values
+        //Stores the maximum values
         private double maxHeight, maxRange;
         public double maxDuration;
         private int maxY, maxX;
@@ -35,7 +33,7 @@ namespace Projectile_Sim
 
         //Defines PictureBox and timer/stopwatch
         private PictureBox canvasContainer;
-		private System.Timers.Timer refreshTimer;
+        private System.Timers.Timer refreshTimer;
         private System.Diagnostics.Stopwatch stopwatch;
         private double prevTime;
         private double timescale;
@@ -44,7 +42,7 @@ namespace Projectile_Sim
         public bool paused;
 
 
-		/* End variables------------- */
+        /* End variables------------- */
 
         private void DrawAxes()
         {
@@ -59,7 +57,7 @@ namespace Projectile_Sim
                 canvas = (Bitmap)canvasContainer.Image;
             }
 
-            
+
             int marginWidth = Properties.Settings.Default.margin;
             hAxisPos = canvas.Height - marginWidth;
             vAxisPos = marginWidth;
@@ -94,14 +92,14 @@ namespace Projectile_Sim
             canvasContainer.Controls.Clear();
             canvasContainer.Controls.AddRange(axesLabels);
         }
-        
-        public void SetScales(double xScale, double yscale) { pxPerX = xScale; pxPerY = yscale;}
+
+        public void SetScales(double xScale, double yscale) { pxPerX = xScale; pxPerY = yscale; }
         public void SetLineWidth(int width) { lineWidth = width; }
 
         public void Pause() { refreshTimer.Stop(); stopwatch.Stop(); paused = true; }
         public void Resume() { refreshTimer.Start(); stopwatch.Start(); paused = false; }
 
-		public void Plot(double timescale = 0, double toTime = 0)
+        public void Plot(double timescale = 0, double toTime = 0)
         {
             paused = false;
             this.timescale = timescale;
@@ -117,12 +115,12 @@ namespace Projectile_Sim
             refreshTimer = new System.Timers.Timer((int)(1000 * frameInterval)); //Milliseconds
             stopwatch = new System.Diagnostics.Stopwatch();
 
-			//Timer triggers canvas refresh, and automatically resets
+            //Timer triggers canvas refresh, and automatically resets
             //Currently disabled so that it does not run the same code simultaneously
             //refreshTimer.AutoReset = true;
 
-			//Gets the PictureBox from Form1
-			this.canvasContainer = (PictureBox)Program.form1.Controls.Find("pictureBoxPlot", true).First();
+            //Gets the PictureBox from Form1
+            this.canvasContainer = (PictureBox)Program.form1.Controls.Find("pictureBoxPlot", true).First();
 
             DrawAxes();
 
@@ -139,7 +137,7 @@ namespace Projectile_Sim
                 stopwatch.Start();
             }
             else
-            { 
+            {
                 //Create canvas with all points plotted
                 canvasContainer.Image = RecursivePlot((Bitmap)canvasContainer.Image, 0, this.toTime, updateTimeInterval);
                 //Raise plot complete event
@@ -198,7 +196,7 @@ namespace Projectile_Sim
             Program.form1.Invoke(Program.form1.updateTimeDelegate, time);
 
             //Experimenting with upper bound, due to system variations it is not always consistent with update intervals and whatnot
-            if (time < toTime + (frameInterval * timescale)) 
+            if (time < toTime + (frameInterval * timescale))
             {
                 if (time > toTime) { time = toTime; } //If overshot the time to plot to, restrict
 
@@ -245,7 +243,7 @@ namespace Projectile_Sim
             for (int i = 0; i < projectiles.Count; i++)
             {
                 if (projectiles[i].colour.Name == name) { projectiles.RemoveAt(i); }
-            } 
+            }
         }
 
         private void GetMaxValues()

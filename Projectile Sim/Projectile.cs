@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Projectile_Sim
@@ -38,16 +34,16 @@ namespace Projectile_Sim
             //Set current values (may not be required)
             displacement = initDisplacement;
             velocity = initVelocity;
-            
+
             //Projectile stops when vertical displacement from origin = 0
             // 0 = s0 + ut + 0.5at^2, 0.5at^2 + ut + s0
             duration = (-initVelocity.vertical - (Math.Sqrt((initVelocity.vertical * initVelocity.vertical) - (2 * acceleration.vertical * initDisplacement.vertical)))) / acceleration.vertical;
             range = GetDisplacement(duration).horizontal;
-            
+
             //Apex is when vertical velocity = 0
             // u + at = 0, t = -u/a
             double apexTime = (-initVelocity.vertical / acceleration.vertical);
-            this.apex = GetDisplacement(apexTime);    
+            this.apex = GetDisplacement(apexTime);
         }
 
         public Vector GetDisplacement() { return displacement; }
