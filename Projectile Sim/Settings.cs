@@ -21,17 +21,7 @@ namespace Projectile_Sim
             upDownFramerate.Value = properties.framerate;
             upDownXScale.Value = (decimal)properties.defaultXScale;
             upDownYScale.Value = (decimal)properties.defaultYScale;
-
-            //If not using scales, disable inputs
             checkBoxUseScales.Checked = properties.useScales;
-            //if (checkBoxUseScales.Checked)
-            //{
-            //    upDownXScale.Enabled = upDownYScale.Enabled = true;
-            //}
-            //else
-            //{
-            //    upDownXScale.Enabled = upDownYScale.Enabled = false;
-            //}
         }
 
         private void btnOK_Click(object sender, EventArgs e)

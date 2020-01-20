@@ -20,7 +20,7 @@ namespace Projectile_Sim
         //Stores the maximum values
         private double maxHeight, maxRange;
         public double maxDuration;
-        private int maxY, maxX;
+        private int maxX;
         private double toTime;
 
         //Stores scales, in pixels per metre
@@ -29,13 +29,17 @@ namespace Projectile_Sim
         private const int updatesPerPixel = 3;
         private double frameInterval;
         private double updateTimeInterval;
+
+        //Stores the margin widths
         private int hAxisPos, vAxisPos;
 
         //Defines PictureBox and timer/stopwatch
         private PictureBox canvasContainer;
         private System.Timers.Timer refreshTimer;
         private System.Diagnostics.Stopwatch stopwatch;
-        private double prevTime;
+
+
+        private double fromTime;
         private double timescale;
         private int lineWidth;
 
@@ -125,7 +129,7 @@ namespace Projectile_Sim
             DrawAxes();
 
             //Resets the previous time to 0
-            prevTime = 0;
+            fromTime = 0;
 
             if (timescale != 0)
             {
@@ -204,8 +208,8 @@ namespace Projectile_Sim
                 Bitmap currentFrame = (Bitmap)canvasContainer.Image;
                 if (Object.Equals(currentFrame, null)) { currentFrame = new Bitmap(canvasContainer.Width, canvasContainer.Height); }
 
-                canvasContainer.Image = RecursivePlot(currentFrame, prevTime, time, updateTimeInterval);
-                prevTime = time;
+                canvasContainer.Image = RecursivePlot(currentFrame, fromTime, time, updateTimeInterval);
+                fromTime = time;
                 //Invoke the procedure to update the tabs
                 List<Projectile> parameters = projectiles;
                 Program.form1.Invoke(Program.form1.updateTabsDelegate, parameters);
@@ -249,7 +253,7 @@ namespace Projectile_Sim
         private void GetMaxValues()
         {
             //initialise variables as 0
-            maxDuration = maxHeight = maxRange = maxX = maxY = 0;
+            maxDuration = maxRange = maxX = 0;
 
             foreach (var projectile in this.projectiles)
             {
@@ -258,7 +262,6 @@ namespace Projectile_Sim
                 if (projectile.duration > maxDuration) { maxDuration = projectile.duration; }
 
                 maxX = (int)(maxRange * pxPerX);
-                maxY = (int)(maxHeight * pxPerY);
             }
         }
     }
