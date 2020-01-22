@@ -229,7 +229,7 @@ namespace Projectile_Sim
             string formatString = "F" + Properties.Settings.Default.decimalPlaces.ToString();
 
             //Define new tab contents control with selected type
-            projectileTabs[index] = new TabContents(displayType) { Dock = DockStyle.Fill };
+            projectileTabs[index] = new TabContents(displayType) { Dock = DockStyle.Fill, AutoScroll = true };
             //Add the control to the tab
             newTab.Controls.Add(projectileTabs[index]);
             controlCollection = projectileTabs[index].Controls;
@@ -267,6 +267,7 @@ namespace Projectile_Sim
             tabSelectProjectile.TabPages.Clear();
             comboColour.SelectedItem = comboColour.Items[0];
 
+
             if (Properties.Settings.Default.useScales)
             {
                 upDownHorizontal.Value = (decimal)Properties.Settings.Default.defaultXScale;
@@ -292,6 +293,7 @@ namespace Projectile_Sim
 
             HandleTabsChanged();
 
+            
         }
 
         private void BtnPlot_Click(object sender, EventArgs e)

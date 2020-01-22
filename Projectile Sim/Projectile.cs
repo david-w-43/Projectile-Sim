@@ -31,9 +31,9 @@ namespace Projectile_Sim
 
             this.colour = colour;
 
-            //Set current values (may not be required)
-            displacement = initDisplacement;
-            velocity = initVelocity;
+            //Calculate current values for time = 0
+            Update(0);
+
 
             //Projectile stops when vertical displacement from origin = 0
             // 0 = s0 + ut + 0.5at^2, 0.5at^2 + ut + s0

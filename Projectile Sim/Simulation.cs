@@ -151,9 +151,10 @@ namespace Projectile_Sim
             }
         }
 
+        // ---- RECURSIVE FUNCTION ----
         private Bitmap RecursivePlot(Bitmap prevImage, double time, double toTime, double timeInterval)
         {
-            if (time < toTime + frameInterval)
+            if (time < toTime + timeInterval)
             {
                 //Building on top of previous image
                 Bitmap currentImage = prevImage;
@@ -193,6 +194,10 @@ namespace Projectile_Sim
 
         private void RealTime(Object source, ElapsedEventArgs e) //Runs every frame
         {
+            ////For debugging only
+
+
+
             //Use stopwatch to get time while plotting
             //Convert time to seconds
             double time = ((double)stopwatch.ElapsedMilliseconds / 1000) * timescale;
