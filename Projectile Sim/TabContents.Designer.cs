@@ -81,7 +81,7 @@
             // lblVelocityUnits
             // 
             this.lblVelocityUnits.AutoSize = true;
-            this.lblVelocityUnits.Location = new System.Drawing.Point(339, 127);
+            this.lblVelocityUnits.Location = new System.Drawing.Point(306, 127);
             this.lblVelocityUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVelocityUnits.Name = "lblVelocityUnits";
             this.lblVelocityUnits.Size = new System.Drawing.Size(40, 24);
@@ -93,7 +93,7 @@
             // lblPositionUnits
             // 
             this.lblPositionUnits.AutoSize = true;
-            this.lblPositionUnits.Location = new System.Drawing.Point(339, 53);
+            this.lblPositionUnits.Location = new System.Drawing.Point(309, 52);
             this.lblPositionUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPositionUnits.Name = "lblPositionUnits";
             this.lblPositionUnits.Size = new System.Drawing.Size(26, 24);
@@ -104,8 +104,8 @@
             // 
             // txtVVel
             // 
-            this.txtVVel.Location = new System.Drawing.Point(139, 120);
-            this.txtVVel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtVVel.Location = new System.Drawing.Point(119, 120);
+            this.txtVVel.Margin = new System.Windows.Forms.Padding(6);
             this.txtVVel.Name = "txtVVel";
             this.txtVVel.ReadOnly = true;
             this.txtVVel.Size = new System.Drawing.Size(171, 29);
@@ -116,8 +116,8 @@
             // 
             // txtVPos
             // 
-            this.txtVPos.Location = new System.Drawing.Point(139, 38);
-            this.txtVPos.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtVPos.Location = new System.Drawing.Point(119, 38);
+            this.txtVPos.Margin = new System.Windows.Forms.Padding(6);
             this.txtVPos.Name = "txtVPos";
             this.txtVPos.ReadOnly = true;
             this.txtVPos.Size = new System.Drawing.Size(171, 29);
@@ -128,8 +128,8 @@
             // 
             // txtHVel
             // 
-            this.txtHVel.Location = new System.Drawing.Point(139, 88);
-            this.txtHVel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtHVel.Location = new System.Drawing.Point(119, 88);
+            this.txtHVel.Margin = new System.Windows.Forms.Padding(6);
             this.txtHVel.Name = "txtHVel";
             this.txtHVel.ReadOnly = true;
             this.txtHVel.Size = new System.Drawing.Size(171, 29);
@@ -140,8 +140,8 @@
             // 
             // txtHPos
             // 
-            this.txtHPos.Location = new System.Drawing.Point(139, 6);
-            this.txtHPos.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtHPos.Location = new System.Drawing.Point(119, 6);
+            this.txtHPos.Margin = new System.Windows.Forms.Padding(6);
             this.txtHPos.Name = "txtHPos";
             this.txtHPos.ReadOnly = true;
             this.txtHPos.Size = new System.Drawing.Size(171, 29);
@@ -154,7 +154,7 @@
             // 
             this.lblVelCloseBracket.AutoSize = true;
             this.lblVelCloseBracket.Font = new System.Drawing.Font("Calibri Light", 48F);
-            this.lblVelCloseBracket.Location = new System.Drawing.Point(297, 73);
+            this.lblVelCloseBracket.Location = new System.Drawing.Point(277, 73);
             this.lblVelCloseBracket.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVelCloseBracket.Name = "lblVelCloseBracket";
             this.lblVelCloseBracket.Size = new System.Drawing.Size(52, 78);
@@ -167,7 +167,7 @@
             // 
             this.lblVelOpenBracket.AutoSize = true;
             this.lblVelOpenBracket.Font = new System.Drawing.Font("Calibri Light", 48F);
-            this.lblVelOpenBracket.Location = new System.Drawing.Point(106, 73);
+            this.lblVelOpenBracket.Location = new System.Drawing.Point(86, 73);
             this.lblVelOpenBracket.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVelOpenBracket.Name = "lblVelOpenBracket";
             this.lblVelOpenBracket.Size = new System.Drawing.Size(52, 78);
@@ -180,7 +180,7 @@
             // 
             this.lblPosCloseBracket.AutoSize = true;
             this.lblPosCloseBracket.Font = new System.Drawing.Font("Calibri Light", 48F);
-            this.lblPosCloseBracket.Location = new System.Drawing.Point(297, -8);
+            this.lblPosCloseBracket.Location = new System.Drawing.Point(277, -8);
             this.lblPosCloseBracket.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPosCloseBracket.Name = "lblPosCloseBracket";
             this.lblPosCloseBracket.Size = new System.Drawing.Size(52, 78);
@@ -193,7 +193,7 @@
             // 
             this.lblPosOpenBracket.AutoSize = true;
             this.lblPosOpenBracket.Font = new System.Drawing.Font("Calibri Light", 48F);
-            this.lblPosOpenBracket.Location = new System.Drawing.Point(106, -8);
+            this.lblPosOpenBracket.Location = new System.Drawing.Point(86, -8);
             this.lblPosOpenBracket.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPosOpenBracket.Name = "lblPosOpenBracket";
             this.lblPosOpenBracket.Size = new System.Drawing.Size(52, 78);
@@ -205,7 +205,7 @@
             // lblVelocity
             // 
             this.lblVelocity.AutoSize = true;
-            this.lblVelocity.Location = new System.Drawing.Point(35, 91);
+            this.lblVelocity.Location = new System.Drawing.Point(15, 91);
             this.lblVelocity.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVelocity.Name = "lblVelocity";
             this.lblVelocity.Size = new System.Drawing.Size(81, 24);
@@ -217,7 +217,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(35, 9);
+            this.lblPosition.Location = new System.Drawing.Point(15, 9);
             this.lblPosition.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(81, 24);
@@ -229,7 +229,7 @@
             // lblVelocityDeg
             // 
             this.lblVelocityDeg.AutoSize = true;
-            this.lblVelocityDeg.Location = new System.Drawing.Point(322, 132);
+            this.lblVelocityDeg.Location = new System.Drawing.Point(306, 132);
             this.lblVelocityDeg.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVelocityDeg.Name = "lblVelocityDeg";
             this.lblVelocityDeg.Size = new System.Drawing.Size(16, 24);
@@ -241,7 +241,7 @@
             // lblVelocitym
             // 
             this.lblVelocitym.AutoSize = true;
-            this.lblVelocitym.Location = new System.Drawing.Point(322, 91);
+            this.lblVelocitym.Location = new System.Drawing.Point(306, 91);
             this.lblVelocitym.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVelocitym.Name = "lblVelocitym";
             this.lblVelocitym.Size = new System.Drawing.Size(40, 24);
@@ -253,7 +253,7 @@
             // lblPositionDeg
             // 
             this.lblPositionDeg.AutoSize = true;
-            this.lblPositionDeg.Location = new System.Drawing.Point(322, 50);
+            this.lblPositionDeg.Location = new System.Drawing.Point(306, 50);
             this.lblPositionDeg.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPositionDeg.Name = "lblPositionDeg";
             this.lblPositionDeg.Size = new System.Drawing.Size(16, 24);
@@ -265,7 +265,7 @@
             // lblPositionM
             // 
             this.lblPositionM.AutoSize = true;
-            this.lblPositionM.Location = new System.Drawing.Point(322, 8);
+            this.lblPositionM.Location = new System.Drawing.Point(306, 8);
             this.lblPositionM.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPositionM.Name = "lblPositionM";
             this.lblPositionM.Size = new System.Drawing.Size(26, 24);
@@ -276,8 +276,8 @@
             // 
             // txtAnglePos
             // 
-            this.txtAnglePos.Location = new System.Drawing.Point(139, 47);
-            this.txtAnglePos.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtAnglePos.Location = new System.Drawing.Point(119, 47);
+            this.txtAnglePos.Margin = new System.Windows.Forms.Padding(6);
             this.txtAnglePos.Name = "txtAnglePos";
             this.txtAnglePos.ReadOnly = true;
             this.txtAnglePos.Size = new System.Drawing.Size(171, 29);
@@ -288,8 +288,8 @@
             // 
             // txtAngleVel
             // 
-            this.txtAngleVel.Location = new System.Drawing.Point(139, 129);
-            this.txtAngleVel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtAngleVel.Location = new System.Drawing.Point(119, 129);
+            this.txtAngleVel.Margin = new System.Windows.Forms.Padding(6);
             this.txtAngleVel.Name = "txtAngleVel";
             this.txtAngleVel.ReadOnly = true;
             this.txtAngleVel.Size = new System.Drawing.Size(171, 29);
@@ -300,8 +300,8 @@
             // 
             // txtMagPos
             // 
-            this.txtMagPos.Location = new System.Drawing.Point(139, 6);
-            this.txtMagPos.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtMagPos.Location = new System.Drawing.Point(119, 6);
+            this.txtMagPos.Margin = new System.Windows.Forms.Padding(6);
             this.txtMagPos.Name = "txtMagPos";
             this.txtMagPos.ReadOnly = true;
             this.txtMagPos.Size = new System.Drawing.Size(171, 29);
@@ -312,8 +312,8 @@
             // 
             // txtMagVel
             // 
-            this.txtMagVel.Location = new System.Drawing.Point(139, 88);
-            this.txtMagVel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtMagVel.Location = new System.Drawing.Point(119, 88);
+            this.txtMagVel.Margin = new System.Windows.Forms.Padding(6);
             this.txtMagVel.Name = "txtMagVel";
             this.txtMagVel.ReadOnly = true;
             this.txtMagVel.Size = new System.Drawing.Size(171, 29);
@@ -325,7 +325,7 @@
             // lblVelocity2
             // 
             this.lblVelocity2.AutoSize = true;
-            this.lblVelocity2.Location = new System.Drawing.Point(42, 93);
+            this.lblVelocity2.Location = new System.Drawing.Point(22, 93);
             this.lblVelocity2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVelocity2.Name = "lblVelocity2";
             this.lblVelocity2.Size = new System.Drawing.Size(81, 24);
@@ -337,7 +337,7 @@
             // lblPosition2
             // 
             this.lblPosition2.AutoSize = true;
-            this.lblPosition2.Location = new System.Drawing.Point(46, 9);
+            this.lblPosition2.Location = new System.Drawing.Point(26, 9);
             this.lblPosition2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPosition2.Name = "lblPosition2";
             this.lblPosition2.Size = new System.Drawing.Size(81, 24);
@@ -349,7 +349,7 @@
             // lblKineticEnergy
             // 
             this.lblKineticEnergy.AutoSize = true;
-            this.lblKineticEnergy.Location = new System.Drawing.Point(87, 9);
+            this.lblKineticEnergy.Location = new System.Drawing.Point(67, 9);
             this.lblKineticEnergy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblKineticEnergy.Name = "lblKineticEnergy";
             this.lblKineticEnergy.Size = new System.Drawing.Size(40, 24);
@@ -360,8 +360,8 @@
             // 
             // txtKineticEnergy
             // 
-            this.txtKineticEnergy.Location = new System.Drawing.Point(139, 6);
-            this.txtKineticEnergy.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtKineticEnergy.Location = new System.Drawing.Point(119, 6);
+            this.txtKineticEnergy.Margin = new System.Windows.Forms.Padding(6);
             this.txtKineticEnergy.Name = "txtKineticEnergy";
             this.txtKineticEnergy.ReadOnly = true;
             this.txtKineticEnergy.Size = new System.Drawing.Size(171, 29);
@@ -373,7 +373,7 @@
             // lblJ
             // 
             this.lblJ.AutoSize = true;
-            this.lblJ.Location = new System.Drawing.Point(322, 9);
+            this.lblJ.Location = new System.Drawing.Point(306, 9);
             this.lblJ.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblJ.Name = "lblJ";
             this.lblJ.Size = new System.Drawing.Size(19, 24);
@@ -384,8 +384,8 @@
             // 
             // txtGPE
             // 
-            this.txtGPE.Location = new System.Drawing.Point(139, 47);
-            this.txtGPE.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtGPE.Location = new System.Drawing.Point(119, 47);
+            this.txtGPE.Margin = new System.Windows.Forms.Padding(6);
             this.txtGPE.Name = "txtGPE";
             this.txtGPE.ReadOnly = true;
             this.txtGPE.Size = new System.Drawing.Size(171, 29);
@@ -397,7 +397,7 @@
             // lblGPE
             // 
             this.lblGPE.AutoSize = true;
-            this.lblGPE.Location = new System.Drawing.Point(73, 50);
+            this.lblGPE.Location = new System.Drawing.Point(53, 50);
             this.lblGPE.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblGPE.Name = "lblGPE";
             this.lblGPE.Size = new System.Drawing.Size(54, 24);
@@ -409,7 +409,7 @@
             // lblDegrees
             // 
             this.lblDegrees.AutoSize = true;
-            this.lblDegrees.Location = new System.Drawing.Point(322, 50);
+            this.lblDegrees.Location = new System.Drawing.Point(306, 50);
             this.lblDegrees.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDegrees.Name = "lblDegrees";
             this.lblDegrees.Size = new System.Drawing.Size(19, 24);
@@ -421,7 +421,7 @@
             // lblTotalEnergy
             // 
             this.lblTotalEnergy.AutoSize = true;
-            this.lblTotalEnergy.Location = new System.Drawing.Point(71, 91);
+            this.lblTotalEnergy.Location = new System.Drawing.Point(51, 91);
             this.lblTotalEnergy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblTotalEnergy.Name = "lblTotalEnergy";
             this.lblTotalEnergy.Size = new System.Drawing.Size(56, 24);
@@ -432,8 +432,8 @@
             // 
             // txtTotalEnergy
             // 
-            this.txtTotalEnergy.Location = new System.Drawing.Point(139, 88);
-            this.txtTotalEnergy.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtTotalEnergy.Location = new System.Drawing.Point(119, 88);
+            this.txtTotalEnergy.Margin = new System.Windows.Forms.Padding(6);
             this.txtTotalEnergy.Name = "txtTotalEnergy";
             this.txtTotalEnergy.ReadOnly = true;
             this.txtTotalEnergy.Size = new System.Drawing.Size(171, 29);
@@ -445,7 +445,7 @@
             // lblJ2
             // 
             this.lblJ2.AutoSize = true;
-            this.lblJ2.Location = new System.Drawing.Point(322, 91);
+            this.lblJ2.Location = new System.Drawing.Point(306, 91);
             this.lblJ2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblJ2.Name = "lblJ2";
             this.lblJ2.Size = new System.Drawing.Size(19, 24);
@@ -456,11 +456,11 @@
             // 
             // groupFixed
             // 
-            this.groupFixed.Controls.Add(this.lblApex2);
             this.groupFixed.Controls.Add(this.lblMassUnits);
             this.groupFixed.Controls.Add(this.lblDurationUnits);
             this.groupFixed.Controls.Add(this.lblRangeUnits);
             this.groupFixed.Controls.Add(this.lblApexUnits);
+            this.groupFixed.Controls.Add(this.lblApex2);
             this.groupFixed.Controls.Add(this.txtRange);
             this.groupFixed.Controls.Add(this.txtMass);
             this.groupFixed.Controls.Add(this.txtDuration);
@@ -473,10 +473,10 @@
             this.groupFixed.Controls.Add(this.lblDuration);
             this.groupFixed.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupFixed.Location = new System.Drawing.Point(0, 167);
-            this.groupFixed.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupFixed.Margin = new System.Windows.Forms.Padding(6);
             this.groupFixed.Name = "groupFixed";
-            this.groupFixed.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupFixed.Size = new System.Drawing.Size(430, 233);
+            this.groupFixed.Padding = new System.Windows.Forms.Padding(6);
+            this.groupFixed.Size = new System.Drawing.Size(380, 233);
             this.groupFixed.TabIndex = 83;
             this.groupFixed.TabStop = false;
             this.groupFixed.Tag = "Common";
@@ -485,7 +485,7 @@
             // 
             this.lblApex2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblApex2.AutoSize = true;
-            this.lblApex2.Location = new System.Drawing.Point(51, 41);
+            this.lblApex2.Location = new System.Drawing.Point(31, 41);
             this.lblApex2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblApex2.Name = "lblApex2";
             this.lblApex2.Size = new System.Drawing.Size(60, 24);
@@ -497,7 +497,7 @@
             // 
             this.lblMassUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMassUnits.AutoSize = true;
-            this.lblMassUnits.Location = new System.Drawing.Point(325, 115);
+            this.lblMassUnits.Location = new System.Drawing.Point(309, 115);
             this.lblMassUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblMassUnits.Name = "lblMassUnits";
             this.lblMassUnits.Size = new System.Drawing.Size(30, 24);
@@ -509,7 +509,7 @@
             // 
             this.lblDurationUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDurationUnits.AutoSize = true;
-            this.lblDurationUnits.Location = new System.Drawing.Point(325, 156);
+            this.lblDurationUnits.Location = new System.Drawing.Point(309, 156);
             this.lblDurationUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDurationUnits.Name = "lblDurationUnits";
             this.lblDurationUnits.Size = new System.Drawing.Size(19, 24);
@@ -521,7 +521,7 @@
             // 
             this.lblRangeUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRangeUnits.AutoSize = true;
-            this.lblRangeUnits.Location = new System.Drawing.Point(325, 197);
+            this.lblRangeUnits.Location = new System.Drawing.Point(309, 197);
             this.lblRangeUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRangeUnits.Name = "lblRangeUnits";
             this.lblRangeUnits.Size = new System.Drawing.Size(26, 24);
@@ -533,7 +533,7 @@
             // 
             this.lblApexUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblApexUnits.AutoSize = true;
-            this.lblApexUnits.Location = new System.Drawing.Point(339, 72);
+            this.lblApexUnits.Location = new System.Drawing.Point(309, 72);
             this.lblApexUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblApexUnits.Name = "lblApexUnits";
             this.lblApexUnits.Size = new System.Drawing.Size(26, 24);
@@ -544,8 +544,8 @@
             // txtRange
             // 
             this.txtRange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtRange.Location = new System.Drawing.Point(139, 192);
-            this.txtRange.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtRange.Location = new System.Drawing.Point(119, 192);
+            this.txtRange.Margin = new System.Windows.Forms.Padding(6);
             this.txtRange.Name = "txtRange";
             this.txtRange.ReadOnly = true;
             this.txtRange.Size = new System.Drawing.Size(171, 29);
@@ -556,8 +556,8 @@
             // txtMass
             // 
             this.txtMass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMass.Location = new System.Drawing.Point(139, 110);
-            this.txtMass.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtMass.Location = new System.Drawing.Point(119, 110);
+            this.txtMass.Margin = new System.Windows.Forms.Padding(6);
             this.txtMass.Name = "txtMass";
             this.txtMass.ReadOnly = true;
             this.txtMass.Size = new System.Drawing.Size(171, 29);
@@ -568,8 +568,8 @@
             // txtDuration
             // 
             this.txtDuration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtDuration.Location = new System.Drawing.Point(139, 151);
-            this.txtDuration.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtDuration.Location = new System.Drawing.Point(119, 151);
+            this.txtDuration.Margin = new System.Windows.Forms.Padding(6);
             this.txtDuration.Name = "txtDuration";
             this.txtDuration.ReadOnly = true;
             this.txtDuration.Size = new System.Drawing.Size(171, 29);
@@ -580,8 +580,8 @@
             // txtVApex
             // 
             this.txtVApex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtVApex.Location = new System.Drawing.Point(139, 69);
-            this.txtVApex.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtVApex.Location = new System.Drawing.Point(119, 69);
+            this.txtVApex.Margin = new System.Windows.Forms.Padding(6);
             this.txtVApex.Name = "txtVApex";
             this.txtVApex.ReadOnly = true;
             this.txtVApex.Size = new System.Drawing.Size(171, 29);
@@ -592,8 +592,8 @@
             // txtHApex
             // 
             this.txtHApex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtHApex.Location = new System.Drawing.Point(139, 28);
-            this.txtHApex.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtHApex.Location = new System.Drawing.Point(119, 28);
+            this.txtHApex.Margin = new System.Windows.Forms.Padding(6);
             this.txtHApex.Name = "txtHApex";
             this.txtHApex.ReadOnly = true;
             this.txtHApex.Size = new System.Drawing.Size(171, 29);
@@ -606,7 +606,7 @@
             this.lblApexCloseBracket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblApexCloseBracket.AutoSize = true;
             this.lblApexCloseBracket.Font = new System.Drawing.Font("Calibri Light", 48F);
-            this.lblApexCloseBracket.Location = new System.Drawing.Point(299, 18);
+            this.lblApexCloseBracket.Location = new System.Drawing.Point(279, 18);
             this.lblApexCloseBracket.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblApexCloseBracket.Name = "lblApexCloseBracket";
             this.lblApexCloseBracket.Size = new System.Drawing.Size(52, 78);
@@ -619,7 +619,7 @@
             this.lblApexOpenBracket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblApexOpenBracket.AutoSize = true;
             this.lblApexOpenBracket.Font = new System.Drawing.Font("Calibri Light", 48F);
-            this.lblApexOpenBracket.Location = new System.Drawing.Point(105, 18);
+            this.lblApexOpenBracket.Location = new System.Drawing.Point(85, 18);
             this.lblApexOpenBracket.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblApexOpenBracket.Name = "lblApexOpenBracket";
             this.lblApexOpenBracket.Size = new System.Drawing.Size(52, 78);
@@ -631,7 +631,7 @@
             // 
             this.lblRange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRange.AutoSize = true;
-            this.lblRange.Location = new System.Drawing.Point(51, 197);
+            this.lblRange.Location = new System.Drawing.Point(31, 197);
             this.lblRange.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRange.Name = "lblRange";
             this.lblRange.Size = new System.Drawing.Size(71, 24);
@@ -643,7 +643,7 @@
             // 
             this.lblMass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMass.AutoSize = true;
-            this.lblMass.Location = new System.Drawing.Point(64, 115);
+            this.lblMass.Location = new System.Drawing.Point(44, 115);
             this.lblMass.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblMass.Name = "lblMass";
             this.lblMass.Size = new System.Drawing.Size(59, 24);
@@ -655,7 +655,7 @@
             // 
             this.lblDuration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDuration.AutoSize = true;
-            this.lblDuration.Location = new System.Drawing.Point(37, 156);
+            this.lblDuration.Location = new System.Drawing.Point(17, 156);
             this.lblDuration.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(85, 24);
@@ -669,8 +669,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.Controls.Add(this.lblPosition);
-            this.Controls.Add(this.groupFixed);
             this.Controls.Add(this.lblVelocityDeg);
             this.Controls.Add(this.lblVelocitym);
             this.Controls.Add(this.lblPositionDeg);
@@ -678,6 +676,10 @@
             this.Controls.Add(this.lblDegrees);
             this.Controls.Add(this.lblJ);
             this.Controls.Add(this.lblPositionM);
+            this.Controls.Add(this.lblVelocityUnits);
+            this.Controls.Add(this.lblPositionUnits);
+            this.Controls.Add(this.lblPosition);
+            this.Controls.Add(this.groupFixed);
             this.Controls.Add(this.txtAnglePos);
             this.Controls.Add(this.txtAngleVel);
             this.Controls.Add(this.txtTotalEnergy);
@@ -690,8 +692,6 @@
             this.Controls.Add(this.lblKineticEnergy);
             this.Controls.Add(this.lblVelocity2);
             this.Controls.Add(this.lblPosition2);
-            this.Controls.Add(this.lblVelocityUnits);
-            this.Controls.Add(this.lblPositionUnits);
             this.Controls.Add(this.txtVVel);
             this.Controls.Add(this.txtVPos);
             this.Controls.Add(this.txtHVel);
@@ -702,10 +702,10 @@
             this.Controls.Add(this.lblPosOpenBracket);
             this.Controls.Add(this.lblVelocity);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.MinimumSize = new System.Drawing.Size(418, 400);
+            this.Margin = new System.Windows.Forms.Padding(6);
+            this.MinimumSize = new System.Drawing.Size(380, 400);
             this.Name = "TabContents";
-            this.Size = new System.Drawing.Size(430, 400);
+            this.Size = new System.Drawing.Size(380, 400);
             this.groupFixed.ResumeLayout(false);
             this.groupFixed.PerformLayout();
             this.ResumeLayout(false);

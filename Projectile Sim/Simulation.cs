@@ -90,9 +90,9 @@ namespace Projectile_Sim
 
             //Some code to draw labels on the axes
             Control[] axesLabels = new Control[3];
-            axesLabels[0] = new Label() { BackColor = Color.Transparent, Text = "0", Left = 3, Top = canvasContainer.Height - marginWidth };
-            axesLabels[1] = new Label() { BackColor = Color.Transparent, Text = xLabel, Left = canvasContainer.Width - (2 * marginWidth), Top = canvasContainer.Height - marginWidth };
-            axesLabels[2] = new Label() { BackColor = Color.Transparent, Text = yLabel, Left = marginWidth, Top = marginWidth };
+            axesLabels[0] = new Label() { BackColor = Color.Transparent, Text = "0", Anchor = (AnchorStyles.Left | AnchorStyles.Bottom), Left = 3, Top = canvasContainer.Height - marginWidth };
+            axesLabels[1] = new Label() { BackColor = Color.Transparent, Text = xLabel, Anchor = (AnchorStyles.Right | AnchorStyles.Bottom), Left = canvasContainer.Width - (2 * marginWidth), Top = canvasContainer.Height - marginWidth };
+            axesLabels[2] = new Label() { BackColor = Color.Transparent, Text = yLabel, Anchor = (AnchorStyles.Left | AnchorStyles.Top), Left = marginWidth, Top = marginWidth };
             canvasContainer.Controls.Clear();
             canvasContainer.Controls.AddRange(axesLabels);
         }
