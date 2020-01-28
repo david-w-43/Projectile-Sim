@@ -12,10 +12,11 @@ namespace Projectile_Sim
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            // Define settings location shorthand
             Properties.Settings.Default.Reload();
             var properties = Properties.Settings.Default;
 
-            //Load current settings into controls
+            // Load current settings into controls
             upDownMarginOffset.Value = properties.margin;
             upDownDecimalPlaces.Value = properties.decimalPlaces;
             upDownFramerate.Value = properties.framerate;
@@ -26,14 +27,15 @@ namespace Projectile_Sim
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //Check if values are valid or not
+            // Check if values are valid or not
             bool valid = true;
             if (upDownMarginOffset.Value < 0) { valid = false; }
             if (upDownDecimalPlaces.Value < 0) { valid = false; }
             if (upDownFramerate.Value <= 0) { valid = false; }
             if (upDownXScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
             if (upDownYScale.Value <= 0 && checkBoxUseScales.Checked) { valid = false; }
-            //If all is still valid, set properties as appropriate
+            
+            // If all is still valid, set properties as appropriate
             if (valid)
             {
                 var properties = Properties.Settings.Default;
@@ -46,12 +48,14 @@ namespace Projectile_Sim
                 properties.defaultYScale = (double)upDownYScale.Value;
             }
 
+            // Save settings
             Properties.Settings.Default.Save();
             Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            // Close and do nothing if cancel clicked
             Close();
         }
     }
