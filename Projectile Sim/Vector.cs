@@ -2,20 +2,25 @@
 
 namespace Projectile_Sim
 {
-    public enum VectorType { component, magnitude }
+    public enum VectorType { component, magnitude } // Enumerator for vector formats
 
     public class Vector
     {
+        // Readonly variables cannot be changed outside the constructor
         public readonly double horizontal, vertical, magnitude, direction;
         public readonly VectorType type;
 
-        public Vector() => this.type = VectorType.component; //default vector type
+        public Vector() => this.type = VectorType.component; // Default vector type, unused
 
         public Vector(VectorType type) => this.type = type;
 
-        public Vector(VectorType type, double parm1, double parm2) //Constructor
+        public Vector(VectorType type, double parm1, double parm2)
         {
+            // Constructor
+
             this.type = type;
+
+            // Convert and store vector in the alternative format
             if (type == VectorType.component)
             {
                 horizontal = parm1;
